@@ -22,8 +22,8 @@ html{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-left: 171px;
-    margin-right: 171px;
+    margin-left: 210px;
+    margin-right: 210px;
     height: var(--header-height);
     align-content: center;
 }
@@ -38,6 +38,17 @@ html{
     width: 156px;
     font-weight: 700;
     cursor: pointer;
+}
+
+.link_page{
+    color: var(--white-color);
+    font-size: 1.6rem;
+    text-decoration: none;
+    width: 144px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .header-item__home-page:hover,.header-item__about-us:hover{
@@ -79,8 +90,9 @@ html{
 
 .container-home__title{
     color: #921A40;
-    font-size: 3rem;
-    padding: 36px 0;
+    font-size: 3.8rem;
+    font-weight: 800;
+    padding: 65px 0;
     margin-top: 0;
     margin-bottom: 0;
     text-align: center;
@@ -102,6 +114,7 @@ html{
     justify-content: center;
     align-items: center;
     border-radius: 10px 10px 0 0; 
+
 }
 
 .container-home__title__item-content{
@@ -123,7 +136,52 @@ html{
     display: flex;
     flex-wrap: wrap; 
     justify-content: space-between;
-    margin-left: 171px;
-    margin-right: 171px;
+    margin-left: 210px;
+    margin-right: 210px;
     
 }
+/* container */
+
+.footer{
+    background:linear-gradient(0,#921A40,#C75B7A);
+    height: 270px;
+    margin-top: 70px;
+}
+
+.footer__header{
+    display: flex;
+    font-size: 2.4rem;
+    color: var(--white-color);
+    padding-top: 59px;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+}
+
+.divider{
+    width: 608px;
+    height: 0.5px;
+    background-color: var(--white-color);
+    margin: 10px auto;
+    margin-top: 20px;
+}
+
+.footer__content {
+
+}
+
+.footer__content__list {
+    padding-top: 19px;
+}
+    
+
+.footer__content__item {
+    color: var(--white-color);
+    font-size: 1.8rem;
+    font-weight: 300;
+    list-style: none;
+    text-align: center;
+    padding-bottom: 6px;
+}
+
+

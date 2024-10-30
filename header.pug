@@ -1,7 +1,10 @@
 .header
     .header__header-item
-        img(src="./assets/img/logo_cochu.png" href="./index.html").header__logo
+        a(href="../home/home_page.html").header-logo-link
+            img(src="../assets/img/logo_cochu.png").header__logo
         div.header-list
-            button.header-item__home-page Trang chủ
-            button.header-item__about-us Giới thiệu 
+            button.header-item__home-page
+                a.link_page(href="../home/home_page.html")  Trang chủ
+            button.header-item__about-us 
+                a.link_page(href="../about/about_us.html") Giới thiệu 
             button.header-item__login Đăng nhập
