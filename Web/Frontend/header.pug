@@ -24,3 +24,27 @@
                     li.header__navbar-user-item.header__navbar-user-item--separate
                         a(href="") Đăng xuất
 
+.modal.js-modal
+      .modal-container.js-modal-container
+        .modal-close.js-modal-close
+          i.fa-solid.fa-xmark
+        header.modal-header
+          i.ti-bag
+          p Đăng nhập 
+        .modal-body
+            .modal-form
+                label.modal-label
+                    // for chi tro den id
+                    |Tên đăng nhập
+                input#howmany.modal-input(type='text')
+                label.modal-label(for='email1')
+                    |Mật khẩu
+                input#email1.modal-input(type='password')
+                div.modal-label-result
+                    button#buy-tickets
+                        | Đăng nhập
+                    button#buy-delete
+                        | Xoá nội dung
+        
+script(src="../header.js")
+
