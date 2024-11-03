@@ -410,6 +410,7 @@ html{
 .modal-label-result{
     display: flex;
     justify-content: space-around;
+    text-transform:none;
 }
 
 .modal-form{
@@ -426,7 +427,7 @@ html{
 
 }
 
-#buy-tickets{
+#button-login{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -437,17 +438,16 @@ html{
     height: 40px;
     font-size: 1.6rem;
     font-weight: 400;
-    text-transform: uppercase;
     padding: 18px;
     cursor: pointer;
     border-radius: 50px;
     /* tao hinh con chuot */
 }
-#buy-tickets:hover{
+#button-login:hover{
     opacity: 0.8;
     /* tao do nhac khi tro vao */
 }
-#buy-delete{
+#button-delete{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -458,14 +458,13 @@ html{
     height: 40px;
     font-size: 1.6rem;
     font-weight: 400;
-    text-transform: uppercase;
     padding: 18px;
     cursor: pointer;
     border-radius: 50px;
     border: 1px solid #000;
 }
 
-#buy-delete:hover{
+#button-delete:hover{
     opacity: 0.8;
     /* tao do nhac khi tro vao */
 }
