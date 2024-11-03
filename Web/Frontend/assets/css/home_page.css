@@ -167,7 +167,12 @@ html{
     border-top-right-radius: 2px;
     border-top-left-radius: 2px;
 }
-
+.header__navbar-user-item:nth-child(1){
+    margin-top: 13px;
+}
+.header__navbar-user-item:nth-child(4){
+    margin-bottom: 13px;
+}
 .header__navbar-user-item a:last-child{
     border-bottom-right-radius: 2px;
     border-bottom-left-radius: 2px;
