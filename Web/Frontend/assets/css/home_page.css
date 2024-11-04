@@ -50,7 +50,7 @@ html{
 }
 
 .link_page{
-    color: var(--white-color);
+    color: var(--white-color) !important;
     font-size: 1.6rem;
     text-decoration: none;
     width: 144px;
@@ -126,7 +126,7 @@ html{
     position: absolute;
     z-index: 1;
     padding-left: 0;
-    top: 51px;
+    top: 51px !important;
     right: -90px;
     background: var(--white-color);
     border-radius: 8px;
@@ -142,19 +142,19 @@ html{
     display: block;
     position: absolute;
     right: 0;
-    top:-20px;
+    top:-20px !important;
     width: 100%;
     height: 20px;
 }
 
 .header__navbar-user-menu::before{
     content: "";
-    border-width: 10px 10px;
+    border-width: 10px 10px !important;
     border-style:solid;
     border-color:transparent transparent var(--white-color) transparent;
     position: absolute;
     right:100px;
-    top:-18px;
+    top:-18px !important;
 }
 
 .header__navbar-user-item--separate{
@@ -164,44 +164,45 @@ html{
 .header__navbar-user-item a{
     text-decoration: none;
     color:var(--text-color);
-    font-size: 1.6rem;
-    padding: 16px 0px;
+    font-size: 1.6rem !important;
+    padding: 16px 0px !important;
     display: block;
     text-align: center;
 }
 
 .header__navbar-user-item a:first-child{
-    border-top-right-radius: 2px;
-    border-top-left-radius: 2px;
+    border-top-right-radius: 2px !important;
+    border-top-left-radius: 2px !important;
 }
 .header__navbar-user-item:nth-child(1){
-    margin-top: 13px;
+    margin-top: 13px !important;
 }
 .header__navbar-user-item:nth-child(4){
-    margin-bottom: 13px;
+    margin-bottom: 13px !important;
 }
 .header__navbar-user-item a:last-child{
-    border-bottom-right-radius: 2px;
-    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px !important;
+    border-bottom-left-radius: 2px !important;
 }
 
 .header__navbar-user-item a:hover{
-    background: #FaFaFa;
+    background: #FaFaFa !important;
+    color: var(--text-color) !important;
 }
 
 .header__navbar-user-dropdown {
     position: fixed;
     color: #921A40;
-    font-size: 0.9rem;
+    font-size: 0.9rem !important;
     display: flex;
     align-items: center;
     justify-content: center;
     background: #FFEBEB;
     border-radius: 50%;
-    height: 14px;
-    width: 14px;
-    top: 38px;
-    right: 212px;
+    height: 14px !important;
+    width: 14px !important;
+    top: 38px !important;
+    right: 212px !important;
     border: #921A40 solid 0.3px;
 }
 

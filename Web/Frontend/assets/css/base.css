@@ -16,6 +16,7 @@
     --header-height: 60px;
     --header-with-search-height: calc(var(--header-height) - var(--navbar-height));
     --header-sort-bar-height: 46px;
+    font-family: "Inter" , sans-serif !important;
 }
 
 *{
@@ -28,7 +29,7 @@ html{
     /* tuong ung 1 rem = 10px */
     line-height: 1.6rem;
     /* font-family: 'Roboto', sans-serif; */
-    font-family: "Inter", sans-serif;
+    font-family: "Inter" , sans-serif !important;
     box-sizing: border-box;
 }
 
