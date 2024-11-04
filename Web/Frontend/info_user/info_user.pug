@@ -1,0 +1,42 @@
+
+extends ../index.pug
+
+block container
+    h2.container-home__title.margin-top-60px Thông tin cá nhân
+    div.container-info-list
+        div.container-info-list__left
+            img(src="../assets/img/Trieu_Man.jpg", alt="").container-info-list__img
+            a(href="").container-info-list__button-history Xem lịch sử
+        div.container-info-list__right
+            div.container-info-list__item-item
+                div.container-info-list__header
+                    div.container-info-list__item-name Họ và tên
+                    i.fa-solid.fa-pen.container-info-list__icon
+                input(type="text" value="Ngô Ngọc Triệu Mẫn" class="container-info-list__item-value")
+            div.container-info-list__item-item
+                div.container-info-list__header.default
+                    div.container-info-list__item-name Mã số sinh viên
+                    input(type="text" value="2212009" class="container-info-list__item-value" readonly)
+            div.container-info-list__item-item
+                div.container-info-list__header
+                    div.container-info-list__item-name Số điện thoại
+                    i.fa-solid.fa-pen.container-info-list__icon
+                input(type="text" value="0865127514" class="container-info-list__item-value")
+            div.container-info-list__item-item
+                div.container-info-list__header
+                    div.container-info-list__item-name Email
+                    i.fa-solid.fa-pen.container-info-list__icon
+                input(type="text" value="man.ngotrieuman27@hcmut.edu.vn" class="container-info-list__item-value")
+            div.container-info-list__item-item
+                div.container-info-list__header
+                    div.container-info-list__item-name Số trang A4 đang có
+                    i.fa-solid.fa-pen.container-info-list__icon
+                input(type="text" value="100" class="container-info-list__item-value")
+            div.container-info-list__item-item
+                div.container-info-list__header.default
+                    div.container-info-list__item-name Ngày cập nhật thêm trang
+                    input(type="text" value="Ngày 18 - Mỗi tháng" class="container-info-list__item-value " readonly)
+            div.container-info-list__item-item
+                div.container-info-list__header.default
+                    div.container-info-list__item-name Khoa
+                    input(type="text" value="Khoa học máy tính - Tăng cường tiếng Nhật" class="container-info-list__item-value" readonly)
