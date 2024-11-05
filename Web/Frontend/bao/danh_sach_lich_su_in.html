@@ -22,38 +22,25 @@
 </head>
 
 <body>    
-    <div class="header">
-        <div class="header__header-item"><a class="header-logo-link" href="../home/home_page.html"><img class="header__logo" src="../assets/img/logo_cochu.png"></a>
-            <div class="header-list">
-                <button class="header-item__home-page"><a class="link_page" href="../home/home_page.html"> Trang chủ</a></button>
-                <button class="header-item__about-us"> <a class="link_page" href="../about/about_us.html">Giới thiệu </a></button>
-                <button class="header-item__print"> <a class="link_page" href="../about/about_us.html">Dịch vụ in </a></button>
-                <button class="header-item__login">Đăng nhập</button>
-                <div class="header__navbar-item header__navbar-user"><img class="header__navbar-user-img" src="../assets/img/Trieu_Man.jpg" alt="">
-                    <div class="header__navbar-user-dropdown"><i class="fa-solid fa-angle-down"></i></div>
-                    <ul class="header__navbar-user-menu">
-                        <li class="header__navbar-user-item"><a href="">Thông tin cá nhân</a></li>
-                        <li class="header__navbar-user-item"><a href="">Lịch sử in</a></li>
-                        <li class="header__navbar-user-item"><a href="">BKPay</a></li>
-                        <li class="header__navbar-user-item header__navbar-user-item--separate"><a href="">Đăng xuất</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+    <style>
+        html{
+            font-family: "Inter" !important;
+        }
+        
+    </style>
 
     <div class="wrapper d-flex align-items-stretch" style="background-color: #FFFAF4; position: relative; top: 60px;">
         <nav id="sidebar" style="background-image: var(--nav-color); width: 266px; height: 964px; position: relative;">
             <div class="p-4">
                 <img src="../assets/img/three_gach.png" alt="" width="37" height="32" style="position: absolute; top: 32px; left: 30px;">
                 <div class="list-unstyled mb-5" style="position: absolute; width: 196px; height: 336px; top: 105px; left: 30px;">
-                    <div class="active" style="width: 196px; height: 63px;"><a href="#" style="font-size: 24px;" class="text-white">Máy in</a></div>
-                    <div style="width: 196px; height: 63px;"><a href="#" style="font-size: 24px;" class="text-white">Lịch sử in</a></div>
-                    <div style="width: 196px; height: 63px;"><a href="#" style="font-size: 24px;" class="text-white">Sinh viên</a></div>
-                    <div style="width: 196px; height: 63px;"><a href="#" style="font-size: 24px;" class="text-white">Doanh thu</a></div>
+                    <div class="active" style="width: 196px; height: 63px;"><a href="./danh_sach_may_in.html" style="font-size: 24px;" class="text-white">Máy in</a></div>
+                    <div style="width: 196px; height: 63px;"><a href="./danh_sach_lich_su_in.html" style="font-size: 24px;" class="text-white">Lịch sử in</a></div>
+                    <div style="width: 196px; height: 63px;"><a href="./danh_sach_sinh_vien.html" style="font-size: 24px;" class="text-white">Sinh viên</a></div>
+                    <div style="width: 196px; height: 63px;"><a href="./bao_cao_doanh_thu.html" style="font-size: 24px;" class="text-white">Doanh thu</a></div>
                 </div>
             </div>
-        </nav>        
+        </nav>      
         
         <div id="content" style="position: static; top: 60px; left: 272px; border: 2px; background-color: transparent;">
             <div style="position: relative; height: 310px; background-color: transparent; margin: auto; background-color: transparent;">
@@ -192,6 +179,53 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <div class="header">
+        <div class="header__header-item">
+            <a class="header-logo-link" href="../home/home_page.html"><img class="header__logo" src="../assets/img/logo_cochu.png"></a>
+            <div class="header-list">
+                <button class="header-item__home-page"><a class="link_page" href="../home/home_page.html" style="font-weight: 600 !important;"> Trang chủ</a></button>
+                <button class="header-item__about-us"> <a class="link_page" href="../about/about_us.html" style="font-weight: 600 !important;">Giới thiệu </a></button>
+                <button class="header-item__print"> <a class="link_page" href="../about/about_us.html"style="font-weight: 600 !important;">Dịch vụ in </a></button>
+                <button class="header-item__login">Đăng nhập</button>
+                <div class="header__navbar-item header__navbar-user"><img class="header__navbar-user-img" src="../assets/img/Trieu_Man.jpg" alt="">
+                    <div class="header__navbar-user-dropdown"><i class="fa-solid fa-angle-down"></i></div>
+                    <ul class="header__navbar-user-menu" style="top: 61px !important;">
+                        <li class="header__navbar-user-item"><a href="../info_user/info_user.html">Thông tin cá nhân</a></li>
+                        <li class="header__navbar-user-item"><a href="">Lịch sử in</a></li>
+                        <li class="header__navbar-user-item"><a href="">BKPay</a></li>
+                        <li class="header__navbar-user-item header__navbar-user-item--separate"><a href="">Đăng xuất</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal js-modal">
+        <div class="modal-container js-modal-container">
+            <div class="modal-close js-modal-close"><i class="fa-solid fa-xmark"></i></div>
+            <header class="modal-header">
+                <i class="ti-bag"></i>
+                <p>Đăng nhập </p>
+            </header>
+          
+            <div class="modal-body">
+                <div class="modal-form">
+                    <label class="modal-label">
+                        <!-- for chi tro den id-->Tên đăng nhập
+                        </label>
+                        <input class="modal-input" id="howmany" type="text">
+                        <label class="modal-label" for="email1">Mật khẩu</label>
+                        <input class="modal-input" id="email1" type="password">
+                        <div class="line"></div>
+                        <div class="modal-label-result">
+                            <button id="button-login">Đăng nhập</button>
+                            <button id="button-delete">Xoá nội dung</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+    <script src="../header.js"></script>
+      
 </body>
 </html>
