@@ -231,8 +231,10 @@ html{
 
 .container-home__title__item{
     width: 450px;
+    min-width: 400px;
     color: var(--text-color);
     font-weight: 400;
+
 }
 
 .container-home__title__item-header{
@@ -248,6 +250,8 @@ html{
 
 }
 
+
+
 .container-home__title__item-content{
     display: flex;
     font-size: 2.4rem;
@@ -261,6 +265,22 @@ html{
     padding: 0 44px;
     border-radius: 0 0 10px 10px; 
     margin-bottom: 52px;
+}
+
+@media (max-width: 1333px){
+    .container-home__title__item-header{
+
+        width: 350px;
+        font-size: 2.8rem;
+    }
+    .container-home__title__item-content{
+
+        width: 350px !important;
+        font-size: 2rem !important;
+    }
+    .container-home__title__item{
+        width: 350px;
+    }
 }
 
 .container-home__list {
