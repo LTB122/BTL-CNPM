@@ -1,0 +1,178 @@
+body {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+/* Header1 */
+.header1 {
+    padding-top: 50px;
+    color: #921A40;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+/* Container */
+.container {
+    position: relative;
+    height: 650px;
+    width: 1250px;
+    background-color: #ebd2cf;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+/*h1*/
+.h1{
+    margin: 20px;
+    text-align: left;
+    font-size: 20px;
+    color: #474747;
+}
+/* Table Styling */
+table {
+    font-size: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    border-left: 2px solid #000;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 2px solid #000;
+}
+thead {
+    top: 0;
+    position: sticky;
+    color: #fff;
+    background-color: #921A40;
+    z-index: 10;
+}
+tbody {
+    border: none;
+    display: block;
+}
+tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+td {
+    color: #474747;
+    text-align: center;
+    background-color: #ffebeb;
+}
+
+/* Thiết lập checkbox */
+.circle-checkbox {
+    -webkit-appearance: none;  /* Loại bỏ giao diện mặc định của checkbox */
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #474747; /* Màu của vòng tròn ngoài */
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+  }
+
+/* Khi checkbox được chọn *
+/* Tạo vòng tròn nhỏ bên trong khi checkbox được chọn */
+.circle-checkbox:checked::before {
+    content: "";
+    display: block;
+    width: 10px;              /* Kích thước vòng tròn bên trong */
+    height: 10px;
+    background-color: #474747;  /* Màu của vòng tròn trong */
+    border-radius: 50%;
+    margin: 3px;             /* Căn giữa bên trong */
+}
+/* Khi checkbox được chọn và xác nhận */
+.circle-checkbox.confirmed::before {
+    content: "✔";                /* Hiển thị dấu tích */
+    color: #ffebeb;
+    display: block;
+    margin: auto;
+  }
+/* Màu nền của checkbox sau khi xác nhận */
+.circle-checkbox.confirmed {
+    background-color: #474747;
+    border: none;
+  }
+/* Button Styling */
+.pay-button {
+    margin: 20px 0;
+    padding: 10px 50px;
+    background-color: #C75B7A;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.pay-button:hover, .confirm-button:hover {
+    background-color: #5A0000;
+}
+
+/* Modal Styling */
+.modal {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+    display: none; /* Ẩn modal ban đầu */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.modal-content {
+    background-color: #F7EFE5;
+    border-radius: 10px;
+    width: 500px;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.modal-content img {
+    background-color: #fff;
+    display: flex;
+    padding: 20px;
+    width: 350px;
+    height: auto;
+    margin: auto;
+    margin-top: 50px;
+    border: 1px solid #000;
+}
+
+.close-button {
+    background-color: transparent;
+    border: none;
+    font-size: 40px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.confirm-button {
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    padding: 10px 60px;
+    background-color: #C75B7A;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
