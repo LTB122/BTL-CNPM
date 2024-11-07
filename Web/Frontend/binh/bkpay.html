@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/home_page.css">
     <link rel="stylesheet" href="../assets/css/about_us.css">
+    <link rel="stylesheet" href="../assets/css/info_user.css">
     <link rel="stylesheet" href="../assets/css/grid.css">
     <link rel="stylesheet" href="../assets/css/responsive.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
@@ -22,10 +23,46 @@
         <div class="header-list">
           <button class="header-item__home-page"><a class="link_page" href="../home/home_page.html"> Trang chủ</a></button>
           <button class="header-item__about-us"> <a class="link_page" href="../about/about_us.html">Giới thiệu </a></button>
+          <button class="header-item__print"> <a class="link_page" href="../about/about_us.html">Dịch vụ in </a></button>
           <button class="header-item__login">Đăng nhập</button>
+          <div class="header__navbar-item header__navbar-user"><img class="header__navbar-user-img" src="../assets/img/Trieu_Man.jpg" alt="">
+            <div class="header__navbar-user-dropdown"><i class="fa-solid fa-angle-down"></i></div>
+            <ul class="header__navbar-user-menu">
+              <li class="header__navbar-user-item"><a href="../info_user/info_user.html">Thông tin cá nhân</a></li>
+              <li class="header__navbar-user-item"><a href="">Lịch sử in</a></li>
+              <li class="header__navbar-user-item"><a href="">BKPay</a></li>
+              <li class="header__navbar-user-item header__navbar-user-item--separate"><a href="">Đăng xuất</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
+    <div class="modal js-modal">
+      <div class="modal-container js-modal-container">
+        <div class="modal-close js-modal-close"><i class="fa-solid fa-xmark"></i></div>
+        <header class="modal-header"><i class="ti-bag"></i>
+          <p>Đăng nhập </p>
+        </header>
+        <div class="modal-body">
+          <div class="modal-form">
+            <label class="modal-label">
+              <!-- for chi tro den id-->Tên đăng nhập
+            </label>
+            <input class="modal-input" id="howmany" type="text">
+            <label class="modal-label" for="email1">Mật khẩu</label>
+            <input class="modal-input" id="email1" type="password">
+            <div class="line"></div>
+            <div class="modal-label-result">
+              <button id="button-login">Đăng nhập</button>
+              <button id="button-delete">Xoá nội dung</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../header.js"></script>
+    
     <p class="header1">BKPAY</p>
     <div class="container">
       <div class="h1", style="color: #474747;">
@@ -53,13 +90,13 @@
         <button class="close-button" onclick="closeModal()">×</button>
         <div id="qrCode">QR Code sẽ hiển thị ở đây</div>
         <!-- Nút Xác nhận -->
-        <button onclick="confirmPayment()" class="confirm-button">Xác nhận</button>
+        <button onclick="confirmPayment()" class="confirm-button">Đã thanh toán</button>
       </div>
     </div>
-    </div>
-        <!-- Thư viện QRCode.js -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-        <script src="../binh/js/bkpay.js"></script>
-    </div>
+
+    <!-- Thư viện QRCode.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <script src="../binh/js/bkpay.js"></script>
   </body>
 </html>
