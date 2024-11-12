@@ -85,6 +85,29 @@ exports.updateUser = async (req, res) => {
 };
 
 
+// Update user information
+exports.updatePage = async (req, res) => {
+    try {
+        const { mssv, number_pager } = req.body;
+        
+        // Find user by ID from the token and update the specified fields
+        const updatedUser = await User.findByIdAndUpdate(
+            req.user.userId, // lấy userId từ token giải mã trong middleware
+            { mssv, number_pager },
+            { new: true, runValidators: true }
+        );
+
+        if (!updatedUser) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        res.status(200).json(updatedUser);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
+
+
 const jwt = require('jsonwebtoken');
 
 // Login a user

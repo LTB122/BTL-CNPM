@@ -11,4 +11,5 @@ router.post('/register', userController.createUser);
 router.get('/profile', auth.authenticateToken, userController.getOneUser);
 router.post('/update-profile',auth.authenticateToken, userController.updateUser);
 router.get('/get-users', auth.authenticateToken, auth.isAdmin, userController.getAllUsers);
+router.post('/update-page',auth.authenticateToken, auth.isAdmin, userController.updatePage);
 module.exports = router;

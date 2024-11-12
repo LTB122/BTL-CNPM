@@ -8,7 +8,8 @@ const userSchema = new mongoose.Schema({
     mssv: { type: String, required: true },
     sdt: { type: String },
     date: { type: Date, required: true, default: Date.now },
-    department: { type: String, required: true }
+    department: { type: String, required: true },
+    number_pager: {type: Number, require: true, default: 0}
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);
