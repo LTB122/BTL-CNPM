@@ -19,6 +19,10 @@ mongoose.connect(process.env.DB_URL, {useUnifiedTopology: true })
 app.use('/api/users', userRoutes);
 
 // Start server
+
+app.get("/", (req, res) => {
+    res.send("this is our website")
+})
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
