@@ -36,14 +36,24 @@ const bcrypt = require('bcrypt');
 // Tạo người dùng mới
 exports.createUser = async (req, res) => {
     try {
-        // Kiểm tra xem có người dùng với username là 'admin' chưa
-        const existingAdmin = await User.findOne({ username: 'admin' });
+        const { username, email, password } = req.body;
 
-        if (existingAdmin) {
-            return res.status(400).json({ message: 'Tài khoản admin đã tồn tại.' });
+        // Kiểm tra xem có người dùng với username hoặc email trùng không
+        const existing = await User.findOne({ $or: [{ username }, { email }] });
+        if (existing) {
+            return res.status(400).json({ message: 'Tài khoản đã tồn tại.' });
         }
 
-        const newUser = new User(req.body);
+        // Hash mật khẩu
+        const saltRounds = 10;
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+        // Tạo người dùng mới với mật khẩu đã hash
+        const newUser = new User({
+            ...req.body,
+            password: hashedPassword
+        });
+
         await newUser.save();
         res.status(201).json(newUser);
     } catch (error) {
@@ -56,10 +66,10 @@ exports.createUser = async (req, res) => {
 exports.updateUser = async (req, res) => {
     try {
         const { name, mssv, sdt, email, avatar } = req.body;
-
-        // Find user by ID and update the specified fields
+        
+        // Find user by ID from the token and update the specified fields
         const updatedUser = await User.findByIdAndUpdate(
-            req.params.id,
+            req.user.userId, // lấy userId từ token giải mã trong middleware
             { name, mssv, sdt, email, avatar },
             { new: true, runValidators: true }
         );
@@ -74,6 +84,7 @@ exports.updateUser = async (req, res) => {
     }
 };
 
+
 const jwt = require('jsonwebtoken');
 
 // Login a user
@@ -82,7 +93,7 @@ exports.login = async (req, res) => {
         const { username, password } = req.body;
 
         // Find the user by username or email (you can choose either one)
-        const user = await User.findOne({ $or: [{ username }, { email: username }] });
+        const user = await User.findOne({ username });
 
         if (!user) {
             return res.status(404).json({ message: 'User not found' });

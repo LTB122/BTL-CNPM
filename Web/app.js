@@ -2,6 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const userRoutes = require('./Backend/Routes/user')
+const paymentRoutes = require('./Backend/Routes/payment')
+const connectDB = require('./Backend/Configs/database'); // Đảm bảo đường dẫn đúng
+
 
 dotenv.config();
 const app = express();
@@ -11,13 +14,12 @@ app.use(express.json());
 app.use(express.static('public'));
 
 // Connect to MongoDB
-mongoose.connect(process.env.DB_URL, {useUnifiedTopology: true })
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.log('DB connection error:', err));
+connectDB()
 
 // Routes
-app.use('/api/users', userRoutes);
-
+app.use('/api/user', userRoutes);
+app.use('/api/payment', paymentRoutes)
+ 
 // Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

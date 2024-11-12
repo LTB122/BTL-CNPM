@@ -10,5 +10,5 @@ router.post('/register', userController.createUser);
 // Các route yêu cầu đăng nhập
 router.get('/profile', auth.authenticateToken, userController.getOneUser);
 router.post('/update-profile',auth.authenticateToken, userController.updateUser);
-router.get('/users', auth.authenticateToken, auth.isAdmin, userController.getAllUsers);
+router.get('/get-users', auth.authenticateToken, auth.isAdmin, userController.getAllUsers);
 module.exports = router;
