@@ -1,9 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../controllers/userController');
+const auth = require('../Middlewares/authenticateToken');
+const userController = require('../Controllers/userController');
 
-// User routes
-router.get('/get', userController.getAllUsers);
-router.post('/create', userController.createUser);
+// Route không yêu cầu đăng nhập (ví dụ: đăng nhập, đăng ký)
+router.post('/login', userController.login);
+router.post('/register', userController.createUser);
 
+// Các route yêu cầu đăng nhập
+router.get('/profile', auth.authenticateToken, userController.getOneUser);
+router.post('/update-profile',auth.authenticateToken, userController.updateUser);
+router.get('/users', auth.authenticateToken, auth.isAdmin, userController.getAllUsers);
 module.exports = router;
