@@ -48,19 +48,71 @@ async function authenticatedFetch(url, options = {}) {
     return response;
 }
 
+function parseJwt(token) {
+    try {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(
+            atob(base64)
+                .split('')
+                .map(function (c) {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                })
+                .join('')
+        );
+        return JSON.parse(jsonPayload);
+    } catch (e) {
+        console.error('Token không hợp lệ:', e);
+        return null;
+    }
+}
+
 function updateUIBasedOnLogin() {
     const token = localStorage.getItem('token');
 
     if (token) {
-        document.querySelector('.header__navbar-user').style.display = 'flex';
-        document.querySelector('.header-item__print').style.display = 'flex';
-        document.querySelector('.header-item__login').style.display = 'none';
+        const userInfo = parseJwt(token);
+        if (userInfo.username === 'admin'){
+            document.querySelector('.header__navbar-user').style.display = 'flex';
+            document.querySelector('.header-item__print').style.display = 'none';
+            document.querySelector('.header-item__login').style.display = 'none';
+            document.querySelector('.header__navbar-user-menu').innerHTML = `
+            <li class="header__navbar-user-item"><a href="../bao/danh_sach_may_in.html">Trang quản lý</a></li>
+            <li class="header__navbar-user-item header__navbar-user-item--separate"><a href="#"> 
+                <button id="button-logout">Đăng xuất</button></a></li>`;  
+            document.querySelector('.header__navbar-user-menu').style.paddingBottom = '10px';
+
+        } else {
+            document.querySelector('.header__navbar-user').style.display = 'flex';
+            document.querySelector('.header-item__print').style.display = 'flex';
+            document.querySelector('.header-item__login').style.display = 'none';
+            document.querySelector('.header__navbar-user-menu').innerHTML = `
+            <li class="header__navbar-user-item"><a href="../info_user/info_user.html">Thông tin cá nhân</a></li>
+            <li class="header__navbar-user-item"><a href="../binh/Print_History.html">Lịch sử in</a></li>
+            <li class="header__navbar-user-item"><a href="../binh/bkpay.html">BKPay</a></li>
+            <li class="header__navbar-user-item header__navbar-user-item--separate"><a href="#"> 
+                <button id="button-logout">Đăng xuất</button></a></li>`;
+        }
+
+        // Gắn sự kiện cho nút đăng xuất sau khi phần tử đã được thêm vào DOM
+        const logoutButton = document.querySelector('#button-logout');
+        if (logoutButton) {
+            logoutButton.addEventListener('click', function () {
+                localStorage.removeItem('token'); 
+                updateUIBasedOnLogin(); 
+                console.log('Đăng xuất thành công!');
+            });
+        } else {
+            console.error('Không tìm thấy nút đăng xuất.');
+        }
+
     } else {
         document.querySelector('.header__navbar-user').style.display = 'none';
         document.querySelector('.header-item__print').style.display = 'none';
         document.querySelector('.header-item__login').style.display = 'block';
     }
 }
+
 
 document.querySelector('#button-login').addEventListener('click', async function () {
     const username = document.getElementById('username').value; 
@@ -75,6 +127,15 @@ document.querySelector('#button-login').addEventListener('click', async function
         }
     }, 200);
 });
+
+const logoutButton = document.querySelector('#button-logout');
+if (logoutButton) {
+    logoutButton.addEventListener('click', function () {
+        localStorage.removeItem('token'); 
+        updateUIBasedOnLogin(); 
+        console.log('Đăng xuất thành công!');
+    });
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     updateUIBasedOnLogin();

@@ -102,6 +102,16 @@ html{
     display: block;
 }
 
+#button-logout{
+    background: transparent;
+    cursor: pointer;
+    border: transparent;
+    height: 100%;
+    width: 100%;
+    color:var(--text-color);
+    font-size: 1.6rem !important;
+}
+
 .header__navbar-user-img{
     width: 40px;
     height: 40px;
