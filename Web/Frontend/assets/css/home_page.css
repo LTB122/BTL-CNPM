@@ -41,7 +41,7 @@ html{
 }
 .header-item__print{
     margin-right: 20px;
-    /* display: none;   */
+    display: none;  
     /* hien thi khi dang nhap */
 }
 
@@ -66,7 +66,7 @@ html{
 }
 
 .header-item__login{
-    display: none;
+    /* display: none; */
     /* tat khi dang nhap */
     margin-top: 10px;
     border-radius: 50px;
@@ -93,7 +93,7 @@ html{
     display: flex;
     justify-items: center;
     position: relative;
-    /* display: none; */
+    display: none;
     /* hien thi khi dang nhap */
 
 }
