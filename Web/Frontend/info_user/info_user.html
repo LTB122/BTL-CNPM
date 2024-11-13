@@ -8,6 +8,7 @@
     <link rel="icon" href="../assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="script" href="../authenticate.js">
+    <link rel="script" href="../info_user/info_user.js">
     <link rel="stylesheet" href="../assets/css/home_page.css">
     <link rel="stylesheet" href="../assets/css/about_us.css">
     <link rel="stylesheet" href="../assets/css/info_user.css">
@@ -63,44 +64,45 @@
             <div class="container-info-list__header">
               <div class="container-info-list__item-name">Họ và tên</div><i class="fa-solid fa-pen container-info-list__icon"></i>
             </div>
-            <input class="container-info-list__item-value" type="text" value="Ngô Ngọc Triệu Mẫn">
+            <input class="container-info-list__item-value" type="text" id="name_user" placeholder="Nhập tên của bạn">
           </div>
           <div class="container-info-list__item-item">
             <div class="container-info-list__header default">
               <div class="container-info-list__item-name">Mã số sinh viên</div>
-              <input class="container-info-list__item-value" type="text" value="2212009" readonly>
+              <input class="container-info-list__item-value" type="text" id="student_id" readonly>
             </div>
           </div>
           <div class="container-info-list__item-item">
             <div class="container-info-list__header">
               <div class="container-info-list__item-name">Số điện thoại</div><i class="fa-solid fa-pen container-info-list__icon"></i>
             </div>
-            <input class="container-info-list__item-value" type="text" value="0865127514">
+            <input class="container-info-list__item-value" type="text" id="phone" placeholder="Nhập số điện thoại">
           </div>
           <div class="container-info-list__item-item">
             <div class="container-info-list__header">
               <div class="container-info-list__item-name">Email</div><i class="fa-solid fa-pen container-info-list__icon"></i>
             </div>
-            <input class="container-info-list__item-value" type="text" value="man.ngotrieuman27@hcmut.edu.vn">
+            <input class="container-info-list__item-value" type="text" id="email" placeholder="Nhập email">
           </div>
           <div class="container-info-list__item-item">
             <div class="container-info-list__header">
               <div class="container-info-list__item-name">Số trang A4 đang có</div><i class="fa-solid fa-pen container-info-list__icon"></i>
             </div>
-            <input class="container-info-list__item-value" type="text" value="100">
+            <input class="container-info-list__item-value" type="text" id="number_pager">
           </div>
           <div class="container-info-list__item-item">
             <div class="container-info-list__header default">
               <div class="container-info-list__item-name">Ngày cập nhật thêm trang</div>
-              <input class="container-info-list__item-value " type="text" value="Ngày 18 - Mỗi tháng" readonly>
+              <input class="container-info-list__item-value" type="text" id="date" readonly>
             </div>
           </div>
           <div class="container-info-list__item-item">
             <div class="container-info-list__header default">
               <div class="container-info-list__item-name">Khoa</div>
-              <input class="container-info-list__item-value" type="text" value="Khoa học máy tính - Tăng cường tiếng Nhật" readonly>
+              <input class="container-info-list__item-value" type="text" id="department" readonly>
             </div>
           </div>
+          <button class="container-info-list__button-history button-update-info">Chỉnh sửa</button>
         </div>
       </div>
     </body>

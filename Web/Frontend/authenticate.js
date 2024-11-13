@@ -94,13 +94,14 @@ function updateUIBasedOnLogin() {
                 <button id="button-logout">Đăng xuất</button></a></li>`;
         }
 
-        // Gắn sự kiện cho nút đăng xuất sau khi phần tử đã được thêm vào DOM
         const logoutButton = document.querySelector('#button-logout');
         if (logoutButton) {
             logoutButton.addEventListener('click', function () {
                 localStorage.removeItem('token'); 
                 updateUIBasedOnLogin(); 
                 console.log('Đăng xuất thành công!');
+
+                window.location.href = '../home/home_page.html';
             });
         } else {
             console.error('Không tìm thấy nút đăng xuất.');
@@ -141,4 +142,104 @@ document.addEventListener('DOMContentLoaded', function () {
     updateUIBasedOnLogin();
 });
 
+// xu ly xem thong tin
+
+document.addEventListener('DOMContentLoaded', async () => {
+    await getUserProfile();
+});
+
+
+async function getUserProfile() {
+    try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            console.error('No token found. Please log in first.');
+            return;
+        }
+
+        // Fetch user profile data from the API
+        const response = await fetch('http://localhost:3000/api/user/profile', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` 
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch user profile');
+        }
+
+        const userInfo = await response.json();
+
+        // Populate form fields with the retrieved user information
+        document.getElementById('name_user').value = userInfo.name || '';
+        document.getElementById('student_id').value = userInfo.mssv || '';
+        document.getElementById('phone').value = userInfo.sdt || '';
+        document.getElementById('email').value = userInfo.email || '';
+        document.getElementById('department').value = userInfo.department || '';
+        document.getElementById('number_pager').value = userInfo.number_pager ;
+        document.getElementById('date').value = new Date(userInfo.createdAt).toLocaleString() || '';
+        
+        // console.log('User profile loaded successfully.');
+    } catch (error) {
+        console.error('Error fetching user profile:', error);
+    }
+}
+
+
+// chinh sua thong tin 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const updateButton = document.querySelector('.button-update-info');
+    
+    if (updateButton) {
+        updateButton.addEventListener('click', async (event) => {
+            event.preventDefault(); 
+
+            const updatedData = {
+                name: document.getElementById('name_user').value,
+                sdt: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+            };
+
+            // Gửi yêu cầu cập nhật
+            await updateUserProfile(updatedData);
+        });
+    } else {
+        console.error('Không tìm thấy nút cập nhật.');
+    }
+});
+
+async function updateUserProfile(updatedData) {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        console.error('Không tìm thấy token. Vui lòng đăng nhập trước.');
+        return;
+    }
+
+    try {
+        const response = await fetch('http://localhost:3000/api/user/update-profile', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(updatedData) // Gửi toàn bộ dữ liệu 
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            console.log('Cập nhật thông tin người dùng thành công:', data);
+            alert('Cập nhật hồ sơ thành công!');
+        } else {
+            const errorData = await response.json();
+            console.error('Không thể cập nhật hồ sơ:', errorData.message);
+            alert(`Không thể cập nhật hồ sơ: ${errorData.message}`);
+        }
+    } catch (error) {
+        console.error('Lỗi khi cập nhật hồ sơ:', error);
+        alert('Đã xảy ra lỗi khi cập nhật hồ sơ.');
+    }
+}
 

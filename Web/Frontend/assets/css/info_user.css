@@ -38,6 +38,9 @@
     text-align: center;
 }
 
+.container-info-list__button-history:hover{
+    background: rgba(146, 26, 64,0.8);
+}
 .container-info-list__img {
     border-radius: 5px;
     width: 300px;
@@ -91,4 +94,18 @@
     display: flex;
     flex-direction: column;
     align-items:normal;
+}
+
+.container-info-list__button-history.button-update-info{
+    height:30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    width: 150px;
+    background: #C75B7A;
+}
+
+.container-info-list__button-history.button-update-info:hover{
+    background: rgba(146, 26, 64,0.8);
 }
