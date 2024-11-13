@@ -109,3 +109,130 @@
 .container-info-list__button-history.button-update-info:hover{
     background: rgba(146, 26, 64,0.8);
 }
+
+/* mua them giay */
+
+
+.modal-buy{
+    position: fixed;
+    /* 1 lop de len lop chinh */
+    top:0;
+    right:0;
+    bottom:0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    /* display:flex; */
+    align-items: center;
+    z-index: 100;
+    /* nam giua thang cha */
+    justify-content: center; 
+    border-radius: 10px;
+    /* nam giua chieu nang thang cha */
+    box-shadow: 0px 4px 4px #921A40;
+
+}
+.modal-buy.open{
+    display: flex;
+}
+.modal-buy.tat{
+    display: none;
+}
+.modal-buy .modal-container-buy{
+    background: #F7EFE5;
+    width: 500px;
+    height: 400px;
+    color: var(--text-color);
+    position: relative;
+    animation: modalFadeIn ease 0.5s;
+    border-radius: 10px;
+    
+}
+.modal-close{
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #921A40;
+    padding: 12px;
+    font-size: 20px;
+    font-weight: 400;
+}
+.modal-close:hover{
+    color:rgba(146, 26, 64,0.6);
+    cursor: pointer;
+}
+.modal-header{
+    background: #D9ABAB;
+    height:110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #921A40;
+    font-weight: 700;
+    font-size: 3.2rem;
+    line-height: 1.4;
+    border-radius: 10px 10px 0 0;
+    text-transform: uppercase;
+}
+.modal-body{
+    padding: 0 16px;
+}
+.modal-label-buy{
+    display: block;
+    /* moi thang nam tren 1 hang rieng biet */
+    font-size: 15px;
+    margin-top: 0px;
+    font-style:normal;
+}
+
+.modal-input{
+    border:1px solid #C4C4C4;
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    margin-bottom: 15.5px;
+    margin-top: 6px;
+    background: #F7EFE5;
+    border-radius: 3px;
+}
+
+.modal-label-buy-result{
+    display: flex;
+    justify-content: space-around;
+    text-transform:none;
+}
+
+.modal-form{
+    background: rgba(217, 171, 171, 0.2);
+    padding-top: 46px;
+    padding-bottom: 19px;
+    padding-left: 38px;
+    padding-right: 38px;
+    margin-top: 38px;
+    margin-bottom: 38px;
+    padding-left: 22px;
+    padding-right: 22px;
+    border-radius: 5px;
+
+}
+
+#button-buy-pager{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #C75B7A;
+    border: none;
+    color: #fff;
+    width: 186px;
+    height: 40px;
+    font-size: 1.6rem;
+    font-weight: 400;
+    padding: 18px;
+    cursor: pointer;
+    border-radius: 50px;
+    /* tao hinh con chuot */
+}
+#button-buy-pager:hover{
+    opacity: 0.8;
+    /* tao do nhac khi tro vao */
+}
