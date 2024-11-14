@@ -7,9 +7,10 @@ const printedRequestSchema = new mongoose.Schema({
     required: true
   },
   printerCode: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: 'Printer',
-    required: true
+    required: true,
+    unique: true
   },
   username: {
     type: String,
@@ -29,7 +30,7 @@ const printedRequestSchema = new mongoose.Schema({
   orientation: {
     type: String,
     enum: ["Hướng dọc", "Hướng ngang"],
-    required: true
+    default: "Hướng dọc"
   },
   pagesPrinted: {
     type: Number,
@@ -39,9 +40,14 @@ const printedRequestSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  totalPrice: {
+  printerName: {
     type: String,
     required: true
+  },
+  Display: {
+    type: String,
+    enum: ["1 mặt", "2 mặt"],
+    default: "1 mặt"
   }
 });
 

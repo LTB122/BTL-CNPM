@@ -1,32 +1,5 @@
 const Printer = require('../Models/Printer');
 const Payment = require('../Models/Payment');
-const PrinterRequest = require('../Models/PrintLog')
-
-//Hàm tạo đơn in mới
-
-exports.createPrintLog = async (req, res) => {
-    try{
-        const {orderCode, printerCode, UserName, paperSize, orientation, pagesPrinted, fileName, totalPrice} = req.body;
-
-        const newPrintedDemand = new PrinterRequest({
-            orderCode,
-            printerCode,
-            UserName,
-            paperSize,
-            orientation,
-            pagesPrinted,
-            fileName,
-            totalPrice
-        });
-
-        await newPrintedDemand.save();
-        res.status(201).json(newPrintedDemand);
-    }
-    catch(err){
-        res.status(400).json({message: err.message});
-    }
-}
-
 
 // Hàm tạo máy in mới
 exports.addNewPrinter = async (req, res) => {
@@ -44,6 +17,11 @@ exports.addNewPrinter = async (req, res) => {
             allowedFileFormat,
             place
         });
+
+        if(await Printer.findOne({printerCode: newPrinter.printerCode})){
+            return res.status(404).json({message: "máy in đã tồn tại trong hệ thống"});
+        }
+
         await newPrinter.save();
         res.status(201).json(newPrinter); 
     }
@@ -51,7 +29,6 @@ exports.addNewPrinter = async (req, res) => {
         res.status(400).json({message: err.message});
     }
 }
-
 
 //Hàm xem thông tin toàn bộ máy in trong hệ thống
 exports.GetAllPrinter = async (req, res) => {
@@ -84,8 +61,6 @@ exports.UpdatePrinter = async (req, res) => {
         const printerID = req.params.printerID;
         const printerInfo = req.body;
 
-        res.json({hello: " test"})
-
         const printer = await Printer.findByIdAndUpdate(
             printerID,     
             { $set: printerInfo },  
@@ -93,8 +68,12 @@ exports.UpdatePrinter = async (req, res) => {
         );
 
         if(!printer){
-            return res.status(404).json({ message: 'Máy in không tồn tại.' });
+            return res.status(404).json({ message: 'Máy in không tồn tại.' }) 
         }
+        // else{
+        //     console.log("existed");
+        //     // res.json({place: printer.place});
+        // }
         res.status(200).json(printer)
     }
     catch(err){
