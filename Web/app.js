@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const userRoutes = require('./Backend/Routes/user')
 const paymentRoutes = require('./Backend/Routes/payment')
+const printerRoutes = require('./Backend/Routes/printer');
 const connectDB = require('./Backend/Configs/database'); // Đảm bảo đường dẫn đúng
 const cors = require('cors');
 
@@ -20,8 +21,10 @@ app.use(express.static('public'));
 connectDB()
 
 // Routes
+app.use('/api/printer', printerRoutes);
 app.use('/api/user', userRoutes);
-app.use('/api/payment', paymentRoutes)
+app.use('/api/payment', paymentRoutes);
+
  
 // Start server
 

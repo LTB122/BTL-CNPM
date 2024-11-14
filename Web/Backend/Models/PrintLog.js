@@ -1,12 +1,14 @@
 const mongoose = require('mongoose');
 
-const printedDemandSchema = new mongoose.Schema({
+const printedRequestSchema = new mongoose.Schema({
   orderCode: {
     type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
     required: true
   },
   printerCode: {
     type: mongoose.Schema.Types.ObjectId,
+    ref: 'Printer',
     required: true
   },
   username: {
@@ -43,4 +45,4 @@ const printedDemandSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('PrintedDemand', printedDemandSchema);
+module.exports = mongoose.model('PrintedRequest', printedRequestSchema);
