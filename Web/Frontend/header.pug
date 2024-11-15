@@ -10,8 +10,9 @@
             button.header-item__print 
                 a.link_page(href="../about/about_us.html") Dịch vụ in 
             button.header-item__login Đăng nhập
+            button.header-item__dangky Đăng ký
             div.header__navbar-item.header__navbar-user
-                img.header__navbar-user-img(src="../assets/img/Trieu_Man.jpg" alt="")
+                img.header__navbar-user-img(src="" alt="")
                 div.header__navbar-user-dropdown
                     i.fa-solid.fa-angle-down
                 ul.header__navbar-user-menu
@@ -48,6 +49,46 @@
                     button#button-delete
                         | Xoá nội dung
         
+
+.modal-dangky.js-modal-dangky
+      .modal-container-dangky.js-modal-container-dangky
+        .modal-close-dangky.js-modal-close-dangky
+          i.fa-solid.fa-xmark
+        header.modal-header-dangky
+          p Đăng ký 
+        .modal-body-dangky
+            .modal-form-dangky
+                div.form-item
+                    label.modal-label-dangky
+                        |Họ và tên
+                    input#fullname.modal-input(type='text')
+                div.form-item
+                    label.modal-label-dangky
+                        |Tên đăng nhập
+                    input#usernamedangky.modal-input(type='text')
+                div.form-item
+                    label.modal-label-dangky
+                        |Mật khẩu
+                    input#passworddangky.modal-input(type='text')
+                div.form-item
+                    label.modal-label-dangky
+                        |Email
+                    input#emaildangky.modal-input(type='email')
+                div.form-item
+                    label.modal-label-dangky
+                        |MSSV
+                    input#mssvdangky.modal-input(type='text')
+                div.form-item
+                    label.modal-label-dangky
+                        |Số điện thoại
+                    input#sdtdangky.modal-input(type='text')
+                div.form-item
+                    label.modal-label-dangky
+                        |Khoa
+                    input#khoadangky.modal-input(type='text')
+            div.modal-label-result-dangky
+                button#button-dangky
+                    | Đăng ký
 script(src="../header.js")
 script(src="../authenticate.js")
 

@@ -58,3 +58,26 @@ const buyBtns = document.querySelectorAll('.header-item__login')
 
 
 
+    const buyBtnsDangky = document.querySelectorAll('.header-item__dangky ')
+    // document de lay class trong bai query.. lay tat ca cac class co ten
+    const modalDangky = document.querySelector('.js-modal-dangky')
+    const modalDangkyContai = document.querySelector('.js-modal-container-dangky')
+    const tatDangky=document.querySelector('.js-modal-close-dangky')
+
+    function showbuyticketDangky(){
+        modalDangky.classList.add('open')
+    }
+
+    function tatDangkybuyticket(){
+        modalDangky.classList.remove('open')
+    }
+
+    for(const buyBtn of buyBtnsDangky){
+        buyBtn.addEventListener('click', showbuyticketDangky)
+    } // chay tung nut trong buyBtnsDangky
+    
+    tatDangky.addEventListener('click',tatDangkybuyticket)
+    modalDangky.addEventListener('click',tatDangkybuyticket)
+    modalDangkyContai.addEventListener('click', function(event){
+        event.stopPropagation()
+    })// ngang chan click vao ben trong bi out ra

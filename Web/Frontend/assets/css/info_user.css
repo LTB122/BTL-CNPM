@@ -13,6 +13,7 @@
     align-items: center;
     margin-top: 32px;
     margin-left: 38px;
+    max-width: 320px;
     
 }
 .container-info-list__right {
@@ -42,9 +43,11 @@
     background: rgba(146, 26, 64,0.8);
 }
 .container-info-list__img {
-    border-radius: 5px;
-    width: 300px;
-    border: 0.4px #474747 solid;
+    width: 300px;  /* Chiều ngang cố định */
+    height: 300px; /* Chiều dài cố định */
+    border-radius: 5px; 
+    border: 0.4px #474747 solid; 
+    object-fit: cover; /* Đảm bảo hình ảnh lấp đầy kích thước */
 }
 
 .container-info-list__item-value{
@@ -233,6 +236,47 @@
     /* tao hinh con chuot */
 }
 #button-buy-pager:hover{
+    opacity: 0.8;
+    /* tao do nhac khi tro vao */
+}
+
+#name_user:hover,
+#phone:hover,
+#email:hover{
+    border-left: 2px solid rgba(146, 26, 64,0.3);
+}
+
+#upload-container.upload-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    margin-top: 13px;
+}
+
+#avatar{
+    width: 100%;
+    font-size: 1rem;
+}
+
+#upload-container.upload-container button{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 8px;
+    font-size: 1.4rem;
+    margin-bottom: 27px;
+    background: #C75B7A;
+    color: #fff;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-weight: 600;
+}
+
+#upload-container.upload-container button:hover{
     opacity: 0.8;
     /* tao do nhac khi tro vao */
 }

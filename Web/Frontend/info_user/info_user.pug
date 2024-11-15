@@ -4,7 +4,12 @@ block container
     h2.container-home__title.margin-top-60px Thông tin cá nhân
     div.container-info-list
         div.container-info-list__left
-            img(src="../assets/img/Trieu_Man.jpg", alt="").container-info-list__img
+            img(src="", alt="").container-info-list__img
+            #upload-container.upload-container(style="display: none;")
+                form#upload-form(enctype="multipart/form-data")
+                    input#avatar(type="file" name="avatar" accept="image/*" required)
+                    button(type="submit") Upload Avatar
+                p#upload-message.message
             a(href="").container-info-list__button-history Xem lịch sử
         div.container-info-list__right
             div.container-info-list__item-item
