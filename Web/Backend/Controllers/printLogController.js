@@ -4,25 +4,28 @@ const Printer = require('../Models/Printer');
 //Hàm tạo đơn in mới
 exports.createPrintLog = async (req, res) => {
     try{
-        const {paperSize, orientation, pagesPrinted, fileName, display, printerCode} = req.body;
-        let printerName;
-        const printerUsed = await Printer.findOne({printerCode: printerCode});
-    
+        const {paperSize, orientation, pagesPrinted, fileName, display} = req.body;
+        const printerID = req.params.printerID;
+        
+        let printerNameCheck, printerCodeCheck;
+        const printerUsed = await Printer.findOne({_id: printerID});
+       
         if(!printerUsed){
             return res.status(404).json({message: "không tìm thấy máy in này"});
         }
-        
-        printerName = printerUsed.printerName;
+
+        printerNameCheck = printerUsed.printerName;
+        printerCodeCheck = printerUsed.printerCode;
 
         const newPrintedDemand = new PrintLog({
-            orderCode: req.user.userID,
-            printerCode,
-            UserName: req.user.username,
+            printerCode: printerCodeCheck,
+            userID: req.user.userId,
+            userName: req.user.username,
             paperSize,
             orientation,
             pagesPrinted,
             fileName,
-            printerName,
+            printerName: printerNameCheck,
             display
         });
 

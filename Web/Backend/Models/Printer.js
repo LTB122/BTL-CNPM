@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const printerSchema = new mongoose.Schema({
   printerCode: {
     type: String,
-    ref: 'Printer',
     required: true
   },
   printerName: {
@@ -39,6 +38,6 @@ const printerSchema = new mongoose.Schema({
     type: String,
     required: true
   }
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model('Printer', printerSchema);

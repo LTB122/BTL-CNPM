@@ -1,20 +1,18 @@
 const mongoose = require('mongoose');
 
 const printedRequestSchema = new mongoose.Schema({
-  orderCode: {
+  printerCode: {
+    type: String,
+    required: true,
+  },
+  userID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
-  printerCode: {
+  userName: {
     type: String,
-    ref: 'Printer',
-    required: true,
-    unique: true
-  },
-  username: {
-    type: String,
-    required: true
+    require: true
   },
   date: {
     type: String,
@@ -49,6 +47,6 @@ const printedRequestSchema = new mongoose.Schema({
     enum: ["1 mặt", "2 mặt"],
     default: "1 mặt"
   }
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model('PrintedRequest', printedRequestSchema);
