@@ -35,13 +35,14 @@
                     <img src="../assets/img/printer_ok.png" alt="" style="border-radius: 5px; width: 388px; height: 336px; border: 1px solid black ;">
                 </div>
                 
-
-                <div style="position: absolute; width: 369px; height: 41px; top: 396px; left: 36px; font-weight: 600; font-size: 24px; background-color: transparent; color: black; text-align: center;">
+                <div id="printerName" style="position: absolute; width: 369px; height: 41px; top: 396px; left: 36px; font-weight: 600; font-size: 24px; background-color: transparent; color: black; text-align: center;">
                     Máy in Laser đen trắng Canon LBP 2900
                 </div>
 
                 <div style="position: absolute; width: 186px; height: 53px; top: 512px; left: 128px; background-color: #C75B7A;" class="btn text-white" type="button">
-                    <p style="color: white; position: absolute; width: 155px; height: 29px; font-size: 24px; font-weight: 700; top: 8px; left: 14px;">Xem lịch sử</p>
+                    <p style="color: white; position: absolute; width: 155px; height: 29px; font-size: 24px; font-weight: 700; top: 8px; left: 14px;">
+                        Xem lịch sử
+                    </p>
                 </div>
             </div>                        
         </div>
@@ -49,64 +50,130 @@
         <div style="position: relative; width: 60%; height: 788px; background-color: transparent;">
             <div style="position: relative; top: 90px; left: 85px; border-radius: 10px; width: 709px; height: 591px; background-color: #FFEBEB; box-shadow: 10px 10px 4px #921A40;">
                 <div style="position: relative; top: 5px; left: 148px; height: 88px; width: 412px; background-color: transparent;">                    
-                    <p style="color: #921A40; font-size: 40px; font-weight: 600; background-color: transparent; position: relative; top: 9%; text-align: center;">THÔNG TIN MÁY</p>
+                    <p style="color: #921A40; font-size: 40px; font-weight: 600; background-color: transparent; position: relative; top: 9%; text-align: center;">
+                        THÔNG TIN MÁY
+                    </p>
                 </div>
 
-                <div style="position: absolute; width: 214px; height: 67px; top: 79px; left: 468px; border-radius: 10px; background-color: #6AC76B; z-index: 1;">
-                    <p style="text-align: center; font-weight: 700; font-size: 24px; color: white; position: relative; top: 15%;">Đang hoạt động</p>
-                </div>
+                <div id="condition">
+                    <div style="position: absolute; width: 214px; height: 67px; top: 79px; left: 468px; border-radius: 10px; background-color: #6AC76B; z-index: 1;">
+                        <p style="text-align: center; font-weight: 700; font-size: 24px; color: white; position: relative; top: 15%;">
+                            Đang hoạt động
+                        </p>
+                    </div>
+                </div>                
 
                 <div style="position: absolute; width: 629px; height: 403px; top: 95px; left: 40px; border-radius: 15px; background-color: #FFF8F8;">
                     <div style="position: absolute; width: 441px; height: 40px; top: 31px; left: 35px;">
-                        <p style="font-weight: 600; font-size: 20px;"><nobr style="color: #921A40; font-weight: 700;">Ngày sản xuất:</nobr>  06/09/2004</p>
+                        <p style="font-weight: 600; font-size: 20px;">
+                            <nobr style="color: #921A40; font-weight: 700;">
+                                Ngày sản xuất:
+                            </nobr> 
+                            
+                            <nobr id="ngay_san_xuat">
+                                06/09/2004
+                            </nobr> 
+                        </p>
                     </div>
 
                     <div style="position: absolute; width: 441px; height: 40px; top: 92px; left: 35px;">
-                        <p style="font-weight: 600; font-size: 20px;"><nobr style="color: #921A40; font-weight: 700;">Hãng máy:</nobr>  Canon LBP2900 (A4/A5/ USB)</p>
+                        <p style="font-weight: 600; font-size: 20px;">
+                            <nobr style="color: #921A40; font-weight: 700;">
+                                Hãng máy:
+                            </nobr> 
+                            
+                            <nobr id="brand">
+                                Canon LBP2900 (A4/A5/ USB)
+                            </nobr>
+                        </p>
                     </div>
 
                     <div style="position: absolute; width: 441px; height: 40px; top: 153px; left: 35px;">
-                        <p style="font-weight: 600; font-size: 20px;"><nobr style="color: #921A40; font-weight: 700;">Công ty sản xuất:</nobr>  Canon Inc</p>
+                        <p style="font-weight: 600; font-size: 20px;">
+                            <nobr style="color: #921A40; font-weight: 700;">
+                                Công ty sản xuất:
+                            </nobr>  
+
+                            <nobr id="company">
+                                Canon Inc
+                            </nobr>
+                        </p>
                     </div>
 
                     <div style="position: absolute; width: 441px; height: 40px; top: 214px; left: 35px;">
-                        <p style="font-weight: 600; font-size: 20px;"><nobr style="color: #921A40; font-weight: 700;">Địa điểm:</nobr>  Toà B4 - Tầng 2</p>
+                        <p style="font-weight: 600; font-size: 20px;">
+                            <nobr style="color: #921A40; font-weight: 700;">
+                                Địa điểm:
+                            </nobr> 
+                            
+                            <nobr id="place">
+                                Toà B4 - Tầng 2
+                            </nobr>
+                        </p>
                     </div>
 
                     <div style="position: absolute; width: 441px; height: 40px; top: 273px; left: 35px;">
-                        <p style="font-weight: 600; font-size: 20px;"><nobr style="color: #921A40; font-weight: 700;">Ngày được thêm vào hệ thống:</nobr>  06/09/2024</p>
+                        <p style="font-weight: 600; font-size: 20px;">
+                            <nobr style="color: #921A40; font-weight: 700;">
+                                Ngày được thêm vào hệ thống:
+                            </nobr>
+                            
+                            <nobr id="systemInTime">
+                                06/09/2024
+                            </nobr>
+                        </p>
                     </div>
 
                     <div style="position: absolute; width: 441px; height: 40px; top: 332px; left: 35px;">
-                        <p style="font-weight: 600; font-size: 20px;"><nobr style="color: #921A40; font-weight: 700;">Mã máy in:</nobr>  B40001</p>
+                        <p style="font-weight: 600; font-size: 20px;">
+                            <nobr style="color: #921A40; font-weight: 700;">
+                                Mã máy in:
+                            </nobr>  
+
+                            <nobr id="printerCode">
+                                B40001
+                            </nobr>
+                        </p>
                     </div>
                 </div>
 
                 <div class="btn" type="button" style="position: absolute; top: 516px; left: 56px; width: 186px; height: 53px; background-color: #C75B7A;" data-bs-toggle="modal" data-bs-target="#modifyButton" id="modify">
-                    <p style="color: white; position: absolute; width: 155px; height: 29px; font-size: 24px; font-weight: 700; top: 8px; left: 14px;">Chỉnh sửa</p>
+                    <p style="color: white; position: absolute; width: 155px; height: 29px; font-size: 24px; font-weight: 700; top: 8px; left: 14px;">
+                        Chỉnh sửa
+                    </p>
                 </div>
 
                 <div class="btn" type="button" style="position: absolute; top: 516px; left: 468px; width: 186px; height: 53px; background-color: #C75B7A;"  data-bs-toggle="modal" data-bs-target="#deleteButton" id="delete">
-                    <p style="color: white; position: absolute; width: 155px; height: 29px; font-size: 24px; font-weight: 700; top: 8px; left: 14px;">Xóa máy in</p>
+                    <p style="color: white; position: absolute; width: 155px; height: 29px; font-size: 24px; font-weight: 700; top: 8px; left: 14px;">
+                        Xóa máy in
+                    </p>
                 </div>
 
                 <div class="modal fade" id="deleteButton" tabindex="-1" aria-labelledby="modify modal" aria-hidden="true" style="background-color: transparent;">
                     <div class="modal-dialog">
                         <div class="modal-content start-50 translate-middle" style="position: fixed; width: 540px; top: 25%; height: 246px; border-radius: 15px; background: linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(0deg, #FFFAF4, #FFFAF4);">
                             <div style="position: absolute; width: 332px; height: 64px; top: 23px; left: 17%;">
-                                <p style="color: #921A40; font-size: 32px; font-weight: 700; background-color: transparent; text-align: center;">Xác nhận</p>
+                                <p style="color: #921A40; font-size: 32px; font-weight: 700; background-color: transparent; text-align: center;">
+                                    Xác nhận
+                                </p>
                             </div>
     
                             <div style="position: absolute; width: 490px; height: 27px; top: 98px;" align="center">
-                                <p style="position: relative; font-size: 20px; font-weight: 500; color: #000000; text-align: center;">Bạn có muốn xóa máy này ra khỏi hệ thống?</p>
+                                <p style="position: relative; font-size: 20px; font-weight: 500; color: #000000; text-align: center;">
+                                    Bạn có muốn xóa máy này ra khỏi hệ thống?
+                                </p>
                             </div>
                             
                             <button type="button" class="btn" style="background-color: #C75B7A; border-radius: 10px; width: 186px; height: 53px; position: absolute; top: 157px; left: 36px;">
-                                <p style="font-size: 24px; font-weight: 700; color: white; width: 155px; height: 29px; top: 11px; left: 14px;">Xóa máy in</p>
+                                <p style="font-size: 24px; font-weight: 700; color: white; width: 155px; height: 29px; top: 11px; left: 14px;">
+                                    Xóa máy in
+                                </p>
                             </button>
                             
                             <button type="button" class="btn" style="background-color: #C75B7A; border-radius: 10px; width: 186px; height: 53px; position: absolute; top: 157px; left: 330px;" data-bs-dismiss="modal">
-                                <p style="font-size: 24px; font-weight: 700; color: white; width: 155px; height: 29px; top: 11px; left: 14px;">Quay lại</p>
+                                <p style="font-size: 24px; font-weight: 700; color: white; width: 155px; height: 29px; top: 11px; left: 14px;">
+                                    Quay lại
+                                </p>
                             </button>
                         </div>                        
                     </div>
@@ -116,19 +183,27 @@
                     <div class="modal-dialog">
                         <div class="modal-content start-50 translate-middle" style="position: fixed; width: 500px; top: 25%; height: 246px; border-radius: 15px; background: linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(0deg, #FFFAF4, #FFFAF4);">
                             <div style="position: absolute; width: 332px; height: 64px; top: 23px; left: 17%;">
-                                <p style="color: #921A40; font-size: 32px; font-weight: 700; background-color: transparent; text-align: center;">Xác nhận</p>
+                                <p style="color: #921A40; font-size: 32px; font-weight: 700; background-color: transparent; text-align: center;">
+                                    Xác nhận
+                                </p>
                             </div>
     
                             <div style="position: absolute; width: 400px; height: 27px; top: 98px; left: 50px;">
-                                <p style="position: relative; font-size: 20px; font-weight: 500; color: #000000; text-align: center;">Bạn có muốn lưu những thay đổi này?</p>
+                                <p style="position: relative; font-size: 20px; font-weight: 500; color: #000000; text-align: center;">
+                                    Bạn có muốn lưu những thay đổi này?
+                                </p>
                             </div>
                             
                             <button type="button" class="btn" style="background-color: #C75B7A; border-radius: 10px; width: 186px; height: 53px; position: absolute; top: 157px; left: 36px;">
-                                <p style="font-size: 24px; font-weight: 700; color: white; width: 155px; height: 29px; top: 11px; left: 14px;">Lưu</p>
+                                <p style="font-size: 24px; font-weight: 700; color: white; width: 155px; height: 29px; top: 11px; left: 14px;">
+                                    Lưu
+                                </p>
                             </button>
                             
                             <button type="button" class="btn" style="background-color: #C75B7A; border-radius: 10px; width: 186px; height: 53px; position: absolute; top: 157px; left: 280px;" data-bs-dismiss="modal">
-                                <p style="font-size: 24px; font-weight: 700; color: white; width: 155px; height: 29px; top: 11px; left: 14px;">Quay lại</p>
+                                <p style="font-size: 24px; font-weight: 700; color: white; width: 155px; height: 29px; top: 11px; left: 14px;">
+                                    Quay lại
+                                </p>
                             </button>
                         </div>
                     </div>                    
@@ -138,52 +213,89 @@
     </div>
     
     <div class="header">
-        <div class="header__header-item">
-            <a class="header-logo-link" href="../home/home_page.html"><img class="header__logo" src="../assets/img/logo_cochu.png"></a>
-            <div class="header-list">
-                <button class="header-item__home-page"><a class="link_page" href="../home/home_page.html" style="font-weight: 600 !important;"> Trang chủ</a></button>
-                <button class="header-item__about-us"> <a class="link_page" href="../about/about_us.html" style="font-weight: 600 !important;">Giới thiệu </a></button>
-                <button class="header-item__print"> <a class="link_page" href="../about/about_us.html"style="font-weight: 600 !important;">Dịch vụ in </a></button>
-                <button class="header-item__login">Đăng nhập</button>
-                <div class="header__navbar-item header__navbar-user"><img class="header__navbar-user-img" src="../assets/img/Trieu_Man.jpg" alt="">
-                    <div class="header__navbar-user-dropdown"><i class="fa-solid fa-angle-down"></i></div>
-                    <ul class="header__navbar-user-menu" style="top: 61px !important;">
-                        <li class="header__navbar-user-item"><a href="../info_user/info_user.html">Thông tin cá nhân</a></li>
-                        <li class="header__navbar-user-item"><a href="">Lịch sử in</a></li>
-                        <li class="header__navbar-user-item"><a href="">BKPay</a></li>
-                        <li class="header__navbar-user-item header__navbar-user-item--separate"><a href="">Đăng xuất</a></li>
-                    </ul>
-                </div>
+        <div class="header__header-item"><a class="header-logo-link" href="../home/home_page.html"><img class="header__logo" src="../assets/img/logo_cochu.png"></a>
+          <div class="header-list">
+            <button class="header-item__home-page"><a class="link_page" href="../home/home_page.html"> Trang chủ</a></button>
+            <button class="header-item__about-us"> <a class="link_page" href="../about/about_us.html">Giới thiệu </a></button>
+            <button class="header-item__print"> <a class="link_page" href="../about/about_us.html">Dịch vụ in </a></button>
+            <button class="header-item__login">Đăng nhập</button>
+            <button class="header-item__dangky">Đăng ký</button>
+            <div class="header__navbar-item header__navbar-user"><img class="header__navbar-user-img" src="" alt="">
+              <div class="header__navbar-user-dropdown"><i class="fa-solid fa-angle-down"></i></div>
+              <ul class="header__navbar-user-menu"></ul>
             </div>
+          </div>
         </div>
-    </div>
-    
-    <div class="modal js-modal">
-        <div class="modal-container js-modal-container">
-            <div class="modal-close js-modal-close"><i class="fa-solid fa-xmark"></i></div>
-            <header class="modal-header">
-                <i class="ti-bag"></i>
-                <p>Đăng nhập </p>
-            </header>
-          
-            <div class="modal-body">
-                <div class="modal-form">
-                    <label class="modal-label">
-                        <!-- for chi tro den id-->Tên đăng nhập
-                        </label>
-                        <input class="modal-input" id="howmany" type="text">
-                        <label class="modal-label" for="email1">Mật khẩu</label>
-                        <input class="modal-input" id="email1" type="password">
-                        <div class="line"></div>
-                        <div class="modal-label-result">
-                            <button id="button-login">Đăng nhập</button>
-                            <button id="button-delete">Xoá nội dung</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
       </div>
-    <script src="../header.js"></script>
+      <div class="modal js-modal">
+        <div class="modal-container js-modal-container">
+          <div class="modal-close js-modal-close"><i class="fa-solid fa-xmark"></i></div>
+          <header class="modal-header"><i class="ti-bag"></i>
+            <p>Đăng nhập </p>
+          </header>
+          <div class="modal-body">
+            <div class="modal-form">
+              <label class="modal-label">
+                <!-- for chi tro den id-->Tên đăng nhập
+              </label>
+              <input class="modal-input" id="username" type="text">
+              <label class="modal-label">Mật khẩu</label>
+              <input class="modal-input" id="password" type="password">
+              <div class="line"></div>
+              <div class="modal-label-result">
+                <button id="button-login">Đăng nhập</button>
+                <button id="button-delete">Xoá nội dung</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-dangky js-modal-dangky">
+        <div class="modal-container-dangky js-modal-container-dangky">
+          <div class="modal-close-dangky js-modal-close-dangky"><i class="fa-solid fa-xmark"></i></div>
+          <header class="modal-header-dangky">
+            <p>Đăng ký </p>
+          </header>
+          <div class="modal-body-dangky">
+            <div class="modal-form-dangky">
+              <div class="form-item">
+                <label class="modal-label-dangky">Họ và tên</label>
+                <input class="modal-input" id="fullname" type="text">
+              </div>
+              <div class="form-item">
+                <label class="modal-label-dangky">Tên đăng nhập</label>
+                <input class="modal-input" id="usernamedangky" type="text">
+              </div>
+              <div class="form-item">
+                <label class="modal-label-dangky">Mật khẩu</label>
+                <input class="modal-input" id="passworddangky" type="text">
+              </div>
+              <div class="form-item">
+                <label class="modal-label-dangky">Email</label>
+                <input class="modal-input" id="emaildangky" type="email">
+              </div>
+              <div class="form-item">
+                <label class="modal-label-dangky">MSSV</label>
+                <input class="modal-input" id="mssvdangky" type="text">
+              </div>
+              <div class="form-item">
+                <label class="modal-label-dangky">Số điện thoại</label>
+                <input class="modal-input" id="sdtdangky" type="text">
+              </div>
+              <div class="form-item">
+                <label class="modal-label-dangky">Khoa</label>
+                <input class="modal-input" id="khoadangky" type="text">
+              </div>
+            </div>
+            <div class="modal-label-result-dangky">
+              <button id="button-dangky">Đăng ký</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="../header.js"></script>
+      <script src="../authenticate.js"></script>
+    <script src="./js/get_info_may_in.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
