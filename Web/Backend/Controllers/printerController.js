@@ -81,3 +81,19 @@ exports.UpdatePrinter = async (req, res) => {
     }
 }
 
+//Hàm xóa đi một máy in ra khỏi hệ thống
+exports.DeletePrinter = async (req, res) => {
+    try {
+        const printerID = req.params.printerID;
+        
+        const deletedPrinter = await Printer.findByIdAndDelete(printerID);
+        if (!deletedPrinter) {
+            return res.status(404).json({ message: 'Máy in không được tìm thấy' });
+        }
+        res.status(200).json({ message: 'Xóa máy in thành công', printer: deletedPrinter });
+    }
+    catch (err){
+        res.status(400).json({message: err.message});
+    }
+}
+

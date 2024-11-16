@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const printedRequestSchema = new mongoose.Schema({
   printerCode: {
     type: String,
+    ref: "Printer",
     required: true,
   },
   userID: {

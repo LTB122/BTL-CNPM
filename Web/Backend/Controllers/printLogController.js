@@ -48,10 +48,24 @@ exports.GetAllPrintHistory = async (req, res) => {
     }
 }
 
+
+exports.GetAccountPrintHistoryForAdmin = async (req, res) => {
+    try{
+        const printHistory = await PrintLog.find({userID: req.params.userID});
+        console.log(printHistory)
+        res.status(200).json(printHistory);
+    }
+    catch(err){
+        res.status(400).json({ message: err.message });
+    }
+}
+
+//Lấy toàn bộ danh sách lịch sử in ấn của tài khoản đó
 exports.GetAccountPrintHistory = async (req, res) => {
     try{
-        const hell0 = 1;
-
+        const printHistory = await PrintLog.find({userID: req.user.userId});
+        console.log(printHistory)
+        res.status(200).json(printHistory);
     }
     catch(err){
         res.status(400).json({ message: err.message });

@@ -11,6 +11,9 @@ router.get('/printer/:printerID', auth.authenticateToken, printerController.GetO
 router.post('/printerAdded', auth.authenticateToken, auth.isAdmin, printerController.addNewPrinter);
 
 //Cập nhật thông tin của máy in cụ thể
-router.put('/printer/:printerID', auth.authenticateToken, auth.isAdmin, printerController.UpdatePrinter);
+router.put('/printerFixed/:printerID', auth.authenticateToken, auth.isAdmin, printerController.UpdatePrinter);
+
+//Xóa máy in
+router.delete('/printerDeleted/:printerID', auth.authenticateToken, auth.isAdmin, printerController.DeletePrinter);
 
 module.exports = router;
