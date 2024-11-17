@@ -9,7 +9,9 @@ const userSchema = new mongoose.Schema({
     sdt: { type: String },
     date: { type: Date, required: true, default: Date.now },
     department: { type: String, required: true },
-    number_pager: {type: Number, require: true, default: 0}
+    number_pager: { type: Number, required: true, default: 0 },
+    avatar: { type: String }  // Lưu URL của hình ảnh avatar
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);
+
