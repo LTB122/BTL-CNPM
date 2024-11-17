@@ -48,6 +48,14 @@ try {
         printerInfo.then((res) => {
             let htmls = "";            
             for(let i = 0; i < res.length; i ++) {
+                const date = new Date(res[0].createdAt);
+                const year = date.getFullYear();
+                const month = date.getMonth() + 1;
+                const day = date.getDate();
+                const hours = date.getHours();
+                const minutes = date.getMinutes();
+                const seconds = date.getSeconds();
+
                 let temp = 
                 `<div class="shadow" style="height: 120px; width: 100%; border: 1px solid black; border-radius: 15px; background-color: #FFFFFF; margin-bottom: 20px;">
                     <div style="width: 40%; height: 120px; background-color: transparent; float: left; display: flex; flex-flow: column wrap; justify-content: space-around; padding: 12px;">
@@ -89,7 +97,7 @@ try {
                                     Thời gian:
                                 </nobr> 
                                 
-                                ${res[i].createdAt}
+                                ${hours}:${minutes}:${seconds}
                             </p>
                         </div>
 
@@ -99,7 +107,7 @@ try {
                                     Ngày in:
                                 </nobr> 
                                 
-                                ${res[i].date}
+                                ${day}-${month}-${year}
                             </p>
                         </div>
                     </div>
