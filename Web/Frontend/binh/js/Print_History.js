@@ -72,35 +72,54 @@ function updateSummaryTable() {
     document.getElementById("totalA3").textContent = totalA3Initial;
 }
 
-// Tìm kiếm và lọc dữ liệu theo ngày
+// Tìm kiếm và lọc dữ liệu theo mã máy in và ngày
 document.querySelector('.search-btn').addEventListener('click', async () => {
+    const printerCodeInput = document.getElementById('printerCode').value.trim();
     const startDateInput = document.getElementById('startDate').value;
     const endDateInput = document.getElementById('endDate').value;
-    
+
     const historyData = await fetchHistoryData();
-    
-    if (!startDateInput && !endDateInput) {
-        // Hiển thị toàn bộ dữ liệu nếu không có điều kiện tìm kiếm
-        displayHistory(historyData);
-    } else {
-        // Lọc theo ngày nếu có điều kiện tìm kiếm
-        const startDate = new Date(startDateInput);
-        const endDate = new Date(endDateInput);
 
-        const filteredData = historyData.filter(history => {
-            const historyDate = new Date(history.date);
-            return historyDate >= startDate && historyDate <= endDate;
-        });
-
-        if (filteredData.length === 0) {
-            alert("Không tìm thấy kết quả nào trong khoảng thời gian đã chọn.");
-        } else {
-            displayHistory(filteredData);
-        }
+    if (!historyData || historyData.length === 0) {
+        alert("Không có dữ liệu để hiển thị.");
+        return;
     }
+
+    // Lọc dữ liệu dựa trên mã máy in và ngày
+    const filteredData = historyData.filter(history => {
+        const matchesPrinter = printerCodeInput ? history.printerCode.includes(printerCodeInput) : true;
+        
+        let matchesDate = true;
+        if (startDateInput || endDateInput) {
+            const historyDate = new Date(history.date);
+            if (startDateInput) {
+                const startDate = new Date(startDateInput);
+                matchesDate = matchesDate && historyDate >= startDate;
+            }
+            if (endDateInput) {
+                const endDate = new Date(endDateInput);
+                matchesDate = matchesDate && historyDate <= endDate;
+            }
+        }
+
+        return matchesPrinter && matchesDate;
+    });
+
+    if (filteredData.length === 0) {
+        alert("Không tìm thấy kết quả nào phù hợp.");
+    }
+    
+    displayHistory(filteredData);
 });
 
-// Khởi tạo trang với dữ liệu và bảng tổng kết từ máy chủ
+function viewDetails(index) {
+    // Save selected history data to session storage
+    sessionStorage.setItem('selectedHistory', JSON.stringify(sampleHistoryData[index]));
+    // Redirect to details page
+    window.location.href = 'Print_Detail.html';
+}
+
+// Khởi tạo trang với dữ liệu từ mẫu
 document.addEventListener('DOMContentLoaded', async () => {
     const historyData = await fetchHistoryData();
     displayHistory(historyData);

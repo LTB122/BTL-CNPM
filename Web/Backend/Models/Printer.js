@@ -1,46 +1,46 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const printedDemandSchema = new mongoose.Schema({
-  orderCode: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true
-  },
-  printerCode: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true
-  },
-  username: {
-    type: String,
-    required: true
-  },
-  date: {
-    type: String,
-    default: Date.now
-  },
-  time: {
-    type: String,
-  },
-  paperSize: {
-    type: String,
-    required: true
-  },
-  orientation: {
-    type: String,
-    enum: ["Hướng dọc", "Hướng ngang"],
-    required: true
-  },
-  pagesPrinted: {
-    type: Number,
-    required: true
-  },
-  fileName: {
-    type: String,
-    required: true
-  },
-  totalPrice: {
-    type: String,
-    required: true
-  }
-});
+const printerSchema = new mongoose.Schema(
+	{
+		printerCode: {
+			type: String,
+			required: true,
+		},
+		printerName: {
+			type: String,
+			required: true,
+		},
+		dateOfProduct: {
+			type: String,
+			require: true,
+		},
+		brand: {
+			type: String,
+			require: true,
+		},
+		company: {
+			type: String,
+			required: true,
+		},
+		condition: {
+			type: String,
+			enum: ["Hoạt động", "Đang bảo trì"],
+			default: "Hoạt động",
+		},
+		systemInTime: {
+			type: String,
+			default: Date.now,
+		},
+		allowedFileFormat: {
+			type: [String],
+			default: ["pdf", "doc"],
+		},
+		place: {
+			type: String,
+			required: true,
+		},
+	},
+	{ timestamps: true }
+);
 
-module.exports = mongoose.model('PrintedDemand', printedDemandSchema);
+module.exports = mongoose.model("Printer", printerSchema);

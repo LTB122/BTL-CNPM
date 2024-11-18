@@ -19,42 +19,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>    
 	<link rel="stylesheet" href="./css/style.css">
-    <style>
-        .flex-container {
-            padding: 0;
-            margin: 0;
-            list-style: none;
-            -ms-box-orient: horizontal;
-            display: -webkit-box;
-            display: -moz-box;
-            display: -ms-flexbox;
-            display: -moz-flex;
-            display: -webkit-flex;
-            display: flex;
-        }
-
-        .wrap { 
-            -webkit-flex-wrap: wrap;
-            flex-wrap: wrap;
-        }
-
-        .wrap li {
-            background: #FFEBEB;
-        }
-
-        .flex-item {
-            background: #FFEBEB;
-            width: 267px;
-            height: 298px;
-            margin: 10px;
-            
-            line-height: 100px;
-            color: white;
-            font-weight: bold;
-            font-size: 2em;
-            text-align: center;
-        }
-    </style>
 </head>
 
 <body>    
@@ -78,165 +42,124 @@
             </div>
         </nav>       
         
-        <div id="content" style="position: static; top: 60px; left: 272px; border: 2px; background-color: transparent; margin-left: 10px; margin-top: 9px;">
-            <ul class="flex-container wrap">
-                <a href="./thong_tin_may_in.html">
-                    <li class="flex-item" style="position: relative;" type="button">
-                        <img src="../assets/img/printer_ok.png" alt="" style="position: relative; width: 267px; height: 206px; border: 1px solid black;">
-                        <div style="position: relative; top: 14px; width: 236px; height: 44px; left: 16px;">
-                            <p style="position: relative; text-align: center; font-size: 14px; font-weight: 400; line-height: 18.2px; color: #000000;">Máy in Laser đen trắng Canon LBP 2900</p>
-                        </div>                    
-                        <div style="position: absolute; top: 264px; left: 101px; background-color: #6AC76B; width: 158px; height: 26px; border-radius: 10px;">
-                            <p style="position: relative; font-size: 16px; font-weight: 700; line-height: 19.36px; text-align: center; top: 3px;">Đang hoạt động</p>
-                        </div>
-                    </li>
-                </a>
+        <div id="content" style="position: static; top: 60px; left: 272px; border: 2px; background-color: transparent; margin-left: 10px; margin-top: 9px; display: flex; flex-wrap: wrap; justify-content: center; display: flex; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; width: 100%; height: 119px; margin-top: 17px; margin-bottom: 0; background-color: transparent;">
+                <p style="color: #921A40; font-weight: 700; font-size: 40px; line-height: 52px; display: flex; flex-wrap: wrap; align-items: center; background-color: transparent; width: 100%; justify-content: center;">
+                    Danh sách máy in
+                </p>
 
-                <a href="./thong_tin_may_in.html">
-                    <li class="flex-item" style="position: relative;" type="button">
-                        <img src="../assets/img/printer_ok.png" alt="" style="position: relative; width: 267px; height: 206px; border: 1px solid black;">
-                        <div style="position: relative; top: 14px; width: 236px; height: 44px; left: 16px;">
-                            <p style="position: relative; text-align: center; font-size: 14px; font-weight: 400; line-height: 18.2px; color: #000000;">Máy in Laser đen trắng Canon LBP 2900</p>
-                        </div>                    
-                        <div style="position: absolute; top: 264px; left: 101px; background-color: #6AC76B; width: 158px; height: 26px; border-radius: 10px;">
-                            <p style="position: relative; font-size: 16px; font-weight: 700; line-height: 19.36px; text-align: center; top: 3px;">Đang hoạt động</p>
-                        </div>
-                    </li>
-                </a>
+                <div style="width: 92%; display: flex; flex-wrap: wrap; justify-content: flex-start;">
+                    <a class="btn" style="align-content: center; font-weight: 700; font-size: 18px; line-height: 23.4px; width: 214px; height: 42px; background-color: #C75B7A; border-radius: 10px; color: #FFFFFF;" href="./them_may_in.html">
+                        Thêm máy in
+                    </a>
+                </div>                
 
-                <a href="./thong_tin_may_in.html">
-                    <li class="flex-item" style="position: relative;" type="button">
-                        <img src="../assets/img/printer_ok.png" alt="" style="position: relative; width: 267px; height: 206px; border: 1px solid black;">
-                        <div style="position: relative; top: 14px; width: 236px; height: 44px; left: 16px;">
-                            <p style="position: relative; text-align: center; font-size: 14px; font-weight: 400; line-height: 18.2px; color: #000000;">Máy in Laser đen trắng Canon LBP 2900</p>
-                        </div>                    
-                        <div style="position: absolute; top: 264px; left: 101px; background-color: #6AC76B; width: 158px; height: 26px; border-radius: 10px;">
-                            <p style="position: relative; font-size: 16px; font-weight: 700; line-height: 19.36px; text-align: center; top: 3px;">Đang hoạt động</p>
-                        </div>
-                    </li>
-                </a>
-
-                <a href="./thong_tin_may_in.html">
-                    <li class="flex-item" style="position: relative;" type="button">
-                        <img src="../assets/img/printer_ok.png" alt="" style="position: relative; width: 267px; height: 206px; border: 1px solid black;">
-                        <div style="position: relative; top: 14px; width: 236px; height: 44px; left: 16px;">
-                            <p style="position: relative; text-align: center; font-size: 14px; font-weight: 400; line-height: 18.2px; color: #000000;">Máy in Laser đen trắng Canon LBP 2900</p>
-                        </div>                    
-                        <div style="position: absolute; top: 264px; left: 101px; background-color: #6AC76B; width: 158px; height: 26px; border-radius: 10px;">
-                            <p style="position: relative; font-size: 16px; font-weight: 700; line-height: 19.36px; text-align: center; top: 3px;">Đang hoạt động</p>
-                        </div>
-                    </li>
-                </a>
-
-                <a href="./thong_tin_may_in.html">
-                    <li class="flex-item" style="position: relative;">
-                        <img src="../assets/img/printer_notok.png" alt="" style="position: relative; width: 267px; height: 206px; border: 1px solid black;">
-                        <div style="position: relative; top: 14px; width: 236px; height: 44px; left: 16px;">
-                            <p style="position: relative; text-align: center; font-size: 14px; font-weight: 400; line-height: 18.2px; color: #000000;">Máy in Laser đen trắng Canon LBP 2900</p>
-                        </div>                    
-                        <div style="position: absolute; top: 264px; left: 101px; background-color: #FA3636; width: 158px; height: 26px; border-radius: 10px;">
-                            <p style="position: relative; font-size: 16px; font-weight: 700; line-height: 19.36px; text-align: center; top: 3px;">Đang bảo trì</p>
-                        </div>
-                    </li>
-                </a>
-
-                <a href="./thong_tin_may_in.html">
-                    <li class="flex-item" style="position: relative;" type="button">
-                        <img src="../assets/img/printer_ok.png" alt="" style="position: relative; width: 267px; height: 206px; border: 1px solid black;">
-                        <div style="position: relative; top: 14px; width: 236px; height: 44px; left: 16px;">
-                            <p style="position: relative; text-align: center; font-size: 14px; font-weight: 400; line-height: 18.2px; color: #000000;">Máy in Laser đen trắng Canon LBP 2900</p>
-                        </div>                    
-                        <div style="position: absolute; top: 264px; left: 101px; background-color: #6AC76B; width: 158px; height: 26px; border-radius: 10px;">
-                            <p style="position: relative; font-size: 16px; font-weight: 700; line-height: 19.36px; text-align: center; top: 3px;">Đang hoạt động</p>
-                        </div>
-                    </li>
-                </a>
-
-                <a href="./thong_tin_may_in.html">
-                    <li class="flex-item" style="position: relative;" type="button">
-                        <img src="../assets/img/printer_ok.png" alt="" style="position: relative; width: 267px; height: 206px; border: 1px solid black;">
-                        <div style="position: relative; top: 14px; width: 236px; height: 44px; left: 16px;">
-                            <p style="position: relative; text-align: center; font-size: 14px; font-weight: 400; line-height: 18.2px; color: #000000;">Máy in Laser đen trắng Canon LBP 2900</p>
-                        </div>                    
-                        <div style="position: absolute; top: 264px; left: 101px; background-color: #6AC76B; width: 158px; height: 26px; border-radius: 10px;">
-                            <p style="position: relative; font-size: 16px; font-weight: 700; line-height: 19.36px; text-align: center; top: 3px;">Đang hoạt động</p>
-                        </div>
-                    </li>
-                </a>
-
-                <a href="./thong_tin_may_in.html">
-                    <li class="flex-item" style="position: relative;" type="button">
-                        <img src="../assets/img/printer_ok.png" alt="" style="position: relative; width: 267px; height: 206px; border: 1px solid black;">
-                        <div style="position: relative; top: 14px; width: 236px; height: 44px; left: 16px;">
-                            <p style="position: relative; text-align: center; font-size: 14px; font-weight: 400; line-height: 18.2px; color: #000000;">Máy in Laser đen trắng Canon LBP 2900</p>
-                        </div>                    
-                        <div style="position: absolute; top: 264px; left: 101px; background-color: #6AC76B; width: 158px; height: 26px; border-radius: 10px;">
-                            <p style="position: relative; font-size: 16px; font-weight: 700; line-height: 19.36px; text-align: center; top: 3px;">Đang hoạt động</p>
-                        </div>
-                    </li>
-                </a>
-
-                <a href="./thong_tin_may_in.html">
-                    <li class="flex-item" style="position: relative;">
-                        <img src="../assets/img/printer_notok.png" alt="" style="position: relative; width: 267px; height: 206px; border: 1px solid black;">
-                        <div style="position: relative; top: 14px; width: 236px; height: 44px; left: 16px;">
-                            <p style="position: relative; text-align: center; font-size: 14px; font-weight: 400; line-height: 18.2px; color: #000000;">Máy in Laser đen trắng Canon LBP 2900</p>
-                        </div>                    
-                        <div style="position: absolute; top: 264px; left: 101px; background-color: #FA3636; width: 158px; height: 26px; border-radius: 10px;">
-                            <p style="position: relative; font-size: 16px; font-weight: 700; line-height: 19.36px; text-align: center; top: 3px;">Đang bảo trì</p>
-                        </div>
-                    </li>
-                </a>
-            </ul>
+                <ul id="danh_sach_may_in" style="display: flex; flex-wrap: wrap; justify-content: center; background-color: transparent; width: 92%; margin-top: 10px; gap: 20px; width: 95%;">
+                    <!-- <a href="./thong_tin_may_in.html" style="background-color: #FFEBEB;">
+                        <li type="button" style="display: flex; flex-wrap: wrap; width: 267px; height: 318px;">
+                            <img src="../assets/img/printer_ok.png" style="width: 267px; height: 206px; border: 1px solid black;">
+                            <div style="width: 100%; height: 44px; justify-content: center; background-color: transparent;">
+                                <p style="text-align: center; font-size: 14px; font-weight: 400; line-height: 18.2px; color: #000000;">
+                                    Máy in Laser đen trắng Canon LBP 2900
+                                </p>
+                            </div>
+                            <div style="width: 100%; display: flex; flex-wrap: wrap; justify-content: flex-end;">
+                                <div style="background-color: #6AC76B; width: 158px; height: 26px; border-radius: 10px; display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end; margin-right: 15px;">
+                                    <p style="font-size: 16px; font-weight: 700; line-height: 19.36px; text-align: center; top: 3px; color: #FFFFFF;">
+                                        Đang hoạt động
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                    </a> -->
+                </ul>
+            </div>            
         </div>
     </div>
 
     <div class="header">
-        <div class="header__header-item">
-            <a class="header-logo-link" href="../home/home_page.html"><img class="header__logo" src="../assets/img/logo_cochu.png"></a>
-            <div class="header-list">
-                <button class="header-item__home-page"><a class="link_page" href="../home/home_page.html" style="font-weight: 600 !important;"> Trang chủ</a></button>
-                <button class="header-item__about-us"> <a class="link_page" href="../about/about_us.html" style="font-weight: 600 !important;">Giới thiệu </a></button>
-                <button class="header-item__print"> <a class="link_page" href="../about/about_us.html"style="font-weight: 600 !important;">Dịch vụ in </a></button>
-                <button class="header-item__login">Đăng nhập</button>
-                <div class="header__navbar-item header__navbar-user"><img class="header__navbar-user-img" src="../assets/img/Trieu_Man.jpg" alt="">
-                    <div class="header__navbar-user-dropdown"><i class="fa-solid fa-angle-down"></i></div>
-                    <ul class="header__navbar-user-menu" style="top: 61px !important;">
-                        <li class="header__navbar-user-item"><a href="../info_user/info_user.html">Thông tin cá nhân</a></li>
-                        <li class="header__navbar-user-item"><a href="">Lịch sử in</a></li>
-                        <li class="header__navbar-user-item"><a href="">BKPay</a></li>
-                        <li class="header__navbar-user-item header__navbar-user-item--separate"><a href="">Đăng xuất</a></li>
-                    </ul>
-                </div>
+        <div class="header__header-item"><a class="header-logo-link" href="../home/home_page.html"><img class="header__logo" src="../assets/img/logo_cochu.png"></a>
+          <div class="header-list">
+            <button class="header-item__home-page"><a class="link_page" href="../home/home_page.html"> Trang chủ</a></button>
+            <button class="header-item__about-us"> <a class="link_page" href="../about/about_us.html">Giới thiệu </a></button>
+            <button class="header-item__print"> <a class="link_page" href="../about/about_us.html">Dịch vụ in </a></button>
+            <button class="header-item__login">Đăng nhập</button>
+            <button class="header-item__dangky">Đăng ký</button>
+            <div class="header__navbar-item header__navbar-user"><img class="header__navbar-user-img" src="" alt="">
+              <div class="header__navbar-user-dropdown"><i class="fa-solid fa-angle-down"></i></div>
+              <ul class="header__navbar-user-menu"></ul>
             </div>
+          </div>
         </div>
-    </div>
-    
-    <div class="modal js-modal">
-        <div class="modal-container js-modal-container">
-            <div class="modal-close js-modal-close"><i class="fa-solid fa-xmark"></i></div>
-            <header class="modal-header">
-                <i class="ti-bag"></i>
-                <p>Đăng nhập </p>
-            </header>
-          
-            <div class="modal-body">
-                <div class="modal-form">
-                    <label class="modal-label">
-                        <!-- for chi tro den id-->Tên đăng nhập
-                        </label>
-                        <input class="modal-input" id="howmany" type="text">
-                        <label class="modal-label" for="email1">Mật khẩu</label>
-                        <input class="modal-input" id="email1" type="password">
-                        <div class="line"></div>
-                        <div class="modal-label-result">
-                            <button id="button-login">Đăng nhập</button>
-                            <button id="button-delete">Xoá nội dung</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
       </div>
-    <script src="../header.js"></script>
+      <div class="modal js-modal">
+        <div class="modal-container js-modal-container">
+          <div class="modal-close js-modal-close"><i class="fa-solid fa-xmark"></i></div>
+          <header class="modal-header"><i class="ti-bag"></i>
+            <p>Đăng nhập </p>
+          </header>
+          <div class="modal-body">
+            <div class="modal-form">
+              <label class="modal-label">
+                <!-- for chi tro den id-->Tên đăng nhập
+              </label>
+              <input class="modal-input" id="username" type="text">
+              <label class="modal-label">Mật khẩu</label>
+              <input class="modal-input" id="password" type="password">
+              <div class="line"></div>
+              <div class="modal-label-result">
+                <button id="button-login">Đăng nhập</button>
+                <button id="button-delete">Xoá nội dung</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-dangky js-modal-dangky">
+        <div class="modal-container-dangky js-modal-container-dangky">
+          <div class="modal-close-dangky js-modal-close-dangky"><i class="fa-solid fa-xmark"></i></div>
+          <header class="modal-header-dangky">
+            <p>Đăng ký </p>
+          </header>
+          <div class="modal-body-dangky">
+            <div class="modal-form-dangky">
+              <div class="form-item">
+                <label class="modal-label-dangky">Họ và tên</label>
+                <input class="modal-input" id="fullname" type="text">
+              </div>
+              <div class="form-item">
+                <label class="modal-label-dangky">Tên đăng nhập</label>
+                <input class="modal-input" id="usernamedangky" type="text">
+              </div>
+              <div class="form-item">
+                <label class="modal-label-dangky">Mật khẩu</label>
+                <input class="modal-input" id="passworddangky" type="text">
+              </div>
+              <div class="form-item">
+                <label class="modal-label-dangky">Email</label>
+                <input class="modal-input" id="emaildangky" type="email">
+              </div>
+              <div class="form-item">
+                <label class="modal-label-dangky">MSSV</label>
+                <input class="modal-input" id="mssvdangky" type="text">
+              </div>
+              <div class="form-item">
+                <label class="modal-label-dangky">Số điện thoại</label>
+                <input class="modal-input" id="sdtdangky" type="text">
+              </div>
+              <div class="form-item">
+                <label class="modal-label-dangky">Khoa</label>
+                <input class="modal-input" id="khoadangky" type="text">
+              </div>
+            </div>
+            <div class="modal-label-result-dangky">
+              <button id="button-dangky">Đăng ký</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="../header.js"></script>
+      <script src="../authenticate.js"></script>
+      <script src="./js/get_may_in.js"></script>
 </body>
 </html>
