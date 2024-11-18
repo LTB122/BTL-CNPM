@@ -6,7 +6,6 @@ async function login(username, password) {
 			body: JSON.stringify({ username, password }),
 		});
 
-<<<<<<< HEAD
         if (response.ok) {
             const data = await response.json();
             if (data.token) {
@@ -26,27 +25,7 @@ async function login(username, password) {
         console.error('Lỗi:', error);
         alert('Đã xảy ra lỗi trong quá trình đăng nhập.');
     }
-=======
-		if (response.ok) {
-			const data = await response.json();
-			if (data.token) {
-				localStorage.setItem("token", data.token); // Save token to localStorage
-				updateUIBasedOnLogin();
-				console.log("Đăng nhập thành công!");
-			} else {
-				console.error("Không nhận được token.");
-				alert("Đăng nhập thất bại: Không nhận được token.");
-			}
-		} else {
-			const errorData = await response.json();
-			console.error("Đăng nhập thất bại:", errorData.message);
-			alert(`Đăng nhập thất bại: ${errorData.message}`);
-		}
-	} catch (error) {
-		console.error("Lỗi:", error);
-		alert("Đã xảy ra lỗi trong quá trình đăng nhập.");
-	}
->>>>>>> 41592de29b04062b747c9702a4d051206bfe7fb5
+
 }
 
 async function dangky(name, username, password, email, mssv, sdt, department) {
@@ -113,18 +92,14 @@ if (dangkyButton) {
 }
 
 async function authenticatedFetch(url, options = {}) {
-<<<<<<< HEAD
+
     const token = localStorage.getItem('token'); 
-=======
-	const token = localStorage.getItem("token"); // Get token from localStorage
->>>>>>> 41592de29b04062b747c9702a4d051206bfe7fb5
 
 	const headers = {
 		"Content-Type": "application/json",
 		...options.headers,
 	};
 
-<<<<<<< HEAD
     if (token) {
         headers['Authorization'] = `Bearer ${token}`;
     }
@@ -137,18 +112,6 @@ async function authenticatedFetch(url, options = {}) {
     if (response.status === 401) {
         console.error("Không được phép: Token có thể không hợp lệ hoặc đã hết hạn.");
     }
-=======
-	if (token) {
-		headers["Authorization"] = `Bearer ${token}`;
-	}
-	const response = await fetch(url, { ...options, headers });
-
-	if (response.status === 401) {
-		console.error(
-			"Không được phép: Token có thể không hợp lệ hoặc đã hết hạn."
-		);
-	}
->>>>>>> 41592de29b04062b747c9702a4d051206bfe7fb5
 
 	return response;
 }
@@ -174,7 +137,6 @@ function parseJwt(token) {
 	}
 }
 
-<<<<<<< HEAD
 async function updateUIBasedOnLogin() {
     const token = localStorage.getItem('token');
     if (token) {
@@ -185,22 +147,6 @@ async function updateUIBasedOnLogin() {
             document.querySelector('.header-item__login').style.display = 'none';
             document.querySelector('.header-item__dangky').style.display = 'none';
             document.querySelector('.header__navbar-user-menu').innerHTML = `
-=======
-function updateUIBasedOnLogin() {
-	const token = localStorage.getItem("token");
-	if (token) {
-		const userInfo = parseJwt(token);
-		if (userInfo && userInfo.username === "admin") {
-			document.querySelector(".header__navbar-user").style.display =
-				"flex";
-			document.querySelector(".header-item__print").style.display =
-				"none";
-			document.querySelector(".header-item__login").style.display =
-				"none";
-			document.querySelector(".header-item__dangky").style.display =
-				"none";
-			document.querySelector(".header__navbar-user-menu").innerHTML = `
->>>>>>> 41592de29b04062b747c9702a4d051206bfe7fb5
                 <li class="header__navbar-user-item"><a href="../bao/danh_sach_may_in.html">Trang quản lý</a></li>
                 <li class="header__navbar-user-item header__navbar-user-item--separate"><a href="#"> 
                     <button id="button-logout">Đăng xuất</button></a></li>`;
@@ -236,15 +182,6 @@ function updateUIBasedOnLogin() {
 			console.error("Không tìm thấy nút đăng xuất.");
 		}
 	} else {
-		document.querySelector(".header__navbar-user").style.display = "none";
-		document.querySelector(".header-item__print").style.display = "none";
-		document.querySelector(".header-item__login").style.display = "block";
-		document.querySelector(".header-item__dangky").style.display = "block";
-	}
-	getUserProfile();
-
-<<<<<<< HEAD
-    } else {
         document.querySelector('.header__navbar-user').style.display = 'none';
         document.querySelector('.header-item__print').style.display = 'none';
         document.querySelector('.header-item__login').style.display = 'block';
@@ -263,13 +200,6 @@ function updateUIBasedOnLogin() {
     // }catch (error) {
     //     console.error('Error fetching user profile:', error);
     // }
-=======
-	// try {
-	//     const response =  authenticatedFetch('http://localhost:3000/api/user/profile', {
-	//         method: 'GET',
-	//     });
-	//     const userInfo = response.json();
->>>>>>> 41592de29b04062b747c9702a4d051206bfe7fb5
 
 	//     userInfo.avatar = `/public${userInfo.avatar}`;
 	//     document.querySelector('.header__navbar-user-img').src = `..${userInfo.avatar}`  || '../assets/img/Trieu_Man.jpg';
@@ -366,7 +296,6 @@ async function getUserProfile() {
 		// } else {
 		// }
 
-<<<<<<< HEAD
         // const imgElement = document.querySelector('.container-info-list__img');
         // if (imgElement) {
         //     // Giả sử bạn có đối tượng userInfo chứa thông tin người dùng
@@ -374,15 +303,6 @@ async function getUserProfile() {
         //     imgElement.src = avatarPath;
         // } else {
         // }
-=======
-		// const imgElementheader = document.querySelector('.header__navbar-user-img');
-		// if (imgElement) {
-		//     // Giả sử bạn có đối tượng userInfo chứa thông tin người dùng
-		//     const avatarPath = userInfo && userInfo.avatar ? userInfo.avatar : '../assets/img/Trieu_Man.jpg';
-		//     imgElementheader.src = avatarPath;
-		// } else {
-		// }
->>>>>>> 41592de29b04062b747c9702a4d051206bfe7fb5
 
 		console.log("User profile loaded successfully.");
 	} catch (error) {
@@ -391,7 +311,6 @@ async function getUserProfile() {
 }
 
 // Update User Profile
-<<<<<<< HEAD
 async function updateUserProfile(name,sdt,email) {
     const token = localStorage.getItem('token');
     // console.log(updatedData);
@@ -430,38 +349,6 @@ async function updateUserProfile(name,sdt,email) {
         console.error('Lỗi khi cập nhật hồ sơ:', error);
         alert('Đã xảy ra lỗi khi cập nhật hồ sơ.');
     }
-=======
-async function updateUserProfile(updatedData) {
-	const token = localStorage.getItem("token");
-	if (!token) {
-		console.error("Không tìm thấy token. Vui lòng đăng nhập trước.");
-		alert("Vui lòng đăng nhập để cập nhật hồ sơ.");
-		return;
-	}
-
-	try {
-		const response = await authenticatedFetch(
-			"http://localhost:3000/api/user/update-profile",
-			{
-				method: "POST",
-				body: JSON.stringify(updatedData), // Send only updated data
-			}
-		);
-
-		if (response.ok) {
-			const data = await response.json();
-			console.log("Cập nhật thông tin người dùng thành công:", data);
-			alert("Cập nhật hồ sơ thành công!");
-		} else {
-			const errorData = await response.json();
-			console.error("Không thể cập nhật hồ sơ:", errorData.message);
-			alert(`Không thể cập nhật hồ sơ: ${errorData.message}`);
-		}
-	} catch (error) {
-		console.error("Lỗi khi cập nhật hồ sơ:", error);
-		alert("Đã xảy ra lỗi khi cập nhật hồ sơ.");
-	}
->>>>>>> 41592de29b04062b747c9702a4d051206bfe7fb5
 }
 
 async function updateNumberpage(updatedData) {
@@ -511,164 +398,85 @@ async function updateNumberpage(updatedData) {
 }
 
 // Event Listener Setup on DOM Content Loaded
-<<<<<<< HEAD
-document.addEventListener('DOMContentLoaded', async function () {
-    
-    await updateUIBasedOnLogin();
-    await getUserProfile();
-=======
-document.addEventListener("DOMContentLoaded", function () {
-	updateUIBasedOnLogin();
-	getUserProfile();
->>>>>>> 41592de29b04062b747c9702a4d051206bfe7fb5
-
+document.addEventListener("DOMContentLoaded", async function () {
+	// Initialize UI and user profile
+	await updateUIBasedOnLogin();
+	await getUserProfile();
+  
 	// Login Button
 	const loginButton = document.querySelector("#button-login");
 	if (loginButton) {
-		loginButton.addEventListener("click", async function () {
-			const username = document.getElementById("username").value;
-			const password = document.getElementById("password").value;
-			await login(username, password);
-
-			setTimeout(() => {
-				const modal = document.querySelector(".js-modal");
-				if (modal) {
-					modal.classList.remove("open");
-				}
-			}, 200);
-		});
+	  loginButton.addEventListener("click", async function () {
+		const username = document.getElementById("username").value;
+		const password = document.getElementById("password").value;
+		await login(username, password);
+  
+		// Close the modal after login
+		const modal = document.querySelector(".js-modal");
+		if (modal) {
+		  setTimeout(() => {
+			modal.classList.remove("open");
+		  }, 200);
+		}
+	  });
+	} else {
+	  console.error("Login button (#button-login) not found.");
 	}
-
-	//nut dang ky
-	// const dangkyButton = document.querySelector('#button-dangky');
-	// if (loginButton) {
-	//     loginButton.addEventListener('click', async function () {
-	//         const fullName = document.getElementById('fullname').value;
-	//         const usernamedangky = document.getElementById('usernamedangky').value;
-	//         const passworddangky = document.getElementById('passworddangky').value;
-	//         const emaildangky = document.getElementById('emaildangky').value;
-	//         const mssvdangky = document.getElementById('mssvdangky').value;
-	//         const sdtdangky = document.getElementById('sdtdangky').value;
-	//         const khoadangky = document.getElementById('khoadangky').value;
-
-	//         await dangky(fullName, usernamedangky, passworddangky, emaildangky, mssvdangky, sdtdangky, khoadangky);
-
-<<<<<<< HEAD
-    // Update Profile Button
-    const updateProfileButton = document.querySelector('.button-update-info');
-    if (updateProfileButton) {
-    //     updateProfileButton.addEventListener('click', async (event) => {
-    //         event.preventDefault();
-
-    //         const updatedData = {
-    //             "name": document.getElementById('name_user').value,
-    //             "sdt": document.getElementById('phone').value,
-    //             "email": document.getElementById('email').value,
-    //         };
-
-    //         // Gửi yêu cầu cập nhật
-    //         // console.log(updatedData)
-    //         await updateUserProfile(updatedData);
-    //     });
-    // } else {
-    //     console.error('Không tìm thấy nút cập nhật thông tin.');
-        updateProfileButton.addEventListener('click', async function () {
-            const name = document.getElementById('name_user').value;
-            const sdt = document.getElementById('phone').value;
-            const email = document.getElementById('email').value;
-            
-            await updateUserProfile(name,sdt,email);
-            
-        });
-    }
-
-   
-
-    // Buy Page Button
-    const buyButton = document.querySelector('#button-buy-pager');
-    if (buyButton) {
-        buyButton.addEventListener('click', async (event) => {
-            event.preventDefault();
-=======
-	//         setTimeout(() => {
-	//             const modal = document.querySelector('.js-modal-dangky');
-	//             if (modal) {
-	//                 modal.classList.remove('open');
-	//             }
-	//         }, 200);
-	//     });
-	// }
-	// Logout Button
-	const logoutButton = document.querySelector("#button-logout");
-	if (logoutButton) {
-		logoutButton.addEventListener("click", function () {
-			localStorage.removeItem("token");
-			updateUIBasedOnLogin();
-			console.log("Đăng xuất thành công!");
-			window.location.href = "../home/home_page.html";
-		});
-	}
-
+  
 	// Update Profile Button
 	const updateProfileButton = document.querySelector(".button-update-info");
 	if (updateProfileButton) {
-		updateProfileButton.addEventListener("click", async (event) => {
-			event.preventDefault();
-
-			const updatedData = {
-				name: document.getElementById("name_user").value,
-				sdt: document.getElementById("phone").value,
-				email: document.getElementById("email").value,
-			};
-
-			// Gửi yêu cầu cập nhật
-			await updateUserProfile(updatedData);
-		});
+	  updateProfileButton.addEventListener("click", async function () {
+		const name = document.getElementById("name_user").value;
+		const phone = document.getElementById("phone").value;
+		const email = document.getElementById("email").value;
+  
+		// Update user profile
+		await updateUserProfile(name, phone, email);
+	  });
 	} else {
-		console.error("Không tìm thấy nút cập nhật thông tin.");
+	  console.error("Update profile button (.button-update-info) not found.");
 	}
->>>>>>> 41592de29b04062b747c9702a4d051206bfe7fb5
-
+  
 	// Buy Page Button
 	const buyButton = document.querySelector("#button-buy-pager");
 	if (buyButton) {
-		buyButton.addEventListener("click", async (event) => {
-			event.preventDefault();
-
-			const numberPageInput = document.getElementById("numberpage"); // Correct ID
-			if (!numberPageInput) {
-				console.error("Không tìm thấy trường nhập số lượng giấy.");
-				alert("Vui lòng nhập số lượng giấy cần mua.");
-				return;
-			}
-
-			const numberPagerValue = parseInt(numberPageInput.value);
-			if (isNaN(numberPagerValue) || numberPagerValue <= 0) {
-				alert("Vui lòng nhập số lượng giấy hợp lệ.");
-				return;
-			}
-			const response = await authenticatedFetch(
-				"http://localhost:3000/api/user/profile",
-				{
-					method: "GET",
-				}
-			);
-
-			if (!response.ok) {
-				throw new Error("Failed to fetch user profile");
-			}
-
-			const userInfo = await response.json();
-			const currentNumberPager = parseInt(userInfo.number_pager);
-			const temp = numberPagerValue + currentNumberPager;
-			const updatedData = {
-				number_pager: temp,
-			};
-
-			// Gửi yêu cầu mua thêm giấy
-			await updateNumberpage(updatedData);
+	  buyButton.addEventListener("click", async (event) => {
+		event.preventDefault();
+  
+		const numberPageInput = document.getElementById("numberpage");
+		if (!numberPageInput) {
+		  alert("Please enter the number of pages to buy.");
+		  return;
+		}
+  
+		const numberPagerValue = parseInt(numberPageInput.value);
+		if (isNaN(numberPagerValue) || numberPagerValue <= 0) {
+		  alert("Please enter a valid number of pages.");
+		  return;
+		}
+  
+		// Fetch user profile
+		const response = await authenticatedFetch("http://localhost:3000/api/user/profile", {
+		  method: "GET",
 		});
+  
+		if (!response.ok) {
+		  alert("Failed to fetch user profile.");
+		  return;
+		}
+  
+		const userInfo = await response.json();
+		const currentNumberPager = parseInt(userInfo.number_pager);
+		const updatedData = {
+		  number_pager: currentNumberPager + numberPagerValue,
+		};
+  
+		// Update the number of pages
+		await updateNumberpage(updatedData);
+	  });
 	} else {
-		console.error("Không tìm thấy nút mua giấy (#button-buy-pager).");
+	  console.error("Buy button (#button-buy-pager) not found.");
 	}
-});
+  });
+  
