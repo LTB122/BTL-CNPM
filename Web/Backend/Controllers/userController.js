@@ -65,8 +65,9 @@ exports.createUser = async (req, res) => {
 // Update user information
 exports.updateUser = async (req, res) => {
     try {
+        console.log(req.body);
         const { name, mssv, sdt, email, avatar } = req.body;
-        
+        console.log({name, sdt, email});
         // Find user by ID from the token and update the specified fields
         const updatedUser = await User.findByIdAndUpdate(
             req.user.userId, // lấy userId từ token giải mã trong middleware

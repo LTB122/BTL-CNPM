@@ -9,7 +9,7 @@ async function login(username, password) {
         if (response.ok) {
             const data = await response.json();
             if (data.token) {
-                localStorage.setItem('token', data.token); // Save token to localStorage
+                localStorage.setItem('token', data.token); 
                 updateUIBasedOnLogin();
                 console.log('Đăng nhập thành công!');
             } else {
@@ -73,7 +73,7 @@ if (dangkyButton) {
 
 
 async function authenticatedFetch(url, options = {}) {
-    const token = localStorage.getItem('token'); // Get token from localStorage
+    const token = localStorage.getItem('token'); 
 
     const headers = {
         'Content-Type': 'application/json',
@@ -83,7 +83,11 @@ async function authenticatedFetch(url, options = {}) {
     if (token) {
         headers['Authorization'] = `Bearer ${token}`;
     }
+
+
     const response = await fetch(url, { ...options, headers });
+
+    
 
     if (response.status === 401) {
         console.error("Không được phép: Token có thể không hợp lệ hoặc đã hết hạn.");
@@ -111,7 +115,7 @@ function parseJwt(token) {
     }
 }
 
-function updateUIBasedOnLogin() {
+async function updateUIBasedOnLogin() {
     const token = localStorage.getItem('token');
     if (token) {
         const userInfo = parseJwt(token);
@@ -156,7 +160,7 @@ function updateUIBasedOnLogin() {
         document.querySelector('.header-item__login').style.display = 'block';
         document.querySelector('.header-item__dangky').style.display = 'block';
     }
-    getUserProfile();
+    await getUserProfile();
 
     // try {
     //     const response =  authenticatedFetch('http://localhost:3000/api/user/profile', {
@@ -241,7 +245,6 @@ async function getUserProfile() {
                     headerImgElement.src = `..${userInfo.avatar}` || '../assets/img/Trieu_Man.jpg';
         }
 
-        console.log("HELLO");
         // const imgElement = document.querySelector('.container-info-list__img');
         // if (imgElement) {
         //     // Giả sử bạn có đối tượng userInfo chứa thông tin người dùng
@@ -265,8 +268,9 @@ async function getUserProfile() {
 }
 
 // Update User Profile
-async function updateUserProfile(updatedData) {
+async function updateUserProfile(name,sdt,email) {
     const token = localStorage.getItem('token');
+    // console.log(updatedData);
     if (!token) {
         console.error('Không tìm thấy token. Vui lòng đăng nhập trước.');
         alert('Vui lòng đăng nhập để cập nhật hồ sơ.');
@@ -274,10 +278,20 @@ async function updateUserProfile(updatedData) {
     }
 
     try {
-        const response = await authenticatedFetch('http://localhost:3000/api/user/update-profile', {
+
+        const response = await fetch('http://localhost:3000/api/user/update-profile', {
             method: 'POST',
-            body: JSON.stringify(updatedData) // Send only updated data
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({name,sdt,email})
         });
+
+        // const response = await authenticatedFetch('http://localhost:3000/api/user/update-profile', {
+        //     method: 'POST',
+        //     body: JSON.stringify({name,sdt,email})
+        // });
 
         if (response.ok) {
             const data = await response.json();
@@ -294,7 +308,6 @@ async function updateUserProfile(updatedData) {
     }
 }
 
-// Update Number of Pages (Purchase)
 async function updateNumberpage(updatedData) {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -339,10 +352,10 @@ async function updateNumberpage(updatedData) {
 
 
 // Event Listener Setup on DOM Content Loaded
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     
-    updateUIBasedOnLogin();
-    getUserProfile();
+    await updateUIBasedOnLogin();
+    await getUserProfile();
 
     // Login Button
     const loginButton = document.querySelector('#button-login');
@@ -397,21 +410,32 @@ document.addEventListener('DOMContentLoaded', function () {
     // Update Profile Button
     const updateProfileButton = document.querySelector('.button-update-info');
     if (updateProfileButton) {
-        updateProfileButton.addEventListener('click', async (event) => {
-            event.preventDefault();
+    //     updateProfileButton.addEventListener('click', async (event) => {
+    //         event.preventDefault();
 
-            const updatedData = {
-                name: document.getElementById('name_user').value,
-                sdt: document.getElementById('phone').value,
-                email: document.getElementById('email').value,
-            };
+    //         const updatedData = {
+    //             "name": document.getElementById('name_user').value,
+    //             "sdt": document.getElementById('phone').value,
+    //             "email": document.getElementById('email').value,
+    //         };
 
-            // Gửi yêu cầu cập nhật
-            await updateUserProfile(updatedData);
+    //         // Gửi yêu cầu cập nhật
+    //         // console.log(updatedData)
+    //         await updateUserProfile(updatedData);
+    //     });
+    // } else {
+    //     console.error('Không tìm thấy nút cập nhật thông tin.');
+        updateProfileButton.addEventListener('click', async function () {
+            const name = document.getElementById('name_user').value;
+            const sdt = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            
+            await updateUserProfile(name,sdt,email);
+            
         });
-    } else {
-        console.error('Không tìm thấy nút cập nhật thông tin.');
     }
+
+   
 
     // Buy Page Button
     const buyButton = document.querySelector('#button-buy-pager');
