@@ -69,8 +69,12 @@ try {
             }
             condition.innerHTML = temp;
 
-            let ngay_san_xuat = document.getElementById("ngay_san_xuat");            
-            ngay_san_xuat.innerHTML = res[0].dateOfProduct;
+            let ngay_san_xuat = document.getElementById("ngay_san_xuat");
+            let date = new Date(res[0].dateOfProduct);
+            let year = date.getFullYear();
+            let month = date.getMonth() + 1;
+            let day = date.getDate();
+            ngay_san_xuat.innerHTML = `${day}-${month}-${year}`;
 
             const brand = document.getElementById("brand");            
             brand.innerHTML = res[0].brand;
@@ -83,10 +87,34 @@ try {
             place.innerHTML = res[0].place;            
 
             const systemInTime = document.getElementById("systemInTime");
-            systemInTime.innerHTML = res[0].systemInTime;
+            date = new Date(res[0].createdAt);
+            year = date.getFullYear();
+            month = date.getMonth() + 1;
+            day = date.getDate();
+            systemInTime.innerHTML = `${day}-${month}-${year}`;
 
             const printerCode = document.getElementById("printerCode");
             printerCode.innerHTML = res[0].printerCode;
+
+            const allowedFileFormat = document.getElementById("allowedFileFormat");
+            temp = `<div class="col col-5">
+                <nobr style="color: #921A40; font-weight: 700; font-size: 20px;">
+                    Định dạng file cho phép:
+                </nobr>
+            </div>`;
+            for(let i = 0; i < res[0].allowedFileFormat.length; i ++) {
+                if(res[0].allowedFileFormat[i].length < 3) continue;
+                temp += `<div class="col col-3" id="${res[0].allowedFileFormat[i]}Appear">
+                    <nobr style="font-weight: 600; font-size: 20px; color: #000000;">
+                        <i class="fa fa-check" aria-hidden="true" style="color: green; border-radius: 90px; border: 1px solid green; padding: 4px; margin-right: 15px;"></i> 
+                            
+                        ${res[0].allowedFileFormat[i].toUpperCase()}
+                    </nobr>
+                </div>`;
+            }
+            
+            allowedFileFormat.innerHTML = temp;
+            console.log(temp);
         });
     });    
 } catch (error) {
