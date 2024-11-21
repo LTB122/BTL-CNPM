@@ -79,15 +79,13 @@ document.addEventListener('DOMContentLoaded', () => {
 // Xử lý sự kiện upload avatar
 
 async function authenticatedFetch(url, options = {}) {
-    const token = localStorage.getItem('token'); // Lấy token từ localStorage
+    const token = localStorage.getItem('token'); 
 
-    // Đính kèm token vào header nếu token tồn tại
     const headers = {
       ...options.headers,
       'Authorization': `Bearer ${token}`,
     };
     
-    // Thực hiện yêu cầu
     const response = await fetch(url, { ...options, headers });
     
     if (response.status === 401) {
@@ -114,10 +112,10 @@ document.addEventListener('DOMContentLoaded', () => {
           }
 
           const formData = new FormData();
-          formData.append('avatar', file);  // Thêm tệp vào formData
+          formData.append('avatar', file); 
 
           const messageElement = document.getElementById('upload-message');
-          messageElement.textContent = '';  // Reset lại thông báo trước đó
+          messageElement.textContent = '';  
 
           try {
               const response = await authenticatedFetch('http://localhost:3000/api/user/upload-avatar', {

@@ -368,7 +368,7 @@ async function updateNumberpage(updatedData) {
 					"Content-Type": "application/json",
 					Authorization: `Bearer ${token}`,
 				},
-				body: JSON.stringify(updatedData), // Gửi dữ liệu đã cập nhật
+				body: JSON.stringify(updatedData), 
 			}
 		);
 
@@ -411,7 +411,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 		const password = document.getElementById("password").value;
 		await login(username, password);
   
-		// Close the modal after login
 		const modal = document.querySelector(".js-modal");
 		if (modal) {
 		  setTimeout(() => {
@@ -423,7 +422,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 	  console.error("Login button (#button-login) not found.");
 	}
   
-	// Update Profile Button
 	const updateProfileButton = document.querySelector(".button-update-info");
 	if (updateProfileButton) {
 	  updateProfileButton.addEventListener("click", async function () {
@@ -431,7 +429,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 		const phone = document.getElementById("phone").value;
 		const email = document.getElementById("email").value;
   
-		// Update user profile
 		await updateUserProfile(name, phone, email);
 	  });
 	} else {
@@ -472,7 +469,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 		  number_pager: currentNumberPager + numberPagerValue,
 		};
   
-		// Update the number of pages
 		await updateNumberpage(updatedData);
 	  });
 	} else {
