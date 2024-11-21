@@ -8,7 +8,7 @@ router.post('/printRequest/:printerID', auth.authenticateToken, printLogControll
 
 //Xem toàn bộ đơn in của toàn bộ người dùng
 router.get('/getPrintHistory/admin', auth.authenticateToken, auth.isAdmin, printLogController.GetAllPrintHistory);
-router.get('/getPrintHistory/:userID', auth.authenticateToken, auth.isAdmin, printLogController.GetAccountPrintHistory);
+router.get('/getPrintHistory/:userID', auth.authenticateToken, auth.isAdmin, printLogController.GetAccountPrintHistoryForAdmin);
 router.get('/getPrintHistory/user', auth.authenticateToken, printLogController.GetAccountPrintHistory);
 
 module.exports = router;
