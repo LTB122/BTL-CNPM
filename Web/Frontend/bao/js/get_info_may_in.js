@@ -72,9 +72,9 @@ try {
             let ngay_san_xuat = document.getElementById("ngay_san_xuat");
             let date = new Date(res[0].dateOfProduct);
             let year = date.getFullYear();
-            let month = date.getMonth() + 1;
-            let day = date.getDate();
-            ngay_san_xuat.innerHTML = `${day}-${month}-${year}`;
+            let month = String(date.getMonth() + 1).padStart(2, '0');
+            let day = String(date.getDate()).padStart(2, '0');
+            ngay_san_xuat.innerHTML = `${day}/${month}/${year}`;
 
             const brand = document.getElementById("brand");            
             brand.innerHTML = res[0].brand;
@@ -88,10 +88,14 @@ try {
 
             const systemInTime = document.getElementById("systemInTime");
             date = new Date(res[0].createdAt);
-            year = date.getFullYear();
-            month = date.getMonth() + 1;
-            day = date.getDate();
-            systemInTime.innerHTML = `${day}-${month}-${year}`;
+            if(isNaN(date) || date === "Invalid Date") {
+                systemInTime.innerHTML = res[0].systemInTime;
+            } else {
+                year = date.getFullYear();
+                month = date.getMonth() + 1;
+                day = date.getDate();
+                systemInTime.innerHTML = `${day}-${month}-${year}`;
+            }            
 
             const printerCode = document.getElementById("printerCode");
             printerCode.innerHTML = res[0].printerCode;
@@ -114,7 +118,6 @@ try {
             }
             
             allowedFileFormat.innerHTML = temp;
-            console.log(temp);
         });
     });    
 } catch (error) {
