@@ -29,16 +29,22 @@ document.getElementById('post_may_in').addEventListener('submit', async (event) 
             throw new Error("No token found. Please log in first.");
         }
 
+        let allowedFileFormatList = [];
+        document.getElementById("docType").checked ? allowedFileFormatList.push("doc") : null;
+        document.getElementById("pdfType").checked ? allowedFileFormatList.push("pdf") : null;
+        document.getElementById("odtType").checked ? allowedFileFormatList.push("odt") : null;
+        document.getElementById("txtType").checked ? allowedFileFormatList.push("txt") : null;
+        document.getElementById("htmlType").checked ? allowedFileFormatList.push("html") : null;
+
         const updatedData = {
             printerCode: document.getElementById("printerCode").value,
             printerName: document.getElementById("printerName").value,
-            dateProduct: document.getElementById("dateProduct").value,
+            dateOfProduct: document.getElementById("dateProduct").value,
             brand: document.getElementById("brand").value,
             company: document.getElementById("company").value,
-            place: document.getElementById("place").value
+            place: document.getElementById("place").value,
+            allowedFileFormat: allowedFileFormatList
         };
-
-        console.log(document.getElementById("dateProduct").value);
 
         authenticatedFetch(
             `http://localhost:3000/api/printer/printerAdded`, {
@@ -55,6 +61,7 @@ document.getElementById('post_may_in').addEventListener('submit', async (event) 
             } else {
                 console.log("Thêm máy in thành công:");
                 alert("Thêm máy in thành công!");
+                location.replace("http://localhost:3000/bao/danh_sach_may_in.html");
             }
         });
     } catch (error) {

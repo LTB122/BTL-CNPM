@@ -48,7 +48,7 @@
         </div>
 
         <div style="position: relative; width: 60%; height: 788px; background-color: transparent;">
-            <div style="position: relative; top: 90px; left: 85px; border-radius: 10px; width: 709px; height: 591px; background-color: #FFEBEB; box-shadow: 10px 10px 4px #921A40;">
+            <div style="position: relative; top: 90px; left: 85px; border-radius: 10px; width: 709px; height: 650px; background-color: #FFEBEB; box-shadow: 10px 10px 4px #921A40;">
                 <div style="position: relative; top: 5px; left: 148px; height: 88px; width: 412px; background-color: transparent;">                    
                     <p style="color: #921A40; font-size: 40px; font-weight: 600; background-color: transparent; position: relative; top: 9%; text-align: center;">
                         THÔNG TIN MÁY
@@ -63,7 +63,7 @@
                     </div>
                 </div>                
 
-                <div style="position: absolute; width: 629px; height: 403px; top: 95px; left: 40px; border-radius: 15px; background-color: #FFF8F8;">
+                <div style="position: absolute; width: 629px; height: 462px; top: 95px; left: 40px; border-radius: 15px; background-color: #FFF8F8;">
                     <div style="position: absolute; width: 441px; height: 40px; top: 31px; left: 35px;">
                         <p style="font-weight: 600; font-size: 20px;">
                             <nobr style="color: #921A40; font-weight: 700;">
@@ -135,15 +135,65 @@
                             </nobr>
                         </p>
                     </div>
+
+                    <div style="position: absolute; width: 90%; height: 40px; top: 391px; left: 35px;">
+                        <div class="row" style="background-color: transparent;" id="allowedFileFormat">
+                            <div class="col col-5">
+                                <nobr style="color: #921A40; font-weight: 700; font-size: 20px;">
+                                    Định dạng file cho phép:
+                                </nobr>
+                            </div>
+
+                            <div class="col col-3" id="docAppear">
+                                <nobr style="font-weight: 600; font-size: 20px; color: #000000;">
+                                    <i class="fa fa-check" aria-hidden="true" style="color: green; border-radius: 90px; border: 1px solid green; padding: 4px; margin-right: 15px;"></i> 
+                                    
+                                    DOC
+                                </nobr>
+                            </div>
+
+                            <div class="col col-3" id="pdfAppear">
+                                <nobr style="font-weight: 600; font-size: 20px; color: #000000;">
+                                    <i class="fa fa-check" aria-hidden="true" style="color: green; border-radius: 90px; border: 1px solid green; padding: 4px; margin-right: 15px;"></i> 
+                                    
+                                    PDF
+                                </nobr>
+                            </div>
+
+                            <div class="col col-3" id="odtAppear">
+                                <nobr style="font-weight: 600; font-size: 20px; color: #000000;">
+                                    <i class="fa fa-check" aria-hidden="true" style="color: green; border-radius: 90px; border: 1px solid green; padding: 4px; margin-right: 15px;"></i> 
+                                    
+                                    ODT
+                                </nobr>
+                            </div>
+
+                            <div class="col col-3" id="txtAppear">
+                                <nobr style="font-weight: 600; font-size: 20px; color: #000000;">
+                                    <i class="fa fa-check" aria-hidden="true" style="color: green; border-radius: 90px; border: 1px solid green; padding: 4px; margin-right: 15px;"></i> 
+                                    
+                                    TXT
+                                </nobr>
+                            </div>
+
+                            <div class="col col-3" id="htmlAppear">
+                                <nobr style="font-weight: 600; font-size: 20px; color: #000000;">
+                                    <i class="fa fa-check" aria-hidden="true" style="color: green; border-radius: 90px; border: 1px solid green; padding: 4px; margin-right: 15px;"></i> 
+                                    
+                                    HTML
+                                </nobr>
+                            </div>
+                        </div>                        
+                    </div>
                 </div>
 
-                <div class="btn" type="button" style="position: absolute; top: 516px; left: 56px; width: 186px; height: 53px; background-color: #C75B7A;" data-bs-toggle="modal" data-bs-target="#modifyButton" id="modify">
+                <div id="click" class="btn" type="button" style="position: absolute; top: 575px; left: 56px; width: 186px; height: 53px; background-color: #C75B7A;" data-bs-toggle="modal" data-bs-target="#modifyButton" id="modify">
                     <p style="color: white; position: absolute; width: 155px; height: 29px; font-size: 24px; font-weight: 700; top: 8px; left: 14px;">
                         Chỉnh sửa
                     </p>
                 </div>
 
-                <div class="btn" type="button" style="position: absolute; top: 516px; left: 468px; width: 186px; height: 53px; background-color: #C75B7A;"  data-bs-toggle="modal" data-bs-target="#deleteButton" id="delete">
+                <div class="btn" type="button" style="position: absolute; top: 575px; left: 468px; width: 186px; height: 53px; background-color: #C75B7A;"  data-bs-toggle="modal" data-bs-target="#deleteButton" id="delete">
                     <p style="color: white; position: absolute; width: 155px; height: 29px; font-size: 24px; font-weight: 700; top: 8px; left: 14px;">
                         Xóa máy in
                     </p>
@@ -164,11 +214,13 @@
                                 </p>
                             </div>
                             
-                            <button type="button" class="btn" style="background-color: #C75B7A; border-radius: 10px; width: 186px; height: 53px; position: absolute; top: 157px; left: 36px;">
-                                <p style="font-size: 24px; font-weight: 700; color: white; width: 155px; height: 29px; top: 11px; left: 14px;">
-                                    Xóa máy in
-                                </p>
-                            </button>
+                            <form id="delete_may_in">
+                                <button type="submit" class="btn" style="background-color: #C75B7A; border-radius: 10px; width: 186px; height: 53px; position: absolute; top: 157px; left: 36px;">
+                                    <p style="font-size: 24px; font-weight: 700; color: white; width: 155px; height: 29px; top: 11px; left: 14px;">
+                                        Xóa máy in
+                                    </p>
+                                </button>
+                            </form>                            
                             
                             <button type="button" class="btn" style="background-color: #C75B7A; border-radius: 10px; width: 186px; height: 53px; position: absolute; top: 157px; left: 330px;" data-bs-dismiss="modal">
                                 <p style="font-size: 24px; font-weight: 700; color: white; width: 155px; height: 29px; top: 11px; left: 14px;">
@@ -181,8 +233,8 @@
 
                 <div class="modal fade" id="modifyButton" tabindex="-1" aria-labelledby="delete modal" aria-hidden="true" style="background-color: transparent;">
                     <div class="modal-dialog">
-                        <div class="modal-content start-50 translate-middle" style="position: fixed; width: 500px; top: 25%; height: 246px; border-radius: 15px; background: linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(0deg, #FFFAF4, #FFFAF4);">
-                            <div style="position: absolute; width: 332px; height: 64px; top: 23px; left: 17%;">
+                        <div class="modal-content start-50 translate-middle" style="position: fixed; width: 60%; top: 50%; max-height: 90%; overflow-y: auto; border-radius: 15px; background-color: #ffe0eb; padding: 10px 40px 40px 40px;">
+                            <!-- <div style="position: absolute; width: 332px; height: 64px; top: 23px; left: 17%;">
                                 <p style="color: #921A40; font-size: 32px; font-weight: 700; background-color: transparent; text-align: center;">
                                     Xác nhận
                                 </p>
@@ -204,14 +256,138 @@
                                 <p style="font-size: 24px; font-weight: 700; color: white; width: 155px; height: 29px; top: 11px; left: 14px;">
                                     Quay lại
                                 </p>
-                            </button>
+                            </button> -->
+                        
+                            <h2 style="color: #921A40; font-size: 50px; text-align: center;">
+                                THÔNG TIN MÁY
+                            </h2>
+                            
+                            <form id="chinh_sua_may_in">
+                                <div style="padding: 20px 40px; background-color: #fff8f8; border-radius: 10px; font-size: 20px; font-weight: bold; margin: 20px auto; width: 100%;">                                    
+                                    <div style="margin: 30px 0 30px 0;">
+                                        <label for="date-manufactured" style="text-align: left; color: #921A40; margin-right: 10px;">
+                                            Ngày sản xuất:
+                                        </label>
+                                        
+                                        <input type="text" id="date-manufactured" name="date-manufactured" value = "06/09/2004" style="padding: 5px 15px; border: 1px solid #ccc; border-radius: 20px; color: #000; background-color: #fff; font-weight: bold;">
+                                    </div>
+                
+                                    <div style="margin: 30px 0 30px 0;" >
+                                        <label for="status" style="text-align: left; color: #921A40; margin-right: 10px;">
+                                            Tình trạng:
+                                        </label>
+                                        
+                                        <span class="radio-group" style="color: #000">
+                                            <input type="radio" id="active" name="status" value="active">
+                                            
+                                            <label for="active" style="display: inline-block; flex-direction: column; color: #000; gap: 100px;">
+                                                Hoạt động
+                                            </label>
+                                            
+                                            <input type="radio" id="maintenance" name="status" value="maintenance">
+                                            
+                                            <label for="maintenance" style="display: inline-block; flex-direction: column; color: #000; gap: 100px;">
+                                                Đang bảo trì
+                                            </label>
+                                        </span>
+                                    </div>
+                
+                                    <div style="margin: 30px 0 30px 0;">
+                                        <label for="device-model" style="text-align: left; color: #921A40; margin-right: 10px;">
+                                            Hãng máy:
+                                        </label>
+
+                                        <input type="text" id="device-model" name="device-model" value="Canon LBP2900 (A4/A5/USB)" style="width: 40%; padding: 5px 15px; border: 1px solid #ccc; border-radius: 20px; color: #000; background-color: #fff; font-weight: bold;">
+                                    </div>
+                
+                                    <div style="margin: 30px 0 30px 0;">
+                                        <label for="manufacturer" style="text-align: left; color: #921A40; margin-right: 10px;">
+                                            Công ty sản xuất:
+                                        </label>
+                                        
+                                        <input type="text" id="manufacturer" name="manufacturer" value="Canon Inc" style="padding: 5px 15px; border: 1px solid #ccc; border-radius: 20px; color: #000; background-color: #fff; font-weight: bold;">
+                                    </div>
+                
+                                    <div style="margin: 30px 0 30px 0;">
+                                        <label for="location" style="text-align: left; color: #921A40; margin-right: 10px;">
+                                            Địa điểm:
+                                        </label>
+                                        
+                                        <input type="text" id="location" name="location" value="Tòa B4 - Tầng 2" style="padding: 5px 15px; border: 1px solid #ccc; border-radius: 20px; color: #000; background-color: #fff; font-weight: bold;">
+                                    </div>  
+                
+                                    <div style="margin: 30px 0 30px 0;">
+                                        <label for="use-date" style="text-align: left; color: #921A40; margin-right: 10px;">
+                                            Ngày được thêm vào hệ thống:
+                                        </label>
+                                        
+                                        <input type="text" id="use-date" name="use-date" value="06/09/2024" style="padding: 5px 15px; border: 1px solid #ccc; border-radius: 20px; color: #000; background-color: #fff; font-weight: bold;">
+                                    </div>
+                
+                                    <div style="margin: 30px 0 30px 0;">
+                                        <label for="printer-id" style="text-align: left; color: #921A40; margin-right: 10px;">
+                                            Mã máy in:
+                                        </label>
+                                        
+                                        <input type="text" id="printer-id" name="printer-id" value="B40001" style="padding: 5px 15px; border: 1px solid #ccc; border-radius: 20px; color: #000; background-color: #fff; font-weight: bold;" readonly>
+                                    </div>
+                
+                                    <div style="margin: 30px 0 30px 0;">
+                                        <label style="text-align: left; color: #921A40; margin-right: 10px;">
+                                            Định dạng file cho phép:
+                                        </label>
+                                        
+                                        <span>
+                                            <input type="checkbox" id="doc" name="file-format" value="doc">
+                                            
+                                            <label for="doc" style="text-align: left; color: #921A40; margin-right: 10px;">
+                                                DOC
+                                            </label>
+                                            
+                                            <input type="checkbox" id="pdf" name="file-format" value="pdf">
+                                            
+                                            <label for="pdf" style="text-align: left; color: #921A40; margin-right: 10px;">
+                                                PDF
+                                            </label>
+                                            
+                                            <input type="checkbox" id="txt" name="file-format" value="txt">
+                                            
+                                            <label for="txt" style="text-align: left; color: #921A40; margin-right: 10px;">
+                                                TXT
+                                            </label>
+                                            
+                                            <input type="checkbox" id="html" name="file-format" value="html">
+                                            
+                                            <label for="html" style="text-align: left; color: #921A40; margin-right: 10px;">
+                                                HTML
+                                            </label>
+                                            
+                                            <input type="checkbox" id="odt" name="file-format" value="odt">
+                                            
+                                            <label for="odt" style="text-align: left; color: #921A40; margin-right: 10px;">
+                                                ODT
+                                            </label>
+                                        </span>
+                                    </div>
+                                </div>
+                
+                                <div>
+                                    <button class="save-changes-btn" type="submit" id="saveChanges" style="margin-top: 20px; font-size: 25px; padding: 15px 40px; border: none; border-radius: 10px; color: #fff; background-color: #C75B7A; cursor: pointer;">
+                                        Xác nhận thay đổi
+                                    </button>
+                                    
+                                    <button class="close-btn" type="button" id="closeModal" style="margin-top: 20px; font-size: 25px; padding: 15px 40px; border: none; border-radius: 10px; color: #fff; background-color: #C75B7A; cursor: pointer; float: right;" data-bs-dismiss="modal">
+                                        Quay lại
+                                    </button>
+                                </div>
+                            </form> 
                         </div>
-                    </div>                    
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    
+     
     <div class="header">
         <div class="header__header-item"><a class="header-logo-link" href="../home/home_page.html"><img class="header__logo" src="../assets/img/logo_cochu.png"></a>
           <div class="header-list">
@@ -296,6 +472,8 @@
       <script src="../header.js"></script>
       <script src="../authenticate.js"></script>
     <script src="./js/get_info_may_in.js"></script>
+    <script src="./js/delete_may_in.js"></script>
+    <script src="./js/put_chinh_sua_may_in.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

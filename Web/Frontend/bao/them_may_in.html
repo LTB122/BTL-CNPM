@@ -19,6 +19,40 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>    
 	<link rel="stylesheet" href="./css/style.css">
+
+    <script>
+        $(document).ready(function() {
+            $("#docAppear").show();
+            $("#pdfAppear").show();
+            $("#odtAppear").hide();
+            $("#txtAppear").hide();
+            $("#htmlAppear").hide();
+
+            $('#themLuaChonSave').click(function() {
+                $('#closeButton').click();
+
+                $('#docType').on('change', function() {
+                    $(this).is(':checked') ? $("#docAppear").show() : $("#docAppear").hide();
+                });
+
+                $('#pdfType').on('change', function() {
+                    $(this).is(':checked') ? $("#pdfAppear").show() : $("#pdfAppear").hide();
+                });
+
+                $('#odtType').on('change', function() {
+                    $(this).is(':checked') ? $("#odtAppear").show() : $("#odtAppear").hide();
+                });
+
+                $('#txtType').on('change', function() {
+                    $(this).is(':checked') ? $("#txtAppear").show() : $("#txtAppear").hide();
+                });
+
+                $('#htmlType').on('change', function() {
+                    $(this).is(':checked') ? $("#htmlAppear").show() : $("#htmlAppear").hide();
+                });
+            });
+        });
+    </script>
 </head>
 
 <body>    
@@ -120,12 +154,115 @@
                             </div>
     
                             <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; margin: 10px;">
-                                <div class="col col-6">
-                                    <nobr style="font-weight: 600; font-size: 20px; color: #000000;"><i class="fa fa-check" aria-hidden="true" style="color: green; border-radius: 90px; border: 1px solid green; padding: 4px; margin-right: 15px;"></i> DOC</nobr>                                
+                                <div class="col col-4" id="docAppear">
+                                    <nobr style="font-weight: 600; font-size: 20px; color: #000000;">
+                                        <i class="fa fa-check" aria-hidden="true" style="color: green; border-radius: 90px; border: 1px solid green; padding: 4px; margin-right: 15px;"></i> 
+                                        
+                                        DOC
+                                    </nobr>
                                 </div>
     
-                                <div class="col col-6">
-                                    <nobr style="font-weight: 600; font-size: 20px; color: #000000;"><i class="fa fa-check" aria-hidden="true" style="color: green; border-radius: 90px; border: 1px solid green; padding: 4px; margin-right: 15px;"></i> PDF</nobr>
+                                <div class="col col-4" id="pdfAppear">
+                                    <nobr style="font-weight: 600; font-size: 20px; color: #000000;">
+                                        <i class="fa fa-check" aria-hidden="true" style="color: green; border-radius: 90px; border: 1px solid green; padding: 4px; margin-right: 15px;"></i> 
+                                        
+                                        PDF
+                                    </nobr>
+                                </div>
+
+                                <div class="col col-4" id="odtAppear">
+                                    <nobr style="font-weight: 600; font-size: 20px; color: #000000;">
+                                        <i class="fa fa-check" aria-hidden="true" style="color: green; border-radius: 90px; border: 1px solid green; padding: 4px; margin-right: 15px;"></i> 
+                                        
+                                        ODT
+                                    </nobr>
+                                </div>
+
+                                <div class="col col-4" id="txtAppear">
+                                    <nobr style="font-weight: 600; font-size: 20px; color: #000000;">
+                                        <i class="fa fa-check" aria-hidden="true" style="color: green; border-radius: 90px; border: 1px solid green; padding: 4px; margin-right: 15px;"></i> 
+                                        
+                                        TXT
+                                    </nobr>
+                                </div>
+
+                                <div class="col col-4" id="htmlAppear">
+                                    <nobr style="font-weight: 600; font-size: 20px; color: #000000;">
+                                        <i class="fa fa-check" aria-hidden="true" style="color: green; border-radius: 90px; border: 1px solid green; padding: 4px; margin-right: 15px;"></i> 
+                                        
+                                        HTML
+                                    </nobr>
+                                </div>
+
+                                <div class="col col-4" style="display: flex; flex-wrap: wrap; justify-content: center; background-color: transparent; align-items: center; padding: 0;">
+                                    <p type="button" data-bs-toggle="modal" data-bs-target="#themLuaChon" style="display: flex; align-items: center; justify-content: center; width: 186px; height: 28px; color: #FFFFFF; background-color: #F581A2; font-size: 16px; line-height: 20.8px; font-weight: 600; border-radius: 15px; margin: 0;">
+                                        Thêm lựa chọn
+                                    </p>
+                                    
+                                    <div class="modal fade" id="themLuaChon" tabindex="-1" aria-labelledby="headerLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content" style="background: linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(0deg, #FFFAF4, #FFFAF4); border-radius: 15px;">
+                                                <div class="modal-header" style="background: transparent; display: flex; flex-wrap: wrap; align-items: center; justify-content: center;  border-radius: 15px; margin: 0; border: none; height: auto;">
+                                                    <h1 class="modal-title" id="headerLabel" style="font-size: 32px; font-weight: 700; line-height: 38.73px; color: #921A40;">
+                                                        Thêm lựa chọn
+                                                    </h1>
+                                                </div>
+                                            
+                                                <div class="modal-body">
+                                                    <div class="form-check">
+                                                        <div class="container" style="margin: 20px;">
+                                                            <div class="row">
+                                                                <div class="col col-4">
+                                                                    <input class="form-check-input" type="checkbox" value="" id="docType" checked>
+                                                                    <label class="form-check-label" for="docType" style="color: black;">
+                                                                        DOC
+                                                                    </label>
+                                                                </div>                                                        
+                                                                
+                                                                <div class="col col-4">
+                                                                    <input class="form-check-input" type="checkbox" value="" id="pdfType" checked>
+                                                                    <label class="form-check-label" for="pdfType" style="color: black;">
+                                                                        PDF
+                                                                    </label>
+                                                                </div>                                                        
+        
+                                                                <div class="col col-4">
+                                                                    <input class="form-check-input" type="checkbox" value="" id="odtType">
+                                                                    <label class="form-check-label" for="odtType" style="color: black;">
+                                                                        ODT
+                                                                    </label>
+                                                                </div>                                                                                                                
+        
+                                                                <div class="col col-4">
+                                                                    <input class="form-check-input" type="checkbox" value="" id="txtType">
+                                                                    <label class="form-check-label" for="txtType" style="color: black;">
+                                                                        TXT
+                                                                    </label>
+                                                                </div>                                                        
+        
+                                                                <div class="col col-4">
+                                                                    <input class="form-check-input" type="checkbox" value="" id="htmlType">
+                                                                    <label class="form-check-label" for="htmlType" style="color: black;">
+                                                                        HTML
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>                                                        
+                                                    </div>
+                                                </div>
+                                            
+                                                <div class="modal-footer" style="display: flex; justify-content: space-around; border: none; margin: 0; height: auto;">
+                                                    <button type="button" id="themLuaChonSave" class="btn btn-primary" style="background: var(--button, #C75B7A); font-size: 24px; font-weight: 700; line-height: 29.05px; display: flex; align-items: center; height: 53px; border-radius: 10px; border: none;">
+                                                        Save changes
+                                                    </button>
+
+                                                    <button id="closeButton" type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background: var(--button, #C75B7A); font-size: 24px; font-weight: 700; line-height: 29.05px; display: flex; align-items: center; height: 53px; border-radius: 10px; border: none;">
+                                                        Close
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -146,7 +283,7 @@
                         </div>
                     </div>
     
-                    <div class="row" style="width: 100%;">
+                    <div class="row" style="width: 100%; margin-top: 10px;">
                         <div class="col col-6" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
                             <button type="submit" id="submit" name="submit" class="btn" style="color: #FFEBEB; font-size: 24px; font-weight: 700; line-height: 29.05px; background-color: #C75B7A; padding: 10px; height: auto;">
                                 Xác nhận
@@ -154,8 +291,10 @@
                         </div>
     
                         <div class="col col-6" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center;">
-                            <button class="btn" style="color: #FFEBEB; font-size: 24px; font-weight: 700; line-height: 29.05px; background-color: #C75B7A; padding: 10px; height: auto;">
-                                Quay về
+                            <button type="button" class="btn" style="background-color: #C75B7A; padding: 10px; height: auto;">
+                                <a href="./danh_sach_may_in.html" style="color: #FFEBEB; font-size: 24px; line-height: 29.05px; font-weight: 700;">
+                                    Quay về
+                                </a>                                
                             </button>
                         </div>
                     </div>
