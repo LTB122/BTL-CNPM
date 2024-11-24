@@ -27,6 +27,32 @@ function handleFiles(files) {
     }
 }
 
+function loadPrinters() {
+    fetch("http://localhost:3000/api/printer/printer")
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then((printers) => {
+            const printerSelect = document.getElementById("printer");
+            printerSelect.innerHTML = ""; // Xóa các lựa chọn cũ
+
+            // Thêm các máy in vào lựa chọn
+            printers.forEach((printer) => {
+                const option = document.createElement("option");
+                option.value = printer.name;
+                option.textContent = printer.name;
+                printerSelect.appendChild(option);
+            });
+        })
+        .catch((error) => {
+            console.error("Error loading printers:", error);
+            alert("Không thể tải danh sách máy in. Vui lòng thử lại.");
+        });
+}
+
 function createOrder() {
     if (!uploadedFile) {
         alert("Vui lòng tải lên một file trước khi tạo đơn in.");
