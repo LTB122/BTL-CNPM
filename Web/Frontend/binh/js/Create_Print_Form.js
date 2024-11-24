@@ -71,6 +71,8 @@ function loadPrinters() {
         })
         .catch((error) => {
             console.error("Error loading printers:", error);
+            const printerSelect = document.getElementById("printer");
+            printerSelect.innerHTML = "<option value=''>Không có máy in khả dụng</option>";
             alert("Không thể tải danh sách máy in. Vui lòng thử lại.");
         });
 }
@@ -134,3 +136,6 @@ function createOrder() {
 function closeModal() {
     document.getElementById("success-modal").style.display = "none";
 }
+
+// Gọi hàm loadPrinters khi tải trang
+document.addEventListener("DOMContentLoaded", loadPrinters);
