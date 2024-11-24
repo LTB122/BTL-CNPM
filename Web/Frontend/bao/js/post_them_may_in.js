@@ -56,7 +56,7 @@ document.getElementById('post_may_in').addEventListener('submit', async (event) 
             if (!response.ok) {
                 const errorData = response;
                 console.error("Không thể thêm máy in: Máy in đã tồn tại trong hệ thống");
-                alert(`Không thể thêm máy in: Máy in đã tồn tại trong hệ thống`);
+                document.getElementById("hideButton").click();
                 throw new Error("Failed to fetch printer profile");
             } else {
                 console.log("Thêm máy in thành công:");

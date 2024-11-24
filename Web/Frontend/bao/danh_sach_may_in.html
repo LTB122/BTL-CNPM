@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">		
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>    
-	<link rel="stylesheet" href="./css/style.css">
+	  <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>    
@@ -29,20 +29,39 @@
         
     </style>
 
-    <div class="wrapper d-flex align-items-stretch" style="background-color: #FFFAF4; position: relative; top: 60px;">
-        <nav id="sidebar" style="background-image: var(--nav-color); width: 266px; height: 964px; position: relative;">
+    <div class="wrapper d-flex align-items-stretch" style="background-color: #FFFAF4; position: relative; top: 60px; height: 100%; width: 100%;">
+        <nav id="sidebar" style="background-image: var(--nav-color); width: 20%px; height: 100%; position: fixed;">
             <div class="p-4">
                 <img src="../assets/img/three_gach.png" alt="" width="37" height="32" style="position: absolute; top: 32px; left: 30px;">
                 <div class="list-unstyled mb-5" style="position: absolute; width: 196px; height: 336px; top: 105px; left: 30px;">
-                    <div class="active" style="width: 196px; height: 63px;"><a href="./danh_sach_may_in.html" style="font-size: 24px;" class="text-white">Máy in</a></div>
-                    <div style="width: 196px; height: 63px;"><a href="./danh_sach_lich_su_in.html" style="font-size: 24px;" class="text-white">Lịch sử in</a></div>
-                    <div style="width: 196px; height: 63px;"><a href="./danh_sach_sinh_vien.html" style="font-size: 24px;" class="text-white">Sinh viên</a></div>
-                    <div style="width: 196px; height: 63px;"><a href="./bao_cao_doanh_thu.html" style="font-size: 24px;" class="text-white">Doanh thu</a></div>
+                    <div class="active" style="width: 196px; height: 63px;">
+                        <a href="./danh_sach_may_in.html" style="font-size: 24px;" class="text-white">
+                            Máy in
+                        </a>
+                    </div>
+                    
+                    <div style="width: 196px; height: 63px;">
+                        <a href="./danh_sach_lich_su_in.html" style="font-size: 24px;" class="text-white">
+                            Lịch sử in
+                        </a>
+                    </div>
+                    
+                    <div style="width: 196px; height: 63px;">
+                        <a href="./danh_sach_sinh_vien.html" style="font-size: 24px;" class="text-white">
+                            Sinh viên
+                        </a>
+                    </div>
+                    
+                    <div style="width: 196px; height: 63px;">
+                        <a href="./bao_cao_doanh_thu.html" style="font-size: 24px;" class="text-white">
+                            Doanh thu
+                        </a>
+                    </div>
                 </div>
             </div>
-        </nav>       
+        </nav>
         
-        <div id="content" style="position: static; top: 60px; left: 272px; border: 2px; background-color: transparent; margin-left: 10px; margin-top: 9px; display: flex; flex-wrap: wrap; justify-content: center; display: flex; flex-wrap: wrap;">
+        <div id="content" style="position: relative; top: 60px; left: 266px; width: 80%; height: 100%; border: 2px; background-color: transparent; margin-left: 10px; margin-top: 9px; display: flex; flex-wrap: wrap; justify-content: center;">
             <div style="display: flex; flex-wrap: wrap; justify-content: center; width: 100%; height: 119px; margin-top: 17px; margin-bottom: 0; background-color: transparent;">
                 <p style="color: #921A40; font-weight: 700; font-size: 40px; line-height: 52px; display: flex; flex-wrap: wrap; align-items: center; background-color: transparent; width: 100%; justify-content: center;">
                     Danh sách máy in
@@ -54,7 +73,7 @@
                     </a>
                 </div>                
 
-                <ul id="danh_sach_may_in" style="display: flex; flex-wrap: wrap; justify-content: center; background-color: transparent; width: 92%; margin-top: 10px; gap: 20px; width: 95%;">
+                <ul id="danh_sach_may_in" style="display: flex; flex-wrap: wrap; background-color: transparent; width: 92%; margin-top: 10px; gap: 20px; width: 95%; margin-bottom: 10px;">
                     <!-- <a href="./thong_tin_may_in.html" style="background-color: #FFEBEB;">
                         <li type="button" style="display: flex; flex-wrap: wrap; width: 267px; height: 318px;">
                             <img src="../assets/img/printer_ok.png" style="width: 267px; height: 206px; border: 1px solid black;">
