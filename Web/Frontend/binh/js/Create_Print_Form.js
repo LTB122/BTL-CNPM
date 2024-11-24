@@ -51,7 +51,9 @@ function authenticatedFetch(url, options = {}) {
 }
 
 function loadPrinters() {
-    fetch("http://localhost:3000/api/printer/printer")
+    authenticatedFetch("http://localhost:3000/api/printer/printer", {
+        method: "GET",
+    })
         .then((response) => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -59,14 +61,16 @@ function loadPrinters() {
             return response.json();
         })
         .then((printers) => {
+            printers.forEach((printer) => {
+                console.log(`ID: ${printer.printerCode}, Tên: ${printer.printerName}`);
+            });
             const printerSelect = document.getElementById("printer");
-            printerSelect.innerHTML = ""; // Xóa các lựa chọn cũ
 
             // Thêm các máy in vào lựa chọn
             printers.forEach((printer) => {
                 const option = document.createElement("option");
-                option.value = printer.name;
-                option.textContent = printer.name;
+                option.value = printer.printerCode;
+                option.textContent = printer.printerName;
                 printerSelect.appendChild(option);
             });
         })
@@ -79,6 +83,12 @@ function loadPrinters() {
 }
 
 function createOrder() {
+    const token = localStorage.getItem("token");
+    if (!token) {
+        console.error("Không tìm thấy token. Vui lòng đăng nhập trước.");
+        alert("Vui lòng đăng nhập để mua thêm giấy.");
+        return;
+    }
     if (!uploadedFile) {
         alert("Vui lòng tải lên một file trước khi tạo đơn in.");
         return;
@@ -87,7 +97,7 @@ function createOrder() {
     const paperSize = document.getElementById("paper-size").value;
     const orientation = document.querySelector('input[name="orientation"]:checked')?.value;
     const pages = document.getElementById("pages").value;
-    const copies = document.getElementById("copies").value;
+    //const copies = document.getElementById("copies").value;
     const side = document.getElementById("side").value;
     const printer = document.getElementById("printer").value;
 
@@ -106,18 +116,33 @@ function createOrder() {
         return;
     }
 
-    const formData = new FormData();
-    formData.append("paperSize", paperSize);
-    formData.append("orientation", orientation);
-    formData.append("pages", pages);
-    formData.append("copies", copies);
-    formData.append("side", side);
-    formData.append("printer", printer);
-    formData.append("file", uploadedFile);
+    // const formData = new FormData();
+    // formData.append("paperSize", paperSize);
+    // formData.append("orientation", orientation);
+    // formData.append("pages", pages);
+    // formData.append("copies", copies);
+    // formData.append("side", side);
+    // //formData.append("printer", printer);
+    // formData.append("file", uploadedFile);
+    
+    const updatedData = {
+        paperSize,
+        orientation,
+        pages: Number(pages),
+        //copies: Number(copies),
+        side,
+        fileName: document.getElementById("file-name").textContent
+    };
+    console.log(printer);
+    console.log(updatedData);
 
-    fetch("http://localhost:3000/api/printLog/getPrintHistory/user", {
+    fetch(`http://localhost:3000/api/printLog/printRequest/${printer}`, {
         method: "POST",
-        body: formData,
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(updatedData)
     })
     .then((response) => {
         if (response.ok) {
