@@ -166,7 +166,7 @@ async function updateUIBasedOnLogin() {
                 <li class="header__navbar-user-item"><a href="../info_user/info_user.html">Thông tin cá nhân</a></li>
                 <li class="header__navbar-user-item"><a href="../binh/Print_History.html">Lịch sử in</a></li>
                 <li class="header__navbar-user-item"><a href="../binh/bkpay.html">BKPay</a></li>
-				<li class="header__navbar-user-item"><a href="../binh/bkpay.html">Tạo đơn in</a></li>
+				<li class="header__navbar-user-item"><a href="../binh/Create_Print_Form.html">Tạo đơn in</a></li>
                 <li class="header__navbar-user-item header__navbar-user-item--separate"><a href="#"> 
                     <button id="button-logout">Đăng xuất</button></a></li>`;
 		}
