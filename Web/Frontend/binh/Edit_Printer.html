@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Print Shop</title>
+    <title>Edit_Printer</title>
     <link rel="icon" href="../assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="script" href="../authenticate.js">
@@ -16,13 +16,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap&amp;subset=vietnamese" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="../binh/css/Edit_Printer.css">
+    <script src="../binh/js/Edit_Printer.js"></script>
     <body>
       <div class="header">
         <div class="header__header-item"><a class="header-logo-link" href="../home/home_page.html"><img class="header__logo" src="../assets/img/logo_cochu.png"></a>
           <div class="header-list">
             <button class="header-item__home-page"><a class="link_page" href="../home/home_page.html"> Trang chủ</a></button>
             <button class="header-item__about-us"> <a class="link_page" href="../about/about_us.html">Giới thiệu </a></button>
-            <button class="header-item__print"> <a class="link_page" href="../binh/Create_Print_Form.html">Dịch vụ in </a></button>
+            <button class="header-item__print"> <a class="link_page" href="../about/about_us.html">Dịch vụ in </a></button>
             <button class="header-item__login">Đăng nhập</button>
             <button class="header-item__dangky">Đăng ký</button>
             <div class="header__navbar-item header__navbar-user"><img class="header__navbar-user-img" src="" alt="">
@@ -98,40 +100,80 @@
           </div>
         </div>
       </div>
+
+    <button class="edit-btn" id="editButton">Chỉnh sửa</button>
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <h2>THÔNG TIN MÁY</h2>
+            <div class="form-content">
+            <form>
+                <div class="form-group">
+                    <label for="date-manufactured">Ngày sản xuất:</label>
+                    <input type="text" id="date-manufactured" name="date-manufactured" value = "06/09/2004">
+                </div>
+
+                <div class="form-group" >
+                    <label for="status">Tình trạng:</label>
+                    <span class="radio-group" style="color: #000">
+                        <input type="radio" id="active" name="status" value="active">
+                        <label for="active">Hoạt động</label>
+                        
+                        <input type="radio" id="maintenance" name="status" value="maintenance">
+                        <label for="maintenance">Đang bảo trì</label>
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <label for="device-model">Hãng máy:</label>
+                    <input type="text" id="device-model" name="device-model" value="Canon LBP2900 (A4/A5/USB)" style="width: 40%">
+                </div>
+
+                <div class="form-group">
+                    <label for="manufacturer">Công ty sản xuất:</label>
+                    <input type="text" id="manufacturer" name="manufacturer" value="Canon Inc">
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Địa điểm:</label>
+                    <input type="text" id="location" name="location" value="Tòa B4 - Tầng 2">
+                </div>
+
+                <div class="form-group">
+                    <label for="use-date">Ngày được thêm vào hệ thống:</label>
+                    <input type="text" id="use-date" name="use-date" value="06/09/2024">
+                </div>
+
+                <div class="form-group">
+                    <label for="printer-id">Mã máy in:</label>
+                    <input type="text" id="printer-id" name="printer-id" value="B40001">
+                </div>
+
+                <div class="form-group">
+                    <label>Định dạng file cho phép:</label>
+                    <span>
+                        <input type="checkbox" id="doc" name="file-format" value="doc">
+                        <label for="doc">DOC</label>
+                        <input type="checkbox" id="pdf" name="file-format" value="pdf">
+                        <label for="pdf">PDF</label>
+                        <input type="checkbox" id="txt" name="file-format" value="txt">
+                        <label for="txt">TXT</label>
+                        <input type="checkbox" id="html" name="file-format" value="html">
+                        <label for="html">HTML</label>
+                        <input type="checkbox" id="odt" name="file-format" value="odt">
+                        <label for="odt">ODT</label>
+                    </span>
+                </div>
+            </form>
+            </div>
+            <div class="button-group">
+                <button class="save-changes-btn" type="button" id="saveChanges">Xác nhận thay đổi</button>
+                <button class="close-btn" type="button" id="closeModal">Quay lại</button>
+            </div>
+        </div>
+    </div>
       <script src="../header.js"></script>
       <script src="../authenticate.js"></script>
-      <div class="container-home"><img class="container-home__img" src="../assets/img/Gioi_thieu.png" alt="ERROR">
-        <h2 class="container-home__title">Tính năng nổi bật</h2>
-        <div class="container-home__list">
-          <div class="container-home__title__item">
-            <div class="container-home__title__item-header">Đăng nhập dễ dàng</div>
-            <div class="container-home__title__item-content">Sinh viên truy cập hệ thống qua HCMUT_SSO, đảm bảo an toàn và bảo mật thông tin.</div>
-          </div>
-          <div class="container-home__title__item">
-            <div class="container-home__title__item-header">Tạo đơn in tài liệu</div>
-            <div class="container-home__title__item-content">Tải file lên, chọn máy in gần nhất và thiết lập tùy chọn in (kích thước giấy, số trang, in một mặt/hai mặt, số lượng bản sao, hướng in</div>
-          </div>
-          <div class="container-home__title__item">
-            <div class="container-home__title__item-header">Quản lý lịch sử in</div>
-            <div class="container-home__title__item-content">Sinh viên có thể xem lại lịch sử in của mình theo mốc thời gian, hiển thị số trang đã in theo kích thước giấy và tổng số trang.</div>
-          </div>
-          <div class="container-home__title__item">
-            <div class="container-home__title__item-header">Thanh toán và quản lý</div>
-            <div class="container-home__title__item-content">Tự động trừ số trang A4 khi in. Nếu không đủ trang, hệ thống thông báo nạp thêm. Sinh viên có thể mua thêm trang A4 qua BKPay.</div>
-          </div>
-        </div>
-      </div>
-      <footer class="footer">
-        <div class="footer__header">PRINT SHOP - Dịch vụ in ấn thông minh dành cho sinh viên tại HCMUT  </div>
-        <div class="divider"></div>
-        <div class="footer__content">
-          <ul class="footer__content__list">
-            <li class="footer__content__item">Địa chỉ: 268 Lý Thường Kiệt, Phường 14, Quận 10, Hồ Chí Minh</li>
-            <li class="footer__content__item"> Liên hệ: 086.xxx.xxx</li>
-            <li class="footer__content__item"> Email: xxxxxxx@hcmut.edu.vn</li>
-          </ul>
-        </div>
-      </footer>
     </body>
-  </head>
+</head>
 </html>
