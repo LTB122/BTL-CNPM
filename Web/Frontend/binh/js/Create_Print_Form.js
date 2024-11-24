@@ -28,13 +28,11 @@ function handleFiles(files) {
 }
 
 function createOrder() {
-    // Kiểm tra file đã upload chưa
     if (!uploadedFile) {
         alert("Vui lòng tải lên một file trước khi tạo đơn in.");
         return;
     }
 
-    // Lưu các dữ liệu input
     const paperSize = document.getElementById("paper-size").value;
     const orientation = document.querySelector('input[name="orientation"]:checked')?.value;
     const pages = document.getElementById("pages").value;
@@ -42,38 +40,46 @@ function createOrder() {
     const side = document.getElementById("side").value;
     const printer = document.getElementById("printer").value;
 
-    // Kiểm tra đã chọn hướng chưa
     if (!orientation) {
         alert("Vui lòng chọn hướng in (Hướng dọc hoặc Hướng ngang).");
         return;
     }
 
-    // Xác nhận số trang có hợp lệ không
     if (!pages || pages < 1 || pages > 999) {
         alert("Vui lòng nhập số trang hợp lệ (từ 1 đến 999).");
         return;
     }
 
-    // Xác nhận số lượng có hợp lệ không
     if (!copies || copies < 1 || copies > 999) {
         alert("Vui lòng nhập số lượng in hợp lệ (từ 1 đến 999).");
         return;
     }
 
-    //Hiển thị modal sau khi ấn nút "Tạo đơn in" nếu tạo đơn in thành công
-    document.getElementById("modal-printer").textContent = printer;
-    document.getElementById("success-modal").style.display = "flex";
+    const formData = new FormData();
+    formData.append("paperSize", paperSize);
+    formData.append("orientation", orientation);
+    formData.append("pages", pages);
+    formData.append("copies", copies);
+    formData.append("side", side);
+    formData.append("printer", printer);
+    formData.append("file", uploadedFile);
 
-    //Chuẩn bị dữ liệu form để gửi về máy chủ
-    const formData = {
-        paperSize,
-        orientation,
-        pages,
-        copies,
-        side,
-        printer,
-        fileName: uploadedFile.name
-    };
+    fetch("http://localhost:3000/", {
+        method: "POST",
+        body: formData,
+    })
+    .then((response) => {
+        if (response.ok) {
+            document.getElementById("modal-printer").textContent = printer;
+            document.getElementById("success-modal").style.display = "flex";
+        } else {
+            alert("Đã xảy ra lỗi khi tạo đơn in. Vui lòng thử lại.");
+        }
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+        alert("Không thể kết nối tới máy chủ.");
+    });
 }
 
 // Tắt modal

@@ -7,11 +7,12 @@
         <title>Lịch sử in</title>
         <link rel="icon" href="../assets/img/logo.png" type="image/x-icon">
         <link rel="stylesheet" href="../assets/css/base.css">
+        <link rel="script" href="../authenticate.js">
+        <link rel="script" href="../info_user/info_user.js">
         <link rel="stylesheet" href="../assets/css/home_page.css">
         <link rel="stylesheet" href="../assets/css/about_us.css">
         <link rel="stylesheet" href="../assets/css/info_user.css">
         <link rel="stylesheet" href="../assets/css/grid.css">
-        <link rel="stylesheet" href="../assets/css/responsive.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap&amp;subset=vietnamese" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
@@ -20,50 +21,88 @@
     </head>
     <body>
         <div class="header">
-            <div class="header__header-item">
-                <a class="header-logo-link" href="../home/home_page.html"><img class="header__logo" src="../assets/img/logo_cochu.png"></a>
-                <div class="header-list">
-                    <button class="header-item__home-page"><a class="link_page" href="../home/home_page.html">Trang chủ</a></button>
-                    <button class="header-item__about-us"><a class="link_page" href="../about/about_us.html">Giới thiệu</a></button>
-                    <button class="header-item__print"> <a class="link_page" href="../about/about_us.html">Dịch vụ in </a></button>
-                    <button class="header-item__login">Đăng nhập</button>
-                    <div class="header__navbar-item header__navbar-user"><img class="header__navbar-user-img" src="../assets/img/Trieu_Man.jpg" alt="">
-                        <div class="header__navbar-user-dropdown"><i class="fa-solid fa-angle-down"></i></div>
-                        <ul class="header__navbar-user-menu">
-                            <li class="header__navbar-user-item"><a href="../info_user/info_user.html">Thông tin cá nhân</a></li>
-                            <li class="header__navbar-user-item"><a href="">Lịch sử in</a></li>
-                            <li class="header__navbar-user-item"><a href="">BKPay</a></li>
-                            <li class="header__navbar-user-item header__navbar-user-item--separate"><a href="">Đăng xuất</a></li>
-                        </ul>
-                    </div>
+            <div class="header__header-item"><a class="header-logo-link" href="../home/home_page.html"><img class="header__logo" src="../assets/img/logo_cochu.png"></a>
+              <div class="header-list">
+                <button class="header-item__home-page"><a class="link_page" href="../home/home_page.html"> Trang chủ</a></button>
+                <button class="header-item__about-us"> <a class="link_page" href="../about/about_us.html">Giới thiệu </a></button>
+                <button class="header-item__print"> <a class="link_page" href="../about/about_us.html">Dịch vụ in </a></button>
+                <button class="header-item__login">Đăng nhập</button>
+                <button class="header-item__dangky">Đăng ký</button>
+                <div class="header__navbar-item header__navbar-user"><img class="header__navbar-user-img" src="" alt="">
+                  <div class="header__navbar-user-dropdown"><i class="fa-solid fa-angle-down"></i></div>
+                  <ul class="header__navbar-user-menu"></ul>
                 </div>
+              </div>
             </div>
-        </div>
-        <div class="modal js-modal">
+          </div>
+          <div class="modal js-modal">
             <div class="modal-container js-modal-container">
-                <div class="modal-close js-modal-close"><i class="fa-solid fa-xmark"></i></div>
-                <header class="modal-header"><i class="ti-bag"></i>
-                    <p>Đăng nhập </p>
-                </header>
-                <div class="modal-body">
-                    <div class="modal-form">
-                        <label class="modal-label">
-                            <!-- for chi tro den id-->Tên đăng nhập
-                        </label>
-                        <input class="modal-input" id="howmany" type="text">
-                        <label class="modal-label" for="email1">Mật khẩu</label>
-                        <input class="modal-input" id="email1" type="password">
-                        <div class="line"></div>
-                        <div class="modal-label-result">
-                            <button id="button-login">Đăng nhập</button>
-                            <button id="button-delete">Xoá nội dung</button>
-                        </div>
-                    </div>
+              <div class="modal-close js-modal-close"><i class="fa-solid fa-xmark"></i></div>
+              <header class="modal-header"><i class="ti-bag"></i>
+                <p>Đăng nhập </p>
+              </header>
+              <div class="modal-body">
+                <div class="modal-form">
+                  <label class="modal-label">
+                    <!-- for chi tro den id-->Tên đăng nhập
+                  </label>
+                  <input class="modal-input" id="username" type="text">
+                  <label class="modal-label">Mật khẩu</label>
+                  <input class="modal-input" id="password" type="password">
+                  <div class="line"></div>
+                  <div class="modal-label-result">
+                    <button id="button-login">Đăng nhập</button>
+                    <button id="button-delete">Xoá nội dung</button>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-
-        <script src="../header.js"></script>
+          </div>
+          <div class="modal-dangky js-modal-dangky">
+            <div class="modal-container-dangky js-modal-container-dangky">
+              <div class="modal-close-dangky js-modal-close-dangky"><i class="fa-solid fa-xmark"></i></div>
+              <header class="modal-header-dangky">
+                <p>Đăng ký </p>
+              </header>
+              <div class="modal-body-dangky">
+                <div class="modal-form-dangky">
+                  <div class="form-item">
+                    <label class="modal-label-dangky">Họ và tên</label>
+                    <input class="modal-input" id="fullname" type="text">
+                  </div>
+                  <div class="form-item">
+                    <label class="modal-label-dangky">Tên đăng nhập</label>
+                    <input class="modal-input" id="usernamedangky" type="text">
+                  </div>
+                  <div class="form-item">
+                    <label class="modal-label-dangky">Mật khẩu</label>
+                    <input class="modal-input" id="passworddangky" type="text">
+                  </div>
+                  <div class="form-item">
+                    <label class="modal-label-dangky">Email</label>
+                    <input class="modal-input" id="emaildangky" type="email">
+                  </div>
+                  <div class="form-item">
+                    <label class="modal-label-dangky">MSSV</label>
+                    <input class="modal-input" id="mssvdangky" type="text">
+                  </div>
+                  <div class="form-item">
+                    <label class="modal-label-dangky">Số điện thoại</label>
+                    <input class="modal-input" id="sdtdangky" type="text">
+                  </div>
+                  <div class="form-item">
+                    <label class="modal-label-dangky">Khoa</label>
+                    <input class="modal-input" id="khoadangky" type="text">
+                  </div>
+                </div>
+                <div class="modal-label-result-dangky">
+                  <button id="button-dangky">Đăng ký</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <script src="../header.js"></script>
+          <script src="../authenticate.js"></script>
     
         <h2 class="title">Lịch sử in</h2>
         <div class="search-section">

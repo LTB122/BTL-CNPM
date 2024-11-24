@@ -4,7 +4,7 @@ let totalA3Initial = 0;
 // Hàm lấy dữ liệu từ máy chủ
 async function fetchHistoryData() {
     try {
-        const response = await fetch('https://example.com/api/printHistory'); // URL API
+        const response = await fetch('http://localhost:3000/api/printLog/printHistory');
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
