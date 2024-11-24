@@ -1,6 +1,27 @@
 let totalA4Initial = 0;
 let totalA3Initial = 0;
 
+function authenticatedFetch(url, options = {}) {
+	const token = localStorage.getItem("token"); // Get token from localStorage
+
+	const headers = {
+		"Content-Type": "application/json",
+		...options.headers,
+	};
+
+	if (token) {
+		headers["Authorization"] = `Bearer ${token}`;
+	}
+	const response = fetch(url, { ...options, headers });
+
+	if (response.status === 401) {
+		console.error(
+			"Không được phép: Token có thể không hợp lệ hoặc đã hết hạn."
+		);
+	}
+
+	return response;
+}
 // Hàm lấy dữ liệu từ máy chủ
 async function fetchHistoryData() {
     try {
