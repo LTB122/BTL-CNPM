@@ -71,10 +71,15 @@ try {
 
             let ngay_san_xuat = document.getElementById("ngay_san_xuat");
             let date = new Date(res[0].dateOfProduct);
-            let year = date.getFullYear();
-            let month = String(date.getMonth() + 1).padStart(2, '0');
-            let day = String(date.getDate()).padStart(2, '0');
-            ngay_san_xuat.innerHTML = `${day}/${month}/${year}`;
+
+            if(isNaN(date) || date === "Invalid Date") {
+                ngay_san_xuat.innerHTML = res[0].systemInTime;
+            } else {
+                let year = date.getFullYear();
+                let month = String(date.getMonth() + 1).padStart(2, '0');
+                let day = String(date.getDate()).padStart(2, '0');
+                ngay_san_xuat.innerHTML = `${day}/${month}/${year}`;
+            }
 
             const brand = document.getElementById("brand");            
             brand.innerHTML = res[0].brand;

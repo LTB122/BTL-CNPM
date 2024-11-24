@@ -19,6 +19,27 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>    
 	<link rel="stylesheet" href="./css/style.css">
+
+    <script>
+        $(document).ready(function() {
+            $("#searchInput").on('input', function() {
+                const query = $(this).val();
+                
+                console.log(query);
+                $('#danh_sach_sinh_vien > .shadow').each(function() {
+                    const name = $(this).find("#name").text();
+                    const MSSV = $(this).find("#MSSV").text();
+                    
+                    console.log(`Name: ${name}, MSSV: ${MSSV}`);
+                    if(name.includes(query) || MSSV.includes(query)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 
 <body>     
@@ -30,26 +51,45 @@
     </style>
 
     <div class="wrapper d-flex align-items-stretch" style="background-color: #FFFAF4; position: relative; top: 60px;">
-        <nav id="sidebar" style="background-image: var(--nav-color); width: 266px; height: auto; position: relative;">
+        <nav id="sidebar" style="background-image: var(--nav-color); width: 20%px; height: 100%; position: fixed;">
             <div class="p-4">
                 <img src="../assets/img/three_gach.png" alt="" width="37" height="32" style="position: absolute; top: 32px; left: 30px;">
                 <div class="list-unstyled mb-5" style="position: absolute; width: 196px; height: 336px; top: 105px; left: 30px;">
-                    <div class="active" style="width: 196px; height: 63px;"><a href="./danh_sach_may_in.html" style="font-size: 24px;" class="text-white">Máy in</a></div>
-                    <div style="width: 196px; height: 63px;"><a href="./danh_sach_lich_su_in.html" style="font-size: 24px;" class="text-white">Lịch sử in</a></div>
-                    <div style="width: 196px; height: 63px;"><a href="./danh_sach_sinh_vien.html" style="font-size: 24px;" class="text-white">Sinh viên</a></div>
-                    <div style="width: 196px; height: 63px;"><a href="./bao_cao_doanh_thu.html" style="font-size: 24px;" class="text-white">Doanh thu</a></div>
+                    <div class="active" style="width: 196px; height: 63px;">
+                        <a href="./danh_sach_may_in.html" style="font-size: 24px;" class="text-white">
+                            Máy in
+                        </a>
+                    </div>
+                    
+                    <div style="width: 196px; height: 63px;">
+                        <a href="./danh_sach_lich_su_in.html" style="font-size: 24px;" class="text-white">
+                            Lịch sử in
+                        </a>
+                    </div>
+                    
+                    <div style="width: 196px; height: 63px;">
+                        <a href="./danh_sach_sinh_vien.html" style="font-size: 24px;" class="text-white">
+                            Sinh viên
+                        </a>
+                    </div>
+                    
+                    <div style="width: 196px; height: 63px;">
+                        <a href="./bao_cao_doanh_thu.html" style="font-size: 24px;" class="text-white">
+                            Doanh thu
+                        </a>
+                    </div>
                 </div>
             </div>
-        </nav>    
+        </nav>
         
-        <div id="content" style="border: 2px; background-color: transparent; display: flex; justify-content: center;">
+        <div id="content" style="position: relative; top: 60px; left: 266px; width: 80%; height: 100%; border: 2px; background-color: transparent; margin-left: 10px; margin-top: 9px;">
             <div style="background-color: transparent; width: 100%; height: 100px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; margin-top: 20px;">
                 <p style="font-size: 40px; color: #921A40; font-weight: bold; background-color: transparent; width: 100%; display: flex; justify-content: center; margin-bottom: 40px;">
                     Danh sách sinh viên
                 </p>
 
                 <img src="../assets/img/search.png" alt="" width="41" height="34">
-                <input type="text" placeholder="    Tìm kiếm dựa trên tên hoặc MSSV" style="width: 531px; height: 35px; border-radius: 20px; border: 1px solid black; background-color: transparent;">
+                <input id="searchInput" type="text" placeholder="    Tìm kiếm dựa trên tên hoặc MSSV" style="width: 531px; height: 35px; border-radius: 20px; border: 1px solid black; background-color: transparent;">
 
                 <div id="danh_sach_sinh_vien" style="background-color: #FFEBEB; width: 1021px; border: 1px solid black; border-radius: 15px; box-shadow: 2px 2px 2px 2px #931d42; margin-top: 58px; padding: 20px;">
                     <div class="shadow" style="height: 120px; width: 100%; border: 1px solid black; border-radius: 15px; background-color: #FFFFFF; margin-bottom: 20px; display: flex; flex-wrap: wrap; justify-content: center;">

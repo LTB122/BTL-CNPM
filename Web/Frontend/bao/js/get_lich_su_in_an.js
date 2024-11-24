@@ -65,7 +65,9 @@ try {
                                     Mã đơn in:
                                 </nobr> 
                                 
-                                ${res[i]._id}
+                                <nobr id="ma_don_in">
+                                    ${res[i]._id}
+                                </nobr>                                
                             </p>
                         </div>
 
@@ -74,8 +76,10 @@ try {
                                 <nobr style="color: #921A40; font-weight: bold; font-size: 14px;">
                                     Mã máy in:
                                 </nobr> 
-                                
-                                ${res[i].printerCode}
+                                                                
+                                <nobr id="ma_may_in">
+                                    ${res[i].printerCode}
+                                </nobr>
                             </p>
                         </div>
 
@@ -84,8 +88,10 @@ try {
                                 <nobr style="color: #921A40; font-weight: bold; font-size: 14px;">
                                     Tài khoản thực hiện:
                                 </nobr> 
-                                
-                                ${res[i].userName}
+                                                                
+                                <nobr id="tai_khoan_thuc_hien">
+                                    ${res[i].userName}
+                                </nobr>
                             </p>
                         </div>
                     </div>
@@ -96,8 +102,10 @@ try {
                                 <nobr style="color: #921A40; font-weight: bold; font-size: 14px;">
                                     Thời gian:
                                 </nobr> 
-                                
-                                ${hours}:${minutes}:${seconds}
+                                                                
+                                <nobr id="thoi_gian">
+                                    ${hours}:${minutes}:${seconds}
+                                </nobr>
                             </p>
                         </div>
 
@@ -106,8 +114,10 @@ try {
                                 <nobr style="color: #921A40; font-weight: bold; font-size: 14px;">
                                     Ngày in:
                                 </nobr> 
-                                
-                                ${day}-${month}-${year}
+                                                                
+                                <nobr id="ngay_in">
+                                    ${day}-${month}-${year}
+                                </nobr>
                             </p>
                         </div>
                     </div>

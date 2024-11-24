@@ -23,60 +23,145 @@ function handleFiles(files) {
     const file = files[0];
     if (file) {
         uploadedFile = file;
-        document.querySelector(".file-label").textContent = file.name; // Hiển thị tên file
+        const fileNameElement = document.getElementById("file-name");
+        fileNameElement.textContent = file.name; // Hiển thị tên file
     }
 }
 
+function authenticatedFetch(url, options = {}) {
+    const token = localStorage.getItem("token"); // Get token from localStorage
+
+    const headers = {
+        "Content-Type": "application/json",
+        ...options.headers,
+    };
+
+    if (token) {
+        headers["Authorization"] = `Bearer ${token}`;
+    }
+    const response = fetch(url, { ...options, headers });
+
+    if (response.status === 401) {
+        console.error(
+            "Không được phép: Token có thể không hợp lệ hoặc đã hết hạn."
+        );
+    }
+
+    return response;
+}
+
+function loadPrinters() {
+    authenticatedFetch("http://localhost:3000/api/printer/printer", {
+        method: "GET",
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then((printers) => {
+            printers.forEach((printer) => {
+                console.log(`ID: ${printer.printerCode}, Tên: ${printer.printerName}`);
+            });
+            const printerSelect = document.getElementById("printer");
+
+            // Thêm các máy in vào lựa chọn
+            printers.forEach((printer) => {
+                const option = document.createElement("option");
+                option.value = printer.printerCode;
+                option.textContent = printer.printerName;
+                printerSelect.appendChild(option);
+            });
+        })
+        .catch((error) => {
+            console.error("Error loading printers:", error);
+            const printerSelect = document.getElementById("printer");
+            printerSelect.innerHTML = "<option value=''>Không có máy in khả dụng</option>";
+            alert("Không thể tải danh sách máy in. Vui lòng thử lại.");
+        });
+}
+
 function createOrder() {
-    // Kiểm tra file đã upload chưa
+    const token = localStorage.getItem("token");
+    if (!token) {
+        console.error("Không tìm thấy token. Vui lòng đăng nhập trước.");
+        alert("Vui lòng đăng nhập để mua thêm giấy.");
+        return;
+    }
     if (!uploadedFile) {
         alert("Vui lòng tải lên một file trước khi tạo đơn in.");
         return;
     }
 
-    // Lưu các dữ liệu input
     const paperSize = document.getElementById("paper-size").value;
     const orientation = document.querySelector('input[name="orientation"]:checked')?.value;
     const pages = document.getElementById("pages").value;
-    const copies = document.getElementById("copies").value;
+    //const copies = document.getElementById("copies").value;
     const side = document.getElementById("side").value;
     const printer = document.getElementById("printer").value;
 
-    // Kiểm tra đã chọn hướng chưa
     if (!orientation) {
         alert("Vui lòng chọn hướng in (Hướng dọc hoặc Hướng ngang).");
         return;
     }
 
-    // Xác nhận số trang có hợp lệ không
     if (!pages || pages < 1 || pages > 999) {
         alert("Vui lòng nhập số trang hợp lệ (từ 1 đến 999).");
         return;
     }
 
-    // Xác nhận số lượng có hợp lệ không
     if (!copies || copies < 1 || copies > 999) {
         alert("Vui lòng nhập số lượng in hợp lệ (từ 1 đến 999).");
         return;
     }
 
-    //Hiển thị modal sau khi ấn nút "Tạo đơn in" nếu tạo đơn in thành công
-    document.getElementById("modal-printer").textContent = printer;
-    document.getElementById("success-modal").style.display = "flex";
-
-    //Chuẩn bị dữ liệu form để gửi về máy chủ
-    const formData = {
+    // const formData = new FormData();
+    // formData.append("paperSize", paperSize);
+    // formData.append("orientation", orientation);
+    // formData.append("pages", pages);
+    // formData.append("copies", copies);
+    // formData.append("side", side);
+    // //formData.append("printer", printer);
+    // formData.append("file", uploadedFile);
+    
+    const updatedData = {
         paperSize,
         orientation,
-        pages,
-        copies,
+        pages: Number(pages),
+        //copies: Number(copies),
         side,
-        printer,
-        fileName: uploadedFile.name
+        fileName: document.getElementById("file-name").textContent
     };
+    console.log(printer);
+    console.log(updatedData);
+
+    fetch(`http://localhost:3000/api/printLog/printRequest/${printer}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(updatedData)
+    })
+    .then((response) => {
+        if (response.ok) {
+            document.getElementById("modal-printer").textContent = printer;
+            document.getElementById("success-modal").style.display = "flex";
+        } else {
+            alert("Đã xảy ra lỗi khi tạo đơn in. Vui lòng thử lại.");
+        }
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+        alert("Không thể kết nối tới máy chủ.");
+    });
 }
 
 // Tắt modal
 function closeModal() {
     document.getElementById("success-modal").style.display = "none";
 }
+
+// Gọi hàm loadPrinters khi tải trang
+document.addEventListener("DOMContentLoaded", loadPrinters);

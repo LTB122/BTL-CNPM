@@ -1,14 +1,38 @@
 let data = [];
 
-// Hàm lấy dữ liệu từ máy chủ
+function authenticatedFetch(url, options = {}) {
+	const token = localStorage.getItem("token"); // Get token from localStorage
+
+	const headers = {
+		"Content-Type": "application/json",
+		...options.headers,
+	};
+
+	if (token) {
+		headers["Authorization"] = `Bearer ${token}`;
+	}
+	const response = fetch(url, { ...options, headers });
+
+	if (response.status === 401) {
+		console.error(
+			"Không được phép: Token có thể không hợp lệ hoặc đã hết hạn."
+		);
+	}
+
+	return response;
+}
+
 async function fetchDataFromServer() {
     try {
-        const response = await fetch('https://example.com/api/data'); // Thay URL bằng API của máy chủ
+        const response = await fetch('http://localhost:3000/api/payment/get-payments');
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        data = await response.json(); // Lưu dữ liệu từ máy chủ vào biến data
-        populateTable(); // Gọi hàm để điền dữ liệu vào bảng
+        // Gán dữ liệu từ server vào biến data
+        data = await response.json(); // Server trả về các mục có cả id
+
+        // Gọi hàm điền dữ liệu vào bảng
+        populateTable();
     } catch (error) {
         console.error('Có lỗi khi lấy dữ liệu từ máy chủ:', error);
     }
@@ -95,10 +119,10 @@ function generateQRCode(url) {
 }
 
 // Hàm xử lý khi nhấn nút "Xác nhận" trong modal
-function confirmPayment() {
+async function confirmPayment() {
     const checkboxes = document.querySelectorAll('.circle-checkbox');
     
-    checkboxes.forEach((checkbox, index) => {
+    checkboxes.forEach(async (checkbox, index) => {
         if (checkbox.checked && !checkbox.disabled) {
             checkbox.classList.add('confirmed');
             checkbox.disabled = true;
@@ -111,6 +135,30 @@ function confirmPayment() {
 
             daThanhToanCell.innerText = soTien.toLocaleString();
             conLaiCell.innerText = '0';
+
+            // Gửi dữ liệu cập nhật lên máy chủ
+            try {
+                const response = await fetch('http://localhost:3000/api/payment/update-payment/:paymentId', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        id: data[index].id, // ID của mục thanh toán
+                        daThanhToan: soTien,
+                        conLai: 0
+                    }),
+                });
+            
+                if (!response.ok) {
+                    throw new Error('Cập nhật thất bại');
+                }
+            
+                console.log('Cập nhật thành công:', await response.json());
+            } catch (error) {
+                console.error('Lỗi khi cập nhật dữ liệu:', error);
+                alert('Đã xảy ra lỗi khi cập nhật dữ liệu.');
+            }
         }
     });
 

@@ -54,8 +54,8 @@ authenticatedFetch(
             ngay_san_xuat.value = res[0].systemInTime;
         } else {
             year = date.getFullYear();
-            month = date.getMonth() + 1;
-            day = date.getDate();
+            month = String(date.getMonth() + 1).padStart(2, '0');
+            day = String(date.getDate()).padStart(2, '0');
             ngay_san_xuat.value = `${day}/${month}/${year}`;
         }
 
