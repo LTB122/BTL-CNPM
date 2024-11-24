@@ -8,7 +8,7 @@ exports.createPrintLog = async (req, res) => {
         const printerID = req.params.printerID;
         
         let printerNameCheck, printerCodeCheck;
-        const printerUsed = await Printer.findOne({_id: printerID});
+        const printerUsed = await Printer.findOne({printerCode: printerID});
        
         if(!printerUsed){
             return res.status(404).json({message: "không tìm thấy máy in này"});
