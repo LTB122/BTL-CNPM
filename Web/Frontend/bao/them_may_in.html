@@ -27,6 +27,7 @@
             $("#odtAppear").hide();
             $("#txtAppear").hide();
             $("#htmlAppear").hide();
+            $("#hideButton").hide();
 
             $('#themLuaChonSave').click(function() {
                 $('#closeButton').click();
@@ -294,12 +295,42 @@
                             <button type="button" class="btn" style="background-color: #C75B7A; padding: 10px; height: auto;">
                                 <a href="./danh_sach_may_in.html" style="color: #FFEBEB; font-size: 24px; line-height: 29.05px; font-weight: 700;">
                                     Quay về
-                                </a>                                
+                                </a>
                             </button>
                         </div>
                     </div>
-                </form>                
-            </div>                    
+                </form>
+
+                <div id="hideButton" class="btn" type="button" style="position: absolute; top: 575px; left: 468px; width: 186px; height: 53px; background-color: #C75B7A;"  data-bs-toggle="modal" data-bs-target="#deleteButton" id="delete">
+                    <p style="color: white; position: absolute; width: 155px; height: 29px; font-size: 24px; font-weight: 700; top: 8px; left: 14px;">
+                        Hide button
+                    </p>
+                </div>
+
+                <div class="modal fade" id="deleteButton" tabindex="-1" aria-labelledby="modify modal" aria-hidden="true" style="background-color: transparent;">
+                    <div class="modal-dialog" style="position: fixed; top: 25%; left: 32%;">
+                        <div class="modal-content" style="width: 540px; height: 246px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-around; border-radius: 15px; background: linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(0deg, #FFFAF4, #FFFAF4);">
+                            <div style="width: 332px; height: 64px; flex-wrap: wrap;">
+                                <p style="color: #921A40; font-size: 32px; font-weight: 700; background-color: transparent; text-align: center;">
+                                    Yêu cầu bị từ chối
+                                </p>
+                            </div>
+    
+                            <div style="width: 490px; height: 27px; flex-wrap: wrap; display: flex; flex-wrap: wrap; align-items: center; justify-content: center;">
+                                <p style="font-size: 20px; font-weight: 500; color: #000000;">
+                                    Máy in đã tồn tại trong hệ thống !
+                                </p>
+                            </div>
+                            
+                            <button type="button" class="btn" style="padding: 10px; background-color: #C75B7A; border-radius: 10px; width: 186px; height: 53px; justify-content: center; flex-wrap: wrap;" data-bs-dismiss="modal">
+                                <p style="font-size: 24px; font-weight: 700; color: white; width: 155px; height: 29px; top: 11px; left: 14px;">
+                                    Quay về
+                                </p>
+                            </button>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     
