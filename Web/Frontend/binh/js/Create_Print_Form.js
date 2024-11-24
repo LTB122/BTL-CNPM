@@ -23,7 +23,8 @@ function handleFiles(files) {
     const file = files[0];
     if (file) {
         uploadedFile = file;
-        document.querySelector(".file-label").textContent = file.name; // Hiển thị tên file
+        const fileNameElement = document.getElementById("file-name");
+        fileNameElement.textContent = file.name; // Hiển thị tên file
     }
 }
 

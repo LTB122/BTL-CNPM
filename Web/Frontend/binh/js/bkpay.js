@@ -21,7 +21,7 @@ function authenticatedFetch(url, options = {}) {
 
 	return response;
 }
-// Hàm lấy dữ liệu từ máy chủ
+
 async function fetchDataFromServer() {
     try {
         const response = await fetch('http://localhost:3000/api/payment/get-payments');
@@ -138,7 +138,7 @@ async function confirmPayment() {
 
             // Gửi dữ liệu cập nhật lên máy chủ
             try {
-                const response = await fetch('http://localhost:3000/api/payment/update-payment', {
+                const response = await fetch('http://localhost:3000/api/payment/update-payment/:paymentId', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
