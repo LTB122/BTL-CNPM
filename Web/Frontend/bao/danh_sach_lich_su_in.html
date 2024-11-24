@@ -24,26 +24,24 @@
         $(document).ready(function() {
             $("#searchButton").click(function() {
                 let printerCode = $("#searchPrinterCode").val();
-                let startDate = new Date($("#searchStartDate").eq(0).val());
-                let endDate = new Date($("#searchEndDate").eq(1).val());
+
+                let temp = $("#searchStartDate").eq(0).val().split("-");
+                let startDate = new Date(String(temp[0] + "-" + temp[1] + "-" + temp[2]));
+                temp = $("#searchEndDate").eq(0).val().split("-");
+                let endDate = new Date(String(temp[0] + "-" + temp[1] + "-" + temp[2]));
                 let invalidStartDate = startDate === "Invalid Date" || isNaN(startDate);
                 let invalidEndDate = endDate === "Invalid Date" || isNaN(endDate);
-
-                let [year, month, day] = $("#searchStartDate").eq(0).val().split("-");
-                console.log("Day:", day);
-                console.log("Month:", month);
-                console.log("Year:", year);
-                // startDate = `${day}/`;
 
                 let i = 0;
                 $("#lich_su_in_an > .shadow").each(function() {                    
                     console.log('Iterator:', i);
                     i++;
+
                     let currentPrinterCode = $(this).find("#ma_may_in").text();
-                    let currentDate = new Date($(this).find("#ngay_in").text().split("/").join("-"));
+                    const cleanedArray = $(this).find("#ngay_in").text().split("-").map(item => item.trim());
+                    let [day, month, year] = cleanedArray;                    
+                    let currentDate = new Date(`${year}-${month}-${day}`);
                     let matchesPrinter = currentPrinterCode.includes(printerCode) || printerCode === "";
-                    
-                    console.log("Current date", currentDate)
 
                     if(invalidStartDate && invalidEndDate) {
                         if(matchesPrinter) {
