@@ -25,7 +25,9 @@ function authenticatedFetch(url, options = {}) {
 // Hàm lấy dữ liệu từ máy chủ
 async function fetchHistoryData() {
     try {
-        const response = await fetch('http://localhost:3000/api/printLog/printHistory');
+        const response = await authenticatedFetch('http://localhost:3000/api/printLog/getPrintHistory',{
+            method: 'GET',
+        });
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -54,7 +56,7 @@ function displayHistory(historyList) {
         historyItem.classList.add('history-item');
         historyItem.innerHTML = `
             <div class="history-info">
-                <div>Mã đơn in: <span class="history-detail">${history.orderCode}</span></div>
+                <div>Mã đơn in: <span class="history-detail">${history._id}</span></div>
                 <div>Mã máy in: <span class="history-detail">${history.printerCode}</span></div>
                 <div>Tài khoản thực hiện: <span class="history-detail">${history.userName}</span></div>
             </div>
@@ -65,6 +67,10 @@ function displayHistory(historyList) {
             <button class="detail-btn">Xem chi tiết</button>
         `;
         container.appendChild(historyItem);
+
+        //Gắn hàm viewDetail vào nút Xem chi tiết
+        const detailButton = historyItem.querySelector('.detail-btn');
+        detailButton.addEventListener('click', () => viewDetails(history));
     });
 }
 
@@ -133,9 +139,9 @@ document.querySelector('.search-btn').addEventListener('click', async () => {
     displayHistory(filteredData);
 });
 
-function viewDetails(index) {
+function viewDetails(history) { 
     // Save selected history data to session storage
-    sessionStorage.setItem('selectedHistory', JSON.stringify(sampleHistoryData[index]));
+    sessionStorage.setItem('selectedHistory', JSON.stringify(history));
     // Redirect to details page
     window.location.href = 'Print_Detail.html';
 }

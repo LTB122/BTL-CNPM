@@ -97,7 +97,7 @@ function createOrder() {
     const paperSize = document.getElementById("paper-size").value;
     const orientation = document.querySelector('input[name="orientation"]:checked')?.value;
     const pages = document.getElementById("pages").value;
-    //const copies = document.getElementById("copies").value;
+    const copies = document.getElementById("copies").value;
     const side = document.getElementById("side").value;
     const printer = document.getElementById("printer").value;
 
@@ -116,31 +116,23 @@ function createOrder() {
         return;
     }
 
-    // const formData = new FormData();
-    // formData.append("paperSize", paperSize);
-    // formData.append("orientation", orientation);
-    // formData.append("pages", pages);
-    // formData.append("copies", copies);
-    // formData.append("side", side);
-    // //formData.append("printer", printer);
-    // formData.append("file", uploadedFile);
-    
+    const fileName = document.getElementById("file-name").textContent;
     const updatedData = {
-        paperSize,
-        orientation,
-        pages: Number(pages),
-        //copies: Number(copies),
-        side,
-        fileName: document.getElementById("file-name").textContent
+        "paperSize": paperSize,
+        "orientation": orientation,
+        "pagesPrinted": Number(pages),
+        // "display": Number(copies),
+        "Display": side,
+        "fileName": fileName
     };
     console.log(printer);
     console.log(updatedData);
-
+    
     fetch(`http://localhost:3000/api/printLog/printRequest/${printer}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`
         },
         body: JSON.stringify(updatedData)
     })
