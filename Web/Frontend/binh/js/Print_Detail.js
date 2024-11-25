@@ -11,8 +11,8 @@ function loadTransactionDetails() {
             <table>
                 <tbody>
                     <tr>
-                        <th>Mã đơn in: <span class="history-detail">${transactionData.orderCode}</span></th>
-                        <th>Thời gian: <span class="history-detail">${transactionData.time} - ${formatDate(transactionData.date)}</span></th>
+                        <th>Mã đơn in: <span class="history-detail">${transactionData._id}</span></th>
+                        <th>Thời gian: <span class="history-detail">${transactionData.time}-${formatDate(transactionData.createdAt.slice(0,10))}</span></th>
                     </tr>
                     <tr>
                         <th>Mã máy in: <span class="history-detail">${transactionData.printerCode}</span></th>

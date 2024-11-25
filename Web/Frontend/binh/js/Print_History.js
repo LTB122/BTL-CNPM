@@ -51,7 +51,7 @@ function displayHistory(historyList) {
     container.innerHTML = ''; // Xóa lịch sử hiện tại
 
     sortedHistoryList.forEach(history => {
-        const formattedDate = formatDate(history.date);
+        const formattedDate = formatDate(history.createdAt.slice(0,10));
         const historyItem = document.createElement('div');
         historyItem.classList.add('history-item');
         historyItem.innerHTML = `
