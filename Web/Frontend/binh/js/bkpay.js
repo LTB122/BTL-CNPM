@@ -145,8 +145,8 @@ async function confirmPayment() {
                 console.log("Dữ liệu cập nhật lên máy chủ: ", updatedData);
                 // Gửi dữ liệu cập nhật lên máy chủ
                 try {
-                    const response = await fetch(`http://localhost:3000/api/payment/update-payment/${paymentId}`, {
-                        method: 'POST',
+                    const response = await authenticatedFetch(`http://localhost:3000/api/payment/update-payment/${paymentId}`, {
+                        method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',
                         },
