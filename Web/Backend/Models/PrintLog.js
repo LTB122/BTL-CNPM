@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 const printedRequestSchema = new mongoose.Schema({
   printerCode: {
@@ -17,10 +18,11 @@ const printedRequestSchema = new mongoose.Schema({
   },
   date: {
     type: String,
-    default: Date.now
+    default: moment().format('DD/MM/YYYY')
   },
   time: {
     type: String,
+	default: moment().format('HH:mm:ss')
   },
   paperSize: {
     type: String,
@@ -34,6 +36,11 @@ const printedRequestSchema = new mongoose.Schema({
   pagesPrinted: {
     type: Number,
     required: true
+  },
+  copies:{
+	type: Number,
+	require: true,
+	default: 1
   },
   fileName: {
     type: String,
