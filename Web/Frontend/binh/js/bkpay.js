@@ -24,7 +24,9 @@ function authenticatedFetch(url, options = {}) {
 
 async function fetchDataFromServer() {
     try {
-        const response = await fetch('http://localhost:3000/api/payment/get-payments');
+        const response = await authenticatedFetch('http://localhost:3000/api/payment/get-payments',{
+            method: 'GET',
+        });
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -64,6 +66,7 @@ function populateTable() {
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.className = "circle-checkbox";
+        checkbox.setAttribute("data-id", item._id); // Gắn id vào checkbox
         
         // Nếu "Còn lại" = 0, tự động tick và vô hiệu hóa checkbox
         if (item.conLai === 0) {
@@ -122,48 +125,53 @@ function generateQRCode(url) {
 async function confirmPayment() {
     const checkboxes = document.querySelectorAll('.circle-checkbox');
     
-    checkboxes.forEach(async (checkbox, index) => {
+    checkboxes.forEach(async (checkbox) => {
         if (checkbox.checked && !checkbox.disabled) {
-            checkbox.classList.add('confirmed');
-            checkbox.disabled = true;
-
-            // Cập nhật dữ liệu "Đã thanh toán" và "Còn lại"
-            const row = checkbox.closest('tr');
-            const daThanhToanCell = row.cells[2];
-            const conLaiCell = row.cells[3];
-            const soTien = data[index].soTien;
-
-            daThanhToanCell.innerText = soTien.toLocaleString();
-            conLaiCell.innerText = '0';
-
-            // Gửi dữ liệu cập nhật lên máy chủ
-            try {
-                const response = await fetch('http://localhost:3000/api/payment/update-payment/:paymentId', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        id: data[index].id, // ID của mục thanh toán
-                        daThanhToan: soTien,
-                        conLai: 0
-                    }),
-                });
+            const paymentId = checkbox.getAttribute("data-id"); // Lấy id từ thuộc tính data-id
+            const payment = data.find(item => item._id === paymentId); // Tìm mục tương ứng trong data
             
-                if (!response.ok) {
-                    throw new Error('Cập nhật thất bại');
+            if (payment) {
+                // Cập nhật dữ liệu "Đã thanh toán" và "Còn lại" trong giao diện
+                const row = checkbox.closest('tr');
+                const daThanhToanCell = row.cells[2];
+                const conLaiCell = row.cells[3];
+                const soTien = payment.soTien;
+
+                daThanhToanCell.innerText = soTien.toLocaleString();
+                conLaiCell.innerText = '0';
+                const updatedData = {
+                    daThanhToan: soTien,
                 }
-            
-                console.log('Cập nhật thành công:', await response.json());
-            } catch (error) {
-                console.error('Lỗi khi cập nhật dữ liệu:', error);
-                alert('Đã xảy ra lỗi khi cập nhật dữ liệu.');
+                console.log("Dữ liệu cập nhật lên máy chủ: ", updatedData);
+                // Gửi dữ liệu cập nhật lên máy chủ
+                try {
+                    const response = await fetch(`http://localhost:3000/api/payment/update-payment/${paymentId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(updatedData),
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error('Cập nhật thất bại');
+                    }
+                    
+                    const updatedPayment = await response.json();
+                    console.log('Sau khi cập nhật thành công:', updatedPayment);
+
+                    await fetchDataFromServer();
+                } catch (error) {
+                    console.error('Lỗi khi cập nhật dữ liệu:', error);
+                    alert('Đã xảy ra lỗi khi cập nhật dữ liệu.');
+                }
             }
         }
     });
 
     closeModal();
 }
+
 
 // Hàm đóng modal
 function closeModal() {

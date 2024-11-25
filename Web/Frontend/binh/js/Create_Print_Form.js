@@ -121,7 +121,7 @@ function createOrder() {
         "paperSize": paperSize,
         "orientation": orientation,
         "pagesPrinted": Number(pages),
-        // "display": Number(copies),
+        "copies": Number(copies),
         "Display": side,
         "fileName": fileName
     };
