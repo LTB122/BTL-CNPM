@@ -28,7 +28,7 @@ html{
     align-content: center;
 }
 
-.header-item__home-page,.header-item__about-us{
+.header-item__home-page,.header-item__about-us,.header-item__print{
     color: var(--white-color);
     font-size: 1.6rem;
     text-decoration: none;
@@ -39,9 +39,18 @@ html{
     font-weight: 700;
     cursor: pointer;
 }
+.header-item__print{
+    margin-right: 20px;
+    display: none;  
+    /* hien thi khi dang nhap */
+}
+
+.header-list{
+    display: flex;
+}
 
 .link_page{
-    color: var(--white-color);
+    color: var(--white-color) !important;
     font-size: 1.6rem;
     text-decoration: none;
     width: 144px;
@@ -51,12 +60,15 @@ html{
     justify-content: center;
 }
 
-.header-item__home-page:hover,.header-item__about-us:hover{
+.header-item__home-page:hover,.header-item__about-us:hover,.header-item__print:hover{
     background: rgba(0, 0, 0, 0.3);
     animation: fadeIn 0.1s ease-in-out;
 }
 
 .header-item__login{
+    /* display: none; */
+    /* tat khi dang nhap */
+    margin-top: 10px;
     border-radius: 50px;
     height: 36px;
     width: 147px;
@@ -70,12 +82,157 @@ html{
     cursor: pointer;
 }
 
-.header-item__login:hover{
+.header-item__dangky{
+    margin-top: 10px;
+    border-radius: 50px;
+    height: 36px;
+    width: 147px;
+    font-size: 1.6rem;
+    color:var(--white-color);
+    background: var(--button-color);
+    border: 1px solid var(--white-color);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    margin-left: 40px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.header-item__login:hover,
+.header-item__dangky:hover {
     background: var(--button-hover);
     color: var(--white-color);
     border: 2px solid var(--black-color);
     animation: fadeIn 0.1s ease-in-out;
 }
+
+.header__navbar-user{
+    display: flex;
+    justify-items: center;
+    position: relative;
+    display: none;
+    /* hien thi khi dang nhap */
+
+}
+
+.header__navbar-user:hover .header__navbar-user-menu{
+    display: block;
+}
+
+#button-logout{
+    background: transparent;
+    cursor: pointer;
+    border: transparent;
+    height: 100%;
+    width: 100%;
+    color:var(--text-color);
+    font-size: 1.6rem !important;
+}
+
+.header__navbar-user-img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.header__navbar-user-name{
+    margin-left: 6px;
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.header__navbar-item.header__navbar-user{
+    width: 40px;
+    justify-items: center;
+    align-items: center;
+    top:0px;
+}
+
+.header__navbar-user-menu{
+    position: absolute;
+    z-index: 1;
+    padding-left: 0;
+    top: 51px !important;
+    right: -90px;
+    background: var(--white-color);
+    border-radius: 8px;
+    width: 227px;
+    list-style: none;
+    /* box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3); */
+    border:rgba(71, 71, 71, 0.2) solid 0.4px;
+    display: none;
+}
+
+.header__navbar-user-menu::after{
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    top:-20px !important;
+    width: 100%;
+    height: 20px;
+}
+
+.header__navbar-user-menu::before{
+    content: "";
+    border-width: 10px 10px !important;
+    border-style:solid;
+    border-color:transparent transparent var(--white-color) transparent;
+    position: absolute;
+    right:100px;
+    top:-18px !important;
+}
+
+.header__navbar-user-item--separate{
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.header__navbar-user-item a{
+    text-decoration: none;
+    color:var(--text-color);
+    font-size: 1.6rem !important;
+    padding: 16px 0px !important;
+    display: block;
+    text-align: center;
+}
+
+.header__navbar-user-item a:first-child{
+    border-top-right-radius: 2px !important;
+    border-top-left-radius: 2px !important;
+}
+.header__navbar-user-item:nth-child(1){
+    margin-top: 13px !important;
+}
+.header__navbar-user-item:nth-child(4){
+    margin-bottom: 13px !important;
+}
+.header__navbar-user-item a:last-child{
+    border-bottom-right-radius: 2px !important;
+    border-bottom-left-radius: 2px !important;
+}
+
+.header__navbar-user-item a:hover{
+    background: #FaFaFa !important;
+    color: var(--text-color) !important;
+}
+
+.header__navbar-user-dropdown {
+    position: fixed;
+    color: #921A40;
+    font-size: 0.9rem !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFEBEB;
+    border-radius: 50%;
+    height: 14px !important;
+    width: 14px !important;
+    top: 38px !important;
+    right: 212px !important;
+    border: #921A40 solid 0.3px;
+}
+
+
 
 /* header */
 
@@ -100,8 +257,10 @@ html{
 
 .container-home__title__item{
     width: 450px;
+    min-width: 400px;
     color: var(--text-color);
     font-weight: 400;
+
 }
 
 .container-home__title__item-header{
@@ -117,6 +276,8 @@ html{
 
 }
 
+
+
 .container-home__title__item-content{
     display: flex;
     font-size: 2.4rem;
@@ -130,6 +291,22 @@ html{
     padding: 0 44px;
     border-radius: 0 0 10px 10px; 
     margin-bottom: 52px;
+}
+
+@media (max-width: 1333px){
+    .container-home__title__item-header{
+
+        width: 350px;
+        font-size: 2.8rem;
+    }
+    .container-home__title__item-content{
+
+        width: 350px !important;
+        font-size: 2rem !important;
+    }
+    .container-home__title__item{
+        width: 350px;
+    }
 }
 
 .container-home__list {
@@ -185,3 +362,220 @@ html{
 }
 
 
+/* login */
+
+
+.modal, .modal-dangky{
+    position: fixed;
+    /* 1 lop de len lop chinh */
+    top:0;
+    right:0;
+    bottom:0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    align-items: center;
+    z-index: 100;
+    /* nam giua thang cha */
+    justify-content: center; 
+    border-radius: 10px;
+    /* nam giua chieu nang thang cha */
+}
+
+.modal-dangky{
+    /* display: flex; */
+}
+.modal.open, .modal-dangky.open{
+    display: flex;
+}
+.modal.tat .modal-dangky.tat{
+    display: none;
+}
+.modal .modal-container,
+.modal-dangky .modal-container-dangky{
+    background: #F7EFE5;
+    width: 500px;
+    height: 492px;
+    color: var(--text-color);
+    position: relative;
+    animation: modalFadeIn ease 0.5s;
+    border-radius: 10px;
+    
+}
+.modal-container-dangky{
+    width: 600px !important;
+    height: 600px !important;
+}
+
+.modal-close, 
+.modal-close-dangky
+{
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #921A40;
+    padding: 12px;
+    font-size: 20px;
+    font-weight: 400;
+}
+.modal-close:hover,
+.modal-close-dangky:hover
+{
+    color:rgba(146, 26, 64,0.6);
+    cursor: pointer;
+}
+.modal-header,
+.modal-header-dangky{
+    background: #D9ABAB;
+    height:110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #921A40;
+    font-weight: 700;
+    font-size: 3.2rem;
+    line-height: 1.4;
+    border-radius: 10px 10px 0 0;
+    text-transform: uppercase;
+}
+.line{
+    width: 100%;
+    height: 0.5px;
+    background: rgba(71, 71, 71, 0.2);
+    margin-bottom: 29px;
+    margin-top: 14px;
+}
+.ti-bag{
+    margin-right: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.modal-body,
+.modal-body-dangky
+{
+    padding: 0 16px;
+}
+.modal-label,
+.modal-label-dangky{
+    display: block;
+    /* moi thang nam tren 1 hang rieng biet */
+    font-size: 15px;
+    margin-top: 0px;
+    font-style:normal;
+}
+
+
+
+.modal-input,
+ .modal-input-dangky{
+    border:1px solid #C4C4C4;
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    margin-bottom: 15.5px;
+    margin-top: 6px;
+    background: #F7EFE5;
+    border-radius: 3px;
+}
+
+.modal-label-result,
+ .modal-label-result-dangky
+{
+    display: flex;
+    justify-content: space-around;
+    text-transform:none;
+}
+
+.modal-form, 
+ .modal-form-dangky{
+    background: rgba(217, 171, 171, 0.2);
+    padding-top: 46px;
+    padding-bottom: 19px;
+    padding-left: 38px;
+    padding-right: 38px;
+    margin-top: 38px;
+    margin-bottom: 38px;
+    padding-left: 22px;
+    padding-right: 22px;
+    border-radius: 5px;
+
+}
+.modal-form-dangky{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    background: transparent;
+}
+
+.form-item{
+    flex: 1; 
+    min-width: 250px;
+}
+
+#button-login,
+#button-dangky{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #C75B7A;
+    border: none;
+    color: #fff;
+    width: 186px;
+    height: 40px;
+    font-size: 1.6rem;
+    font-weight: 400;
+    padding: 18px;
+    cursor: pointer;
+    border-radius: 50px;
+    /* tao hinh con chuot */
+}
+#button-login:hover,
+#button-dangky:hover{
+    opacity: 0.8;
+    /* tao do nhac khi tro vao */
+}
+
+#button-dangky{
+    margin-top: 6px;
+}
+#button-delete{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #F7EFE5;
+    border: none;
+    color: var(--text-color);
+    width: 186px;
+    height: 40px;
+    font-size: 1.6rem;
+    font-weight: 400;
+    padding: 18px;
+    cursor: pointer;
+    border-radius: 50px;
+    border: 1px solid #000;
+}
+
+#button-delete:hover{
+    opacity: 0.8;
+    /* tao do nhac khi tro vao */
+}
+
+
+
+
+
+
+@keyframes modalFadeIn{
+    from{
+        opacity: 0;
+        transform: translateY(-140px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+    /* tao chuyen dong di tu tren xuong */
+}
