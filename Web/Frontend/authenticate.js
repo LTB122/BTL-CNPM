@@ -397,7 +397,7 @@ async function updateNumberpage(updatedData) {
 	}
 }
 
-// Event Listener Setup on DOM Content Loaded
+
 document.addEventListener("DOMContentLoaded", async function () {
 	// Initialize UI and user profile
 	await updateUIBasedOnLogin();
