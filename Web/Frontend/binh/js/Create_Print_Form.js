@@ -61,9 +61,6 @@ function loadPrinters() {
             return response.json();
         })
         .then((printers) => {
-            printers.forEach((printer) => {
-                console.log(`ID: ${printer.printerCode}, Tên: ${printer.printerName}`);
-            });
             const printerSelect = document.getElementById("printer");
 
             // Thêm các máy in vào lựa chọn
@@ -71,6 +68,7 @@ function loadPrinters() {
                 const option = document.createElement("option");
                 option.value = printer.printerCode;
                 option.textContent = printer.printerName;
+                option.dataset.place = printer.place;
                 printerSelect.appendChild(option);
             });
         })
@@ -100,6 +98,9 @@ function createOrder() {
     const copies = document.getElementById("copies").value;
     const side = document.getElementById("side").value;
     const printer = document.getElementById("printer").value;
+    const printerSelect = document.getElementById("printer");
+    const selectedOption = printerSelect.options[printerSelect.selectedIndex];
+    const place = selectedOption.dataset.place; 
 
     if (!orientation) {
         alert("Vui lòng chọn hướng in (Hướng dọc hoặc Hướng ngang).");
@@ -125,8 +126,6 @@ function createOrder() {
         "Display": side,
         "fileName": fileName
     };
-    console.log(printer);
-    console.log(updatedData);
     
     fetch(`http://localhost:3000/api/printLog/printRequest/${printer}`, {
         method: "POST",
@@ -138,7 +137,12 @@ function createOrder() {
     })
     .then((response) => {
         if (response.ok) {
+            const now = new Date();
+            const formattedTime = formatDateTime(now);
+
             document.getElementById("modal-printer").textContent = printer;
+            document.getElementById("modal-place").textContent = place;
+            document.getElementById("modal-time").textContent = formattedTime;
             document.getElementById("success-modal").style.display = "flex";
         } else {
             alert("Đã xảy ra lỗi khi tạo đơn in. Vui lòng thử lại.");
@@ -148,6 +152,18 @@ function createOrder() {
         console.error("Error:", error);
         alert("Không thể kết nối tới máy chủ.");
     });
+}
+
+function formatDateTime(date) {
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+
+    return `${hours}:${minutes}:${seconds} - ${day}/${month}/${year}`;
 }
 
 // Tắt modal

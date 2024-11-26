@@ -42,8 +42,8 @@ async function fetchHistoryData() {
 // Hàm hiển thị lịch sử in
 function displayHistory(historyList) {
     const sortedHistoryList = historyList.sort((a, b) => {
-        const dateTimeA = new Date(`${a.date}T${a.time}`);
-        const dateTimeB = new Date(`${b.date}T${b.time}`);
+        const dateTimeA = new Date(`${a.createdAt.slice(0,10)}T${a.time}`);
+        const dateTimeB = new Date(`${b.createdAt.slice(0,10)}T${b.time}`);
         return dateTimeB - dateTimeA;
     });
 
@@ -118,7 +118,7 @@ document.querySelector('.search-btn').addEventListener('click', async () => {
         
         let matchesDate = true;
         if (startDateInput || endDateInput) {
-            const historyDate = new Date(history.date);
+            const historyDate = new Date(history.createdAt.slice(0,10));
             if (startDateInput) {
                 const startDate = new Date(startDateInput);
                 matchesDate = matchesDate && historyDate >= startDate;
