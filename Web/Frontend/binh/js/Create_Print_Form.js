@@ -80,6 +80,81 @@ function loadPrinters() {
         });
 }
 
+// Hàm lấy số trang hiện có
+async function getCurrentPages() {
+    return authenticatedFetch("http://localhost:3000/api/user/profile", {
+        method: "GET",
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Không thể lấy số trang hiện có.");
+            }
+            return response.json();
+        })
+        .then((data) => {
+            if (data.number_pager !== undefined) {
+                console.log(data.number_pager);
+                return data.number_pager; // Trả về số trang hiện có
+            } else {
+                throw new Error("Dữ liệu không chứa thông tin số trang.");
+            }
+        })
+        .catch((error) => {
+            console.error("Lỗi khi lấy số trang:", error);
+            return 0; // Mặc định trả về 0 nếu lỗi xảy ra
+        });
+}
+
+// Hàm tính tổng số trang yêu cầu
+function calculateRequiredPages(pages, copies, paperSize) {
+    const pageMultiplier = paperSize === "A3" ? 2 : 1; // A3 tính là 2 trang A4
+    return pages * copies * pageMultiplier;
+}
+
+// Hàm kiểm tra số trang hiện có đủ không
+function checkAvailablePages(currentPages, requiredPages) {
+    if (currentPages < requiredPages) {
+        alert("Số trang hiện không đủ. Vui lòng mua thêm trang.");
+        return false;
+    }
+    return true;
+}
+
+// Hàm trừ số trang sau khi in thành công
+async function updatePagesAfterPrint(usedPages) {
+    // Lấy số trang hiện có từ API trước khi trừ
+    getCurrentPages()
+        .then((currentPages) => {
+            const updatedPages = currentPages - usedPages;
+            console.log(updatedPages);
+
+            // Gửi yêu cầu cập nhật số trang mới lên server
+            authenticatedFetch("http://localhost:3000/api/user/update-page", {
+                method: "POST", 
+                headers: {
+					"Content-Type": "application/json",
+				},
+                body: JSON.stringify({number_pager: updatedPages}),
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Không thể cập nhật số trang sau khi in.");
+                    }
+                    return response.json();
+                })
+                .then(() => {
+                    alert("Số trang đã được cập nhật thành công!");
+                })
+                .catch((error) => {
+                    console.error("Lỗi khi cập nhật số trang:", error);
+                    alert("Không thể cập nhật số trang. Vui lòng thử lại.");
+                });
+        })
+        .catch((error) => {
+            console.error("Lỗi khi lấy số trang hiện có:", error);
+        });
+}
+
 function createOrder() {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -92,65 +167,79 @@ function createOrder() {
         return;
     }
 
+    const pages = Number(document.getElementById("pages").value);
+    const copies = Number(document.getElementById("copies").value);
     const paperSize = document.getElementById("paper-size").value;
-    const orientation = document.querySelector('input[name="orientation"]:checked')?.value;
-    const pages = document.getElementById("pages").value;
-    const copies = document.getElementById("copies").value;
-    const side = document.getElementById("side").value;
-    const printer = document.getElementById("printer").value;
-    const printerSelect = document.getElementById("printer");
-    const selectedOption = printerSelect.options[printerSelect.selectedIndex];
-    const place = selectedOption.dataset.place; 
 
-    if (!orientation) {
-        alert("Vui lòng chọn hướng in (Hướng dọc hoặc Hướng ngang).");
-        return;
-    }
+    // Tính tổng số trang yêu cầu
+    const requiredPages = calculateRequiredPages(pages, copies, paperSize);
 
-    if (!pages || pages < 1 || pages > 999) {
-        alert("Vui lòng nhập số trang hợp lệ (từ 1 đến 999).");
-        return;
-    }
-
-    if (!copies || copies < 1 || copies > 999) {
-        alert("Vui lòng nhập số lượng in hợp lệ (từ 1 đến 999).");
-        return;
-    }
-
-    const fileName = document.getElementById("file-name").textContent;
-    const updatedData = {
-        "paperSize": paperSize,
-        "orientation": orientation,
-        "pagesPrinted": Number(pages),
-        "copies": Number(copies),
-        "Display": side,
-        "fileName": fileName
-    };
-    
-    fetch(`http://localhost:3000/api/printLog/printRequest/${printer}`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify(updatedData)
-    })
-    .then((response) => {
-        if (response.ok) {
-            const now = new Date();
-            const formattedTime = formatDateTime(now);
-
-            document.getElementById("modal-printer").textContent = printer;
-            document.getElementById("modal-place").textContent = place;
-            document.getElementById("modal-time").textContent = formattedTime;
-            document.getElementById("success-modal").style.display = "flex";
-        } else {
-            alert("Đã xảy ra lỗi khi tạo đơn in. Vui lòng thử lại.");
+    getCurrentPages().then((currentPages) => {
+        if (!checkAvailablePages(currentPages, requiredPages)) {
+            return; // Dừng nếu không đủ số trang
         }
-    })
-    .catch((error) => {
-        console.error("Error:", error);
-        alert("Không thể kết nối tới máy chủ.");
+
+        // Tiếp tục xử lý tạo đơn in nếu đủ số trang
+        const orientation = document.querySelector('input[name="orientation"]:checked')?.value;
+        const side = document.getElementById("side").value;
+        const printer = document.getElementById("printer").value;
+        const printerSelect = document.getElementById("printer");
+        const selectedOption = printerSelect.options[printerSelect.selectedIndex];
+        const place = selectedOption.dataset.place;
+        const fileName = document.getElementById("file-name").textContent;
+
+        if (!orientation) {
+            alert("Vui lòng chọn hướng in (Hướng dọc hoặc Hướng ngang).");
+            return;
+        }
+
+        if (!pages || pages < 1 || pages > 999) {
+            alert("Vui lòng nhập số trang hợp lệ (từ 1 đến 999).");
+            return;
+        }
+
+        if (!copies || copies < 1 || copies > 999) {
+            alert("Vui lòng nhập số lượng in hợp lệ (từ 1 đến 999).");
+            return;
+        }
+
+        const updatedData = {
+            "paperSize": paperSize,
+            "orientation": orientation,
+            "pagesPrinted": Number(pages),
+            "copies": Number(copies),
+            "Display": side,
+            "fileName": fileName
+        };
+    
+        fetch(`http://localhost:3000/api/printLog/printRequest/${printer}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify(updatedData)
+        })
+            .then((response) => {
+                if (response.ok) {
+                    const now = new Date();
+                    const formattedTime = formatDateTime(now);
+
+                    document.getElementById("modal-printer").textContent = printer;
+                    document.getElementById("modal-place").textContent = place;
+                    document.getElementById("modal-time").textContent = formattedTime;
+                    document.getElementById("success-modal").style.display = "flex";
+
+                    // Trừ số trang sau khi in thành công
+                    updatePagesAfterPrint(requiredPages);
+                } else {
+                    alert("Đã xảy ra lỗi khi tạo đơn in. Vui lòng thử lại.");
+                }
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+                alert("Không thể kết nối tới máy chủ.");
+            });
     });
 }
 
