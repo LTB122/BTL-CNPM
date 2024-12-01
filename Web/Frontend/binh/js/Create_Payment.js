@@ -20,8 +20,8 @@ function authenticatedFetch(url, options = {}) {
     return response;
 }
 
-document.getElementById('confirmBtn').addEventListener('click', async () => {
-    const soTo = document.getElementById('soTo').value;
+document.getElementById('button-buy-pager').addEventListener('click', async () => {
+    const soTo = document.getElementById('numberpage').value;
 
     if (!soTo || soTo <= 0) {
       alert('Vui lòng nhập số lượng tờ giấy hợp lệ!');
