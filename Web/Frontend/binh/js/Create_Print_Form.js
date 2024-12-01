@@ -185,6 +185,7 @@ function createOrder() {
         const printer = document.getElementById("printer").value;
         const printerSelect = document.getElementById("printer");
         const selectedOption = printerSelect.options[printerSelect.selectedIndex];
+        const printerName = selectedOption.textContent;
         const place = selectedOption.dataset.place;
         const fileName = document.getElementById("file-name").textContent;
 
@@ -225,7 +226,7 @@ function createOrder() {
                     const now = new Date();
                     const formattedTime = formatDateTime(now);
 
-                    document.getElementById("modal-printer").textContent = printer;
+                    document.getElementById("modal-printer").textContent = printerName;
                     document.getElementById("modal-place").textContent = place;
                     document.getElementById("modal-time").textContent = formattedTime;
                     document.getElementById("success-modal").style.display = "flex";
