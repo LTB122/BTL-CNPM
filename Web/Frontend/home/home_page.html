@@ -100,6 +100,19 @@
       </div>
       <script src="../header.js"></script>
       <script src="../authenticate.js"></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        const deleteButton = document.getElementById('button-delete');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        
+        deleteButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            usernameInput.value = '';
+            passwordInput.value = '';
+        });
+        });
+      </script>
       <div class="container-home"><img class="container-home__img" src="../assets/img/Gioi_thieu.png" alt="ERROR">
         <h2 class="container-home__title">Tính năng nổi bật</h2>
         <div class="container-home__list">

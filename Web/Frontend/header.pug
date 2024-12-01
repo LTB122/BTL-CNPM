@@ -92,3 +92,15 @@
 script(src="../header.js")
 script(src="../authenticate.js")
 
+script.
+    document.addEventListener('DOMContentLoaded', () => {
+    const deleteButton = document.getElementById('button-delete');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+
+    deleteButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        usernameInput.value = '';
+        passwordInput.value = '';
+    });
+    });
