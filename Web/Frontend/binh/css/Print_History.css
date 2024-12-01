@@ -1,0 +1,143 @@
+.title, .summary-title {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    color: #921A40;
+}
+
+.title{
+    margin-top: 100px;
+    margin-bottom: 10px;
+}
+
+.search-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px 10px;
+}
+
+.search-section input[type="text"] {
+    padding: 10px 10px;
+    border: 1px solid #000;
+    border-radius: 20px;
+    width: 600px;
+    font-size: 16px;
+}
+
+.search{
+    text-align: left;
+}
+
+.date-input input[type="date"] {
+    margin: 20px 40px;
+    padding: 9px 10px;
+    border: 1px solid #000;
+    border-radius: 20px;
+    font-size: 16px;
+    background-color: #fff;
+    color: grey;
+    width: 300px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.separator {
+    display: inline-block;
+    width: 15px; 
+    border-bottom: 1px solid #000; 
+}
+
+.search-btn {
+    margin-top: 10px;
+    padding: 10px 70px;
+    background-color: #C75B7A;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.container {
+    width: 60%;
+    margin: 0 auto;
+    color: #921A40;
+    height: 290px;
+    background-color: #f9e3ea;
+    border: 1px solid #000;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+    padding: 10px 30px;
+    box-shadow: 0 3px #921A40;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    margin: 15px 0;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.history-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: #921A40;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 10px 0;
+}
+.history-detail{
+    color: #000;
+    font-weight: 450;
+    margin: 10px 0;
+}
+.detail-btn {
+    background-color: #C75B7A;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    height: 40px;
+    border-radius: 10px;
+    padding: 8px 50px;
+    cursor: pointer;
+    margin-top: auto;
+}
+
+.search-btn:hover,  .detail-btn:hover {
+    background-color: #5A0000;
+}
+
+.summary-table {
+    width: 60%;
+    margin: 20px auto;
+}
+
+.summary-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.summary-table th, .summary-table td {
+    border: 1px solid #5A0000;
+    font-size: 16px;
+    padding: 10px;
+    text-align: center;
+    width: 50%;
+}
+
+.summary-table th {
+    background-color: #C75B7A;
+    color: #fff;
+}
+
+.summary-table td {
+    color: #000;
+    background-color: #ebd2cf;
+}
