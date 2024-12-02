@@ -100,6 +100,19 @@
       </div>
       <script src="../header.js"></script>
       <script src="../authenticate.js"></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        const deleteButton = document.getElementById('button-delete');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        
+        deleteButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            usernameInput.value = '';
+            passwordInput.value = '';
+        });
+        });
+      </script>
       <h2 class="container-home__title margin-top-60px">Thông tin cá nhân</h2>
       <div class="container-info-list">
         <div class="container-info-list__left"><img class="container-info-list__img" src="" alt="">
