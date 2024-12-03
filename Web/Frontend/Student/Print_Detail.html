@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tạo đơn in</title>
+    <title>Chi tiết lịch sử in</title>
     <link rel="icon" href="../assets/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="script" href="../authenticate.js">
@@ -16,15 +16,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap&amp;subset=vietnamese" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="../binh/css/Create_Print_Form.css">
-    <script src="../binh/js/Create_Print_Form.js" defer></script>
+    <link rel="stylesheet" href="./css/Print_Detail.css">
+    <script src="./js/Print_Detail.js" defer></script>
     <body>
       <div class="header">
         <div class="header__header-item"><a class="header-logo-link" href="../home/home_page.html"><img class="header__logo" src="../assets/img/logo_cochu.png"></a>
           <div class="header-list">
             <button class="header-item__home-page"><a class="link_page" href="../home/home_page.html"> Trang chủ</a></button>
             <button class="header-item__about-us"> <a class="link_page" href="../about/about_us.html">Giới thiệu </a></button>
-            <button class="header-item__print"> <a class="link_page" href="../binh/Create_Print_Form.html">Dịch vụ in </a></button>
+            <button class="header-item__print"> <a class="link_page" href="../Student/Create_Print_Form.html">Dịch vụ in </a></button>
             <button class="header-item__login">Đăng nhập</button>
             <button class="header-item__dangky">Đăng ký</button>
             <div class="header__navbar-item header__navbar-user"><img class="header__navbar-user-img" src="" alt="">
@@ -103,109 +103,12 @@
       <script src="../header.js"></script>
       <script src="../authenticate.js"></script>
 
-      <h1>TẠO ĐƠN IN</h1>
-      
-      <div class="container">
-        <div class="upload-section">
-          <div class="file-upload" id="drop-area" onclick="document.getElementById('fileElem').click()">
-            <img class="upload-icon" src="../assets/img/upload.png" alt="">
-            <input type="file" id="fileElem" onchange="handleFiles(this.files)" hidden>
-          </div>
-          <div class="file-name" id="file-name"></div>
-          <div class="file-label">Tải file lên tại đây</div>
-        </div>
-    
-        <form class="form-section" id="print-form">
-          <table class="form-table">
-            <tbody>
-              <tr>
-                <th><label for="paper-size">Khổ giấy</label></th>
-                <th>
-                  <select id="paper-size" name="paper-size">
-                    <option value="A4">A4</option>
-                    <option value="A3">A3</option>
-                  </select>
-                </th>
-              </tr>
-              <tr>
-                <th><label>Hướng</label></th>
-                <th>
-                  <span class="orientation">
-                    <div>
-                      <input type="radio" id="vertical" name="orientation" value="Hướng dọc">
-                      <label for="vertical">Hướng dọc</label>
-                    </div>
-                    <div>
-                      <input type="radio" id="horizontal" name="orientation" value="Hướng ngang">
-                      <label for="horizontal">Hướng ngang</label>
-                    </div>
-                  </span>
-                </th>
-              </tr>
-              <tr>
-                <th><label for="pages">Số trang cần in</label></th>
-                <th><input type="number" id="pages" min="1" max="999" placeholder="VD: 1,3,5-12"></th>
-              </tr>
-              <tr>
-                <th><label for="copies">Số lượng cần in</label></th>
-                <th><input type="number" id="copies" min="1" max="999" placeholder="VD: 1"></th>
-              </tr>
-              <tr>
-                <th><label for="side">1 mặt / 2 mặt</label></th>
-                <th>
-                  <select id="side">
-                    <option value="1 mặt">1 mặt</option>
-                    <option value="2 mặt">2 mặt</option>
-                  </select>
-                </th>
-              </tr>
-              <tr>
-                <th><label for="printer">Máy in</label></th>
-                <th>
-                  <select id="printer"></select>
-                </th>
-              </tr>
-            </tbody>
-          </table>
+      <div class="detail-container">
+        <h1>Lịch Sử Giao Dịch</h1>
 
-          <div>
-            <button class="create-form-btn" type="button" onclick="createOrder()">Tạo đơn in</button>
-            <button class="reset-btn" type="reset">Xóa nội dung</button>
-          </div>
-        </form>
-      </div>
-      
-      <table class="conversion-table">
-        <tr>
-          <th>Khổ giấy</th>
-          <th>Quy đổi</th>
-        </tr>
-        <tr>
-          <td>A3</td>
-          <td>2 A4 (Nếu còn sót trang A4 đang có)</td>
-        </tr>
-        <tr>
-          <td>A4</td>
-          <td>200 đ</td>
-        </tr>
-        <tr>
-          <td>A3</td>
-          <td>400 đ</td>
-        </tr>
-      </table>
-    
-      <div class="modal" id="success-modal">
-        <div class="modal-content">
-          <div class="modal-head">
-            <h2>TẠO ĐƠN THÀNH CÔNG</h2>
-            <div class="close" onclick="closeModal()">&times;</div>
-          </div>
-          <div class="modal-body">
-            <p>Máy in: <span class="modal-detail" id="modal-printer"></span></p>
-            <p>Địa điểm: <span class="modal-detail" id="modal-place"></span></p>
-            <p>Ngày nhận: <span class="modal-detail" id="modal-time"></span></p>
-          </div>
-        </div>
+        <div class="transaction-details"></div>
+        
+        <button class="back-btn" onclick="goBack()">Quay lại</button>
       </div>
     </body>
   </head>

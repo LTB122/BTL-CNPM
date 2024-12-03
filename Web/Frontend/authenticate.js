@@ -164,8 +164,8 @@ async function updateUIBasedOnLogin() {
 				"none";
 			document.querySelector(".header__navbar-user-menu").innerHTML = `
                 <li class="header__navbar-user-item"><a href="../info_user/info_user.html">Thông tin cá nhân</a></li>
-                <li class="header__navbar-user-item"><a href="../binh/Print_History.html">Lịch sử in</a></li>
-                <li class="header__navbar-user-item"><a href="../binh/bkpay.html">BKPay</a></li>
+                <li class="header__navbar-user-item"><a href="../Student/Print_History.html">Lịch sử in</a></li>
+                <li class="header__navbar-user-item"><a href="../Student/bkpay.html">BKPay</a></li>
                 <li class="header__navbar-user-item header__navbar-user-item--separate"><a href="#"> 
                     <button id="button-logout">Đăng xuất</button></a></li>`;
 		}
