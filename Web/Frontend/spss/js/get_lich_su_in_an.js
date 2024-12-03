@@ -32,7 +32,7 @@ try {
     let search_params = url.searchParams;
 
     authenticatedFetch(
-        `http://localhost:3000/api/printLog/getPrintHistory/admin`, {
+        `http://localhost:3000/api/printLog/getPrintHistoryForadmin`, {
             method: "GET",
         }
     ).then((response) => {

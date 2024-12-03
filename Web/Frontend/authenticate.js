@@ -147,7 +147,7 @@ async function updateUIBasedOnLogin() {
             document.querySelector('.header-item__login').style.display = 'none';
             document.querySelector('.header-item__dangky').style.display = 'none';
             document.querySelector('.header__navbar-user-menu').innerHTML = `
-                <li class="header__navbar-user-item"><a href="../bao/danh_sach_may_in.html">Trang quản lý</a></li>
+                <li class="header__navbar-user-item"><a href="../spss/danh_sach_may_in.html">Trang quản lý</a></li>
                 <li class="header__navbar-user-item header__navbar-user-item--separate"><a href="#"> 
                     <button id="button-logout">Đăng xuất</button></a></li>`;
 			document.querySelector(
