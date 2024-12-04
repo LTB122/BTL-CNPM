@@ -135,7 +135,7 @@ document.getElementById('chinh_sua_may_in').addEventListener('submit', async (ev
             } else {
                 console.log("Chỉnh sửa máy in thành công:");
                 alert("Chỉnh sửa máy in thành công!");
-                location.replace("http://localhost:3000/bao/danh_sach_may_in.html");
+                location.replace("http://localhost:3000/spss/danh_sach_may_in.html");
             }
         });
     } catch (error) {
