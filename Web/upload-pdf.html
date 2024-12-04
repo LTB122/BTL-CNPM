@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Preview</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <style>
+        /* Khung chứa preview PDF */
+        #pdf-preview {
+            width: 300px; /* Chiều rộng 300px */
+            height: 400px; /* Chiều cao 400px */
+            overflow: auto; /* Cho phép cuộn nếu nội dung vượt quá */
+            border: 1px solid #ddd; /* Đường viền cho container */
+            padding: 10px;
+            margin-top: 20px;
+            box-sizing: border-box;
+        }
+
+        canvas {
+            margin-bottom: 10px; /* Khoảng cách giữa các trang */
+            max-width: 100%; /* Đảm bảo canvas không vượt quá chiều rộng của container */
+        }
+    </style>
+</head>
+<body>
+    <input type="file" id="upload" accept="application/pdf" />
+    <div id="pdf-preview"></div>
+
+    <script>
+        document.getElementById('upload').addEventListener('change', async function (event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const fileReader = new FileReader();
+            fileReader.onload = async function () {
+                const typedArray = new Uint8Array(this.result);
+
+                // Load the PDF file using PDF.js
+                const pdf = await pdfjsLib.getDocument(typedArray).promise;
+
+                // Clear previous preview
+                const previewContainer = document.getElementById('pdf-preview');
+                previewContainer.innerHTML = '';
+
+                // Render each page of the PDF
+                for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+                    const page = await pdf.getPage(pageNumber);
+
+                    // Create a canvas element for the page
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+
+                    const viewport = page.getViewport({ scale: 1.5 });
+                    canvas.width = viewport.width;
+                    canvas.height = viewport.height;
+
+                    // Render the page into the canvas
+                    await page.render({ canvasContext: context, viewport }).promise;
+
+                    // Append the canvas to the preview container
+                    previewContainer.appendChild(canvas);
+                }
+            };
+
+            fileReader.readAsArrayBuffer(file);
+        });
+    </script>
+</body>
+</html>
