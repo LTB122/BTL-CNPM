@@ -20,6 +20,11 @@ function authenticatedFetch(url, options = {}) {
 	return response;
 }
 
+function viewDetails(history) {     
+    sessionStorage.setItem('selectedHistory', JSON.stringify(history));
+    window.location.href = 'http://localhost:3000/Student/Print_Detail.html';
+}
+
 try {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -45,18 +50,15 @@ try {
         console.log("printer profile loaded successfully.");
         console.log("JSON", response);
 
+        const lich_su_in_an = document.querySelector('.lich_su_in_an');
+        lich_su_in_an.innerHTML = '';
+
         printerInfo.then((res) => {
             let htmls = "";            
             for(let i = 0; i < res.length; i ++) {
-                const date = new Date(res[0].createdAt);
-                const year = date.getFullYear();
-                const month = date.getMonth() + 1;
-                const day = date.getDate();
-                const hours = date.getHours();
-                const minutes = date.getMinutes();
-                const seconds = date.getSeconds();
-
-                let temp = 
+                const item = document.createElement('div');
+                // let temp = 
+                item.innerHTML = 
                 `<div class="shadow" style="height: 120px; width: 100%; border: 1px solid black; border-radius: 15px; background-color: #FFFFFF; margin-bottom: 20px;">
                     <div style="width: 40%; height: 120px; background-color: transparent; float: left; display: flex; flex-flow: column wrap; justify-content: space-around; padding: 12px;">
                         <div style="height: 32px; width: 350px; background-color: transparent;">
@@ -104,7 +106,7 @@ try {
                                 </nobr> 
                                                                 
                                 <nobr id="thoi_gian">
-                                    ${hours}:${minutes}:${seconds}
+                                    ${res[i].time}
                                 </nobr>
                             </p>
                         </div>
@@ -116,24 +118,29 @@ try {
                                 </nobr> 
                                                                 
                                 <nobr id="ngay_in">
-                                    ${day}-${month}-${year}
+                                    ${res[i].date}
                                 </nobr>
                             </p>
                         </div>
                     </div>
 
                     <div style="width: 30%; height: 100%; display: flex; flex-flow: row-reverse wrap; justify-content: flex-start; align-items: flex-end;">
-                        <p type="button" style="font-size: 18px; width: 125px; border-radius: 10px; background-color: #F581A2; margin-right: 15px;" class="text-white btn">
+                        <p class="xem-chi-tiet text-white btn" type="button" style="font-size: 18px; width: 125px; border-radius: 10px; background-color: #F581A2; margin-right: 15px;">
                             Xem chi tiết
                         </p>
                     </div>
                 </div>`;
 
-                htmls += temp;
+                // htmls += temp;
+                lich_su_in_an.appendChild(item);
+                console.log("YEAH", i);
+
+                const detailButton = item.querySelector('.xem-chi-tiet');
+                detailButton.addEventListener('click', () => viewDetails(res[i]));
             }
 
-            const lich_su_in_an = document.getElementById("lich_su_in_an");
-            lich_su_in_an.innerHTML = htmls;
+            // const lich_su_in_an = document.getElementById("lich_su_in_an");
+            // lich_su_in_an.innerHTML = htmls;
         });
     });    
 } catch (error) {
