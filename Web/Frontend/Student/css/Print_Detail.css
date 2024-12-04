@@ -1,9 +1,8 @@
 .detail-container {
-    margin: 175px auto;
+    margin: 175px 210px;
     background-color: #FFE0EB;
     border-radius: 15px;
     padding: 20px;
-    width: 70%;
     gap: 20px;
     display: flex;
     flex-direction: column;
@@ -24,17 +23,28 @@ h1 {
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
-    height: 400px;
+    height: auto;
 }
 
 .print-detail{
     text-align: left;
     flex: 6;
-    margin: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    width: 50%;
+    text-align: left; 
+    padding: 8px; 
+    vertical-align: top; 
 }
 
 tr, th {
-    padding: 20px 80px 20px 0px;
+    padding: 20px;
     color: #921A40;
 }
 

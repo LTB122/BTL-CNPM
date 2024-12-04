@@ -84,13 +84,13 @@ try {
                         </p>
                     </div>
                     
-                    <div style="width: 18%; background-color: transparent; display: flex; flex-flow: column-reverse wrap;">
+                    <!-- <div style="width: 18%; background-color: transparent; display: flex; flex-flow: column-reverse wrap;">
                         <div style="border-radius: 10px; height: 42px; background-color: #F581A2; width: 90%; justify-items: center; margin-bottom: 12px;">
                             <p type="button" style="font-size: 18px; width: 125px; height: 24px;" class="text-white btn">
                                 Truy cập
                             </p>
                         </div>
-                    </div>                        
+                    </div> -->
                 </div>`;
                 htmls += template;
             }

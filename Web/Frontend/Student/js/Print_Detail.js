@@ -45,12 +45,6 @@ function loadTransactionDetails() {
 
             <div class="total-price">Tổng tiền: ${formattedTotalPrice} VND</div>
         </div>
-        
-        <div class="user-info">
-            <image class="avatar" src="https://s3v2.interdata.vn:9000/s3-586-15343-storage/dienthoaigiakho/wp-content/uploads/2024/01/16101418/trend-avatar-vo-danh-14.jpg" alt="">
-            <p class="history-detail">${transactionData.userName}</p>
-            <button class="access-btn">Truy cập</button>
-        </div>
     `;
 }
 
