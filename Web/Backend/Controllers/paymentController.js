@@ -4,8 +4,8 @@ const Payment = require("../Models/Payment");
 exports.createPayment = async (req, res) => {
 	try {
 		const { noiDung, soTo, daThanhToan } = req.body;
-		// Giả sử mỗi tờ có giá trị 2,000 VND
-		const giaTriTaoThanhToan = 2000;
+		// Giả sử mỗi tờ có giá trị 2,00 VND
+		const giaTriTaoThanhToan = 200;
 		const soTien = soTo * giaTriTaoThanhToan; // Tính số tiền từ số tờ
 		let thanhToan = daThanhToan;
 		if (isNaN(daThanhToan)) {
