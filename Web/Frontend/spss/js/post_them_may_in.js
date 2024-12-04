@@ -61,7 +61,7 @@ document.getElementById('post_may_in').addEventListener('submit', async (event) 
             } else {
                 console.log("Thêm máy in thành công:");
                 alert("Thêm máy in thành công!");
-                location.replace("http://localhost:3000/bao/danh_sach_may_in.html");
+                location.replace("http://localhost:3000/spss/danh_sach_may_in.html");
             }
         });
     } catch (error) {

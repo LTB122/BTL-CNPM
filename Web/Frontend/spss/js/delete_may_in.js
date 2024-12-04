@@ -48,7 +48,7 @@ document.getElementById('delete_may_in').addEventListener('submit', async (event
             } else {
                 console.log("Xóa máy in thành công:");
                 alert("Xóa máy in thành công!");
-                location.replace("http://localhost:3000/bao/danh_sach_may_in.html");
+                location.replace("http://localhost:3000/spss/danh_sach_may_in.html");
             }
         });
     } catch (error) {
