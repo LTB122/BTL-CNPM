@@ -3,67 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Preview</title>
+    <title>Multi File Preview</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
     <style>
-        /* Khung chứa preview PDF */
-        #pdf-preview {
-            width: 300px; /* Chiều rộng 300px */
-            height: 400px; /* Chiều cao 400px */
-            overflow: auto; /* Cho phép cuộn nếu nội dung vượt quá */
-            border: 1px solid #ddd; /* Đường viền cho container */
+        #preview-container {
+            width: 300px;
+            height: 400px;
+            overflow: auto;
+            border: 1px solid #ddd;
             padding: 10px;
             margin-top: 20px;
             box-sizing: border-box;
         }
 
         canvas {
-            margin-bottom: 10px; /* Khoảng cách giữa các trang */
-            max-width: 100%; /* Đảm bảo canvas không vượt quá chiều rộng của container */
+            margin-bottom: 10px;
+            max-width: 100%;
+        }
+
+        #error-message {
+            color: red;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <input type="file" id="upload" accept="application/pdf" />
-    <div id="pdf-preview"></div>
+    <input type="file" id="upload" />
+    <div id="error-message"></div>
+    <div id="preview-container"></div>
 
     <script>
         document.getElementById('upload').addEventListener('change', async function (event) {
             const file = event.target.files[0];
+            const errorMessageContainer = document.getElementById('error-message');
+            const previewContainer = document.getElementById('preview-container');
+
+            // Reset previous state
+            errorMessageContainer.innerText = '';
+            previewContainer.innerHTML = '';
+
             if (!file) return;
 
-            const fileReader = new FileReader();
-            fileReader.onload = async function () {
-                const typedArray = new Uint8Array(this.result);
+            const fileType = file.type;
+            const fileName = file.name;
 
-                // Load the PDF file using PDF.js
-                const pdf = await pdfjsLib.getDocument(typedArray).promise;
+            if (fileType === 'application/pdf') {
+                // PDF Preview
+                const fileReader = new FileReader();
+                fileReader.onload = async function () {
+                    const typedArray = new Uint8Array(this.result);
+                    const pdf = await pdfjsLib.getDocument(typedArray).promise;
 
-                // Clear previous preview
-                const previewContainer = document.getElementById('pdf-preview');
-                previewContainer.innerHTML = '';
+                    for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+                        const page = await pdf.getPage(pageNumber);
+                        const canvas = document.createElement('canvas');
+                        const context = canvas.getContext('2d');
 
-                // Render each page of the PDF
-                for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
-                    const page = await pdf.getPage(pageNumber);
+                        const viewport = page.getViewport({ scale: 1.5 });
+                        canvas.width = viewport.width;
+                        canvas.height = viewport.height;
 
-                    // Create a canvas element for the page
-                    const canvas = document.createElement('canvas');
-                    const context = canvas.getContext('2d');
-
-                    const viewport = page.getViewport({ scale: 1.5 });
-                    canvas.width = viewport.width;
-                    canvas.height = viewport.height;
-
-                    // Render the page into the canvas
-                    await page.render({ canvasContext: context, viewport }).promise;
-
-                    // Append the canvas to the preview container
-                    previewContainer.appendChild(canvas);
-                }
-            };
-
-            fileReader.readAsArrayBuffer(file);
+                        await page.render({ canvasContext: context, viewport }).promise;
+                        previewContainer.appendChild(canvas);
+                    }
+                };
+                fileReader.readAsArrayBuffer(file);
+            } else if (fileType === 'text/plain') {
+                // TXT Preview
+                const fileReader = new FileReader();
+                fileReader.onload = function () {
+                    const textContent = document.createElement('pre');
+                    textContent.textContent = this.result;
+                    previewContainer.appendChild(textContent);
+                };
+                fileReader.readAsText(file);
+            } else if (fileType === 'text/html') {
+                // HTML Preview
+                const fileReader = new FileReader();
+                fileReader.onload = function () {
+                    const htmlContent = document.createElement('div');
+                    htmlContent.innerHTML = this.result;
+                    previewContainer.appendChild(htmlContent);
+                };
+                fileReader.readAsText(file);
+            } else if (fileName.endsWith('.doc') || fileName.endsWith('.docx')) {
+                // DOC/DOCX Preview using Mammoth.js
+                const fileReader = new FileReader();
+                fileReader.onload = async function () {
+                    const arrayBuffer = this.result;
+                    const result = await mammoth.extractRawText({ arrayBuffer });
+                    const wordContent = document.createElement('div');
+                    wordContent.textContent = result.value; // Mammoth.js extracts raw text
+                    previewContainer.appendChild(wordContent);
+                };
+                fileReader.readAsArrayBuffer(file);
+            } else {
+                // Unsupported File Type
+                errorMessageContainer.innerText = 'Không hỗ trợ định dạng file này.';
+            }
         });
     </script>
 </body>
