@@ -17,6 +17,8 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap&amp;subset=vietnamese" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="./css/Create_Print_Form.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
     <script src="./js/Create_Print_Form.js" defer></script>
     <body>
       <div class="header">
@@ -106,14 +108,29 @@
       <h1>TẠO ĐƠN IN</h1>
       
       <div class="container">
-        <div class="upload-section">
+        <!-- <div class="upload-section">
           <div class="file-upload" id="drop-area" onclick="document.getElementById('fileElem').click()">
             <img class="upload-icon" src="../assets/img/upload.png" alt="">
             <input type="file" id="fileElem" onchange="handleFiles(this.files)" hidden>
           </div>
           <div class="file-name" id="file-name"></div>
           <div class="file-label">Tải file lên tại đây</div>
-        </div>
+        </div> -->
+        <div class="upload-section">
+          <!-- Khu vực tải file -->
+          <div class="file-upload" id="drop-area" onclick="document.getElementById('fileElem').click()">
+              <img class="upload-icon" src="../assets/img/upload.png" alt="Tải file">
+              <input type="file" id="fileElem" accept=".pdf, .jpg, .jpeg, .png, .docx, .txt" hidden>
+          </div>
+      
+          <!-- Khung xem trước PDF (ẩn mặc định) -->
+          <div id="file-preview" class="file-preview" style="display: none;"></div>
+      
+          <!-- Tên file -->
+          <div class="file-name" id="file-name">Chưa có tệp nào được chọn</div>
+          <div class="file-label" onclick="document.getElementById('fileElem').click()">Tải file lên tại đây</div>
+      </div>
+      
     
         <form class="form-section" id="print-form">
           <table class="form-table">

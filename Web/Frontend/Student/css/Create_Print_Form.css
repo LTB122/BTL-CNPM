@@ -11,15 +11,13 @@ h1 {
     margin: 75px 210px 50px 210px;
 }
 
-/* Style for the upload and form sections */
 .upload-section, .form-section {
     flex: 1;
 }
 
-/* Upload area styles */
 .file-upload {
     margin: 0 100px 0 0;
-    width: 500px;
+    width: 450px;
     height: 450px;
     padding: 25px;
     border: none;
@@ -30,7 +28,7 @@ h1 {
 
 .upload-icon {
     padding: 75px;
-    width: 450px;
+    width: 400px;
     height: 400px;  
     border: 2px dashed #5A0000;
     border-radius: 10px;
@@ -43,14 +41,33 @@ h1 {
 
 .file-label {
     margin-top: 10px;
-    margin-left: 150px;
+    margin-left: 125px;
     color: #921A40;
     font-weight: bold;
     font-size: 25px;
+    cursor: pointer;
 }
 
 #drop-area.dragover {
     background-color: #f5c2c7;
+}
+
+.file-preview {
+    max-width: 450px; 
+    max-height: 450px;
+    overflow-y: auto; 
+    border: 1px solid #ddd;
+    border-radius: 8px; 
+    padding: 10px;
+    box-sizing: border-box;
+    background: #fff;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.file-preview canvas {
+    width: 100%; /* Đảm bảo canvas không vượt quá khung */
+    margin-bottom: 10px; /* Khoảng cách giữa các trang PDF */
 }
 
 .form-section{

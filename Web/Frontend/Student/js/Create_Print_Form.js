@@ -1,6 +1,7 @@
 const dropArea = document.getElementById("drop-area");
 const fileInput = document.getElementById("fileElem");
 let uploadedFile = null; // Biến để track file đã upload
+let totalPdfPages = 0; // Biến lưu tổng số trang PDF
 
 // Xử lý kéo thả file
 dropArea.addEventListener("dragover", (e) => {
@@ -19,14 +20,127 @@ dropArea.addEventListener("drop", (e) => {
     handleFiles(files); //Xử lý file đã kéo thả
 });
 
-function handleFiles(files) {
-    const file = files[0];
-    if (file) {
-        uploadedFile = file;
-        const fileNameElement = document.getElementById("file-name");
-        fileNameElement.textContent = file.name; // Hiển thị tên file
+// function handleFiles(files) {
+//     const file = files[0];
+//     if (file) {
+//         uploadedFile = file;
+//         const fileNameElement = document.getElementById("file-name");
+//         fileNameElement.textContent = file.name; // Hiển thị tên file
+//     }
+// }
+document.getElementById('fileElem').addEventListener('change', async function (event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    // Lưu file vào biến uploadedFile
+    uploadedFile = file;
+
+    // Hiển thị tên file
+    const fileNameElement = document.getElementById('file-name');
+    fileNameElement.textContent = `${file.name}`;
+
+    // Ẩn vùng upload và hiển thị khung preview
+    const dropArea = document.getElementById('drop-area');
+    const previewContainer = document.getElementById('file-preview');
+    dropArea.style.display = 'none';
+    previewContainer.style.display = 'flex';
+
+    const filePreview = document.getElementById('file-preview');
+    filePreview.innerHTML = ''; // Xóa nội dung cũ
+
+    const fileType = file.type;
+    const fileName = file.name;
+
+    // Xử lý hiển thị preview
+    if(fileType === 'application/pdf') {
+        // Xử lý file PDF
+        const fileReader = new FileReader();
+        fileReader.onload = async function () {
+            const typedArray = new Uint8Array(this.result);
+
+            const pdf = await pdfjsLib.getDocument(typedArray).promise;
+
+            // Lấy tổng số trang PDF
+            totalPdfPages = pdf.numPages;
+
+            // Render từng trang PDF
+            for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+                const page = await pdf.getPage(pageNumber);
+
+                // Tạo canvas để render trang PDF
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                const viewport = page.getViewport({ scale: 1.5 });
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+
+                // Render trang PDF lên canvas
+                await page.render({ canvasContext: context, viewport }).promise;
+
+                // Thêm canvas vào preview
+                previewContainer.appendChild(canvas);
+            }
+        };
+        fileReader.readAsArrayBuffer(file);
+    } else if (fileName.endsWith('.doc') || fileName.endsWith('.docx')) {
+        const fileReader = new FileReader();
+            fileReader.onload = async function () {
+                const arrayBuffer = this.result;
+                const result = await mammoth.extractRawText({ arrayBuffer });
+                const wordContent = document.createElement('div');
+                wordContent.textContent = result.value;
+                previewContainer.appendChild(wordContent);
+
+                // Ước tính số trang
+                setTimeout(() => {
+                    const totalHeight = wordContent.offsetHeight;
+                    const containerHeight = 400; // Chiều cao cố định của khung
+                    const numPages = Math.ceil(totalHeight / containerHeight);
+                    pageCountContainer.innerText = `Ước tính số trang: ${numPages}`;
+                }, 0); // Chờ DOM render xong
+            };
+        fileReader.readAsArrayBuffer(file);
+    } else if (fileType === 'text/plain') {
+        // Xử lý file văn bản TXT
+        const fileReader = new FileReader();
+        fileReader.onload = function () {
+            const textContent = document.createElement('div');
+            textContent.textContent = this.result;
+            textContent.style.lineHeight = '1.5'; // Giả sử chiều cao mỗi dòng
+            previewContainer.appendChild(textContent);
+
+            // Tính số trang
+            setTimeout(() => {
+                const totalHeight = textContent.offsetHeight;
+                const containerHeight = 400; // Chiều cao cố định của khung
+                const numPages = Math.ceil(totalHeight / containerHeight);
+                pageCountContainer.innerText = `Số trang: ${numPages}`;
+            }, 0); // Chờ DOM render xong
+        };
+        fileReader.readAsText(file);
+    } else if (fileType === 'text/html') {
+        // HTML Preview
+        const fileReader = new FileReader();
+        fileReader.onload = function () {
+            const htmlContent = document.createElement('div');
+            htmlContent.innerHTML = this.result;
+            previewContainer.appendChild(htmlContent);
+
+            // Tính số trang
+            setTimeout(() => {
+                const totalHeight = htmlContent.offsetHeight;
+                const containerHeight = 400; // Chiều cao cố định của khung
+                const numPages = Math.ceil(totalHeight / containerHeight);
+                pageCountContainer.innerText = `Số trang: ${numPages}`;
+            }, 0); // Chờ DOM render xong
+        };
+        fileReader.readAsText(file);
+    } else {
+        // Nếu là loại file không được hỗ trợ
+        filePreview.innerHTML = `<p>Không hỗ trợ định dạng file này.</p>`;
     }
-}
+
+});
 
 function authenticatedFetch(url, options = {}) {
     const token = localStorage.getItem("token"); // Get token from localStorage
@@ -167,7 +281,7 @@ function createOrder() {
         return;
     }
 
-    const pages = Number(document.getElementById("pages").value);
+    const pages = totalPdfPages;
     const copies = Number(document.getElementById("copies").value);
     const paperSize = document.getElementById("paper-size").value;
 
