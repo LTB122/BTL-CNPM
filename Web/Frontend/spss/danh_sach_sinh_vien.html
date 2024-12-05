@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sách Sinh Viên</title>
+    <link rel="icon" href="../assets/img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/home_page.css">
+    <link rel="stylesheet" href="../assets/css/about_us.css">
+    <link rel="stylesheet" href="../assets/css/grid.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap&amp;subset=vietnamese" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">		
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>    
+	<link rel="stylesheet" href="./css/style.css">
+
+    <script>
+        $(document).ready(function() {
+            $("#searchInput").on('input', function() {
+                const query = $(this).val();
+                
+                console.log(query);
+                $('#danh_sach_sinh_vien > .shadow').each(function() {
+                    const name = $(this).find("#name").text();
+                    const MSSV = $(this).find("#MSSV").text();
+                    
+                    console.log(`Name: ${name}, MSSV: ${MSSV}`);
+                    if(name.includes(query) || MSSV.includes(query)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>     
+    <style>
+        html{
+            font-family: "Inter" !important;
+        }
+        
+    </style>
+
+    <div class="wrapper d-flex align-items-stretch" style="background-color: #FFFAF4; position: relative; top: 60px;">
+        <nav id="sidebar" style="background-image: var(--nav-color); width: 20%px; height: 100%; position: fixed;">
+            <div class="p-4">
+                <img src="../assets/img/three_gach.png" alt="" width="37" height="32" style="position: absolute; top: 32px; left: 30px;">
+                <div class="list-unstyled mb-5" style="position: absolute; width: 196px; height: 336px; top: 105px; left: 30px;">
+                    <div class="active" style="width: 196px; height: 63px;">
+                        <a href="./danh_sach_may_in.html" style="font-size: 24px;" class="text-white">
+                            Máy in
+                        </a>
+                    </div>
+                    
+                    <div style="width: 196px; height: 63px;">
+                        <a href="./danh_sach_lich_su_in.html" style="font-size: 24px;" class="text-white">
+                            Lịch sử in
+                        </a>
+                    </div>
+                    
+                    <div style="width: 196px; height: 63px;">
+                        <a href="./danh_sach_sinh_vien.html" style="font-size: 24px;" class="text-white">
+                            Sinh viên
+                        </a>
+                    </div>
+                    
+                    <div style="width: 196px; height: 63px;">
+                        <a href="./bao_cao_doanh_thu.html" style="font-size: 24px;" class="text-white">
+                            Doanh thu
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        
+        <div id="content" style="position: relative; top: 60px; left: 266px; width: 80%; height: 100%; border: 2px; background-color: transparent; margin-left: 10px; margin-top: 9px;">
+            <div style="background-color: transparent; width: 100%; height: 100px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; margin-top: 20px;">
+                <p style="font-size: 40px; color: #921A40; font-weight: bold; background-color: transparent; width: 100%; display: flex; justify-content: center; margin-bottom: 40px;">
+                    Danh sách sinh viên
+                </p>
+
+                <img src="../assets/img/search.png" alt="" width="41" height="34">
+                <input id="searchInput" type="text" placeholder="    Tìm kiếm dựa trên tên hoặc MSSV" style="width: 531px; height: 35px; border-radius: 20px; border: 1px solid black; background-color: transparent;">
+
+                <div id="danh_sach_sinh_vien" style="background-color: #FFEBEB; max-width: 1021px; border: 1px solid black; border-radius: 15px; box-shadow: 2px 2px 2px 2px #931d42; margin-top: 58px; padding: 20px;">
+                    <div class="shadow" style="height: 120px; width: 100%; border: 1px solid black; border-radius: 15px; background-color: #FFFFFF; margin-bottom: 20px; display: flex; flex-wrap: wrap; justify-content: center;">
+                        <div style="width: 12%; background-color: transparent; height: 100%; padding: 10px;">
+                            <img src="../assets/img/Trieu_Man.jpg" width="99" height="99" style="border: 0.4 solid black; border-radius: 5px;" alt="">
+                        </div>                    
+    
+                        <div style="width: 70%; height: 100%; background-color: transparent; padding-left: 40px; display: flex; flex-wrap: wrap; align-content: space-around; padding-top: 5px; padding-bottom: 5px;">
+                            <p style="font-size: 14px; color: black; width: 100%;">
+                                <nobr style="color: #921A40; font-weight: bold;">
+                                    Họ và tên:
+                                </nobr> 
+                                
+                                <nobr id="name">
+                                    Lê Nguyễn Nam Khánh
+                                </nobr>                                
+                            </p>
+
+                            <p style="font-size: 14px; color: black; width: 100%;">
+                                <nobr style="color: #921A40; font-weight: bold;">
+                                    MSSV:
+                                </nobr> 
+                                
+                                <nobr id="MSSV">
+                                    2252328
+                                </nobr>                                
+                            </p>
+
+                            <p style="font-size: 14px; color: black; width: 100%;">
+                                <nobr style="color: #921A40; font-weight: bold;">
+                                    Khoa:
+                                </nobr> 
+                                
+                                <nobr id="faculty">
+                                    Khoa Học và Kỹ Thuật Máy Tính
+                                </nobr>                                
+                            </p>
+                        </div>
+                        
+                        <div style="width: 18%; background-color: transparent; display: flex; flex-flow: column-reverse wrap;">
+                            <div style="border-radius: 10px; height: 42px; background-color: #F581A2; width: 90%; justify-items: center; margin-bottom: 12px;">
+                                <p type="button" style="font-size: 18px; width: 125px; height: 24px;" class="text-white btn">
+                                    Truy cập
+                                </p>
+                            </div>
+                        </div>                        
+                    </div>
+
+                    <div class="shadow" style="height: 120px; width: 100%; border: 1px solid black; border-radius: 15px; background-color: #FFFFFF; margin-bottom: 20px; display: flex; flex-wrap: wrap; justify-content: center;">
+                        <div style="width: 12%; background-color: transparent; height: 100%; padding: 10px;">
+                            <img src="../assets/img/Trieu_Man.jpg" width="99" height="99" style="border: 0.4 solid black; border-radius: 5px;" alt="">
+                        </div>                    
+    
+                        <div style="width: 70%; height: 100%; background-color: transparent; padding-left: 40px; display: flex; flex-wrap: wrap; align-content: space-around; padding-top: 5px; padding-bottom: 5px;">
+                            <p style="font-size: 14px; color: black; width: 100%;">
+                                <nobr style="color: #921A40; font-weight: bold;">
+                                    Họ và tên:
+                                </nobr> 
+                                
+                                <nobr id="name">
+                                    Lê Nguyễn Nam Khánh
+                                </nobr>                                
+                            </p>
+
+                            <p style="font-size: 14px; color: black; width: 100%;">
+                                <nobr style="color: #921A40; font-weight: bold;">
+                                    MSSV:
+                                </nobr> 
+                                
+                                <nobr id="MSSV">
+                                    2252328
+                                </nobr>                                
+                            </p>
+
+                            <p style="font-size: 14px; color: black; width: 100%;">
+                                <nobr style="color: #921A40; font-weight: bold;">
+                                    Khoa:
+                                </nobr> 
+                                
+                                <nobr id="faculty">
+                                    Khoa Học và Kỹ Thuật Máy Tính
+                                </nobr>
+                            </p>
+                        </div>
+                        
+                        <div style="width: 18%; background-color: transparent; display: flex; flex-flow: column-reverse wrap;">
+                            <div style="border-radius: 10px; height: 42px; background-color: #F581A2; width: 90%; justify-items: center; margin-bottom: 12px;">
+                                <p type="button" style="font-size: 18px; width: 125px; height: 24px;" class="text-white btn">
+                                    Truy cập
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="shadow" style="height: 120px; width: 100%; border: 1px solid black; border-radius: 15px; background-color: #FFFFFF; margin-bottom: 20px; display: flex; flex-wrap: wrap; justify-content: center;">
+                        <div style="width: 12%; background-color: transparent; height: 100%; padding: 10px;">
+                            <img src="../assets/img/Trieu_Man.jpg" width="99" height="99" style="border: 0.4 solid black; border-radius: 5px;" alt="">
+                        </div>                    
+    
+                        <div style="width: 70%; height: 100%; background-color: transparent; padding-left: 40px; display: flex; flex-wrap: wrap; align-content: space-around; padding-top: 5px; padding-bottom: 5px;">
+                            <p style="font-size: 14px; color: black; width: 100%;">
+                                <nobr style="color: #921A40; font-weight: bold;">
+                                    Họ và tên:
+                                </nobr> 
+                                
+                                <nobr id="name">
+                                    Lê Nguyễn Nam Khánh
+                                </nobr>                                
+                            </p>
+
+                            <p style="font-size: 14px; color: black; width: 100%;">
+                                <nobr style="color: #921A40; font-weight: bold;">
+                                    MSSV:
+                                </nobr> 
+                                
+                                <nobr id="MSSV">
+                                    2252328
+                                </nobr>                                
+                            </p>
+
+                            <p style="font-size: 14px; color: black; width: 100%;">
+                                <nobr style="color: #921A40; font-weight: bold;">
+                                    Khoa:
+                                </nobr> 
+                                
+                                <nobr id="faculty">
+                                    Khoa Học và Kỹ Thuật Máy Tính
+                                </nobr>
+                            </p>
+                        </div>
+                        
+                        <div style="width: 18%; background-color: transparent; display: flex; flex-flow: column-reverse wrap;">
+                            <div style="border-radius: 10px; height: 42px; background-color: #F581A2; width: 90%; justify-items: center; margin-bottom: 12px;">
+                                <p type="button" style="font-size: 18px; width: 125px; height: 24px;" class="text-white btn">
+                                    Truy cập
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="shadow" style="height: 120px; width: 100%; border: 1px solid black; border-radius: 15px; background-color: #FFFFFF; margin-bottom: 20px; display: flex; flex-wrap: wrap; justify-content: center;">
+                        <div style="width: 12%; background-color: transparent; height: 100%; padding: 10px;">
+                            <img src="../assets/img/Trieu_Man.jpg" width="99" height="99" style="border: 0.4 solid black; border-radius: 5px;" alt="">
+                        </div>                    
+    
+                        <div style="width: 70%; height: 100%; background-color: transparent; padding-left: 40px; display: flex; flex-wrap: wrap; align-content: space-around; padding-top: 5px; padding-bottom: 5px;">
+                            <p style="font-size: 14px; color: black; width: 100%;">
+                                <nobr style="color: #921A40; font-weight: bold;">
+                                    Họ và tên:
+                                </nobr> 
+                                
+                                <nobr id="name">
+                                    Lê Nguyễn Nam Khánh
+                                </nobr>                                
+                            </p>
+
+                            <p style="font-size: 14px; color: black; width: 100%;">
+                                <nobr style="color: #921A40; font-weight: bold;">
+                                    MSSV:
+                                </nobr> 
+                                
+                                <nobr id="MSSV">
+                                    2252328
+                                </nobr>                                
+                            </p>
+
+                            <p style="font-size: 14px; color: black; width: 100%;">
+                                <nobr style="color: #921A40; font-weight: bold;">
+                                    Khoa:
+                                </nobr> 
+                                
+                                <nobr id="faculty">
+                                    Khoa Học và Kỹ Thuật Máy Tính
+                                </nobr>
+                            </p>
+                        </div>
+                        
+                        <div style="width: 18%; background-color: transparent; display: flex; flex-flow: column-reverse wrap;">
+                            <div style="border-radius: 10px; height: 42px; background-color: #F581A2; width: 90%; justify-items: center; margin-bottom: 12px;">
+                                <p type="button" style="font-size: 18px; width: 125px; height: 24px;" class="text-white btn">
+                                    Truy cập
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header">
+        <div class="header__header-item"><a class="header-logo-link" href="../home/home_page.html"><img class="header__logo" src="../assets/img/logo_cochu.png"></a>
+          <div class="header-list">
+            <button class="header-item__home-page"><a class="link_page" href="../home/home_page.html"> Trang chủ</a></button>
+            <button class="header-item__about-us"> <a class="link_page" href="../about/about_us.html">Giới thiệu </a></button>
+            <button class="header-item__print"> <a class="link_page" href="../about/about_us.html">Dịch vụ in </a></button>
+            <button class="header-item__login">Đăng nhập</button>
+            <button class="header-item__dangky">Đăng ký</button>
+            <div class="header__navbar-item header__navbar-user"><img class="header__navbar-user-img" src="" alt="">
+              <div class="header__navbar-user-dropdown"><i class="fa-solid fa-angle-down"></i></div>
+              <ul class="header__navbar-user-menu"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal js-modal">
+        <div class="modal-container js-modal-container">
+          <div class="modal-close js-modal-close"><i class="fa-solid fa-xmark"></i></div>
+          <header class="modal-header"><i class="ti-bag"></i>
+            <p>Đăng nhập </p>
+          </header>
+          <div class="modal-body">
+            <div class="modal-form">
+              <label class="modal-label">
+                <!-- for chi tro den id-->Tên đăng nhập
+              </label>
+              <input class="modal-input" id="username" type="text">
+              <label class="modal-label">Mật khẩu</label>
+              <input class="modal-input" id="password" type="password">
+              <div class="line"></div>
+              <div class="modal-label-result">
+                <button id="button-login">Đăng nhập</button>
+                <button id="button-delete">Xoá nội dung</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-dangky js-modal-dangky">
+        <div class="modal-container-dangky js-modal-container-dangky">
+          <div class="modal-close-dangky js-modal-close-dangky"><i class="fa-solid fa-xmark"></i></div>
+          <header class="modal-header-dangky">
+            <p>Đăng ký </p>
+          </header>
+          <div class="modal-body-dangky">
+            <div class="modal-form-dangky">
+              <div class="form-item">
+                <label class="modal-label-dangky">Họ và tên</label>
+                <input class="modal-input" id="fullname" type="text">
+              </div>
+              <div class="form-item">
+                <label class="modal-label-dangky">Tên đăng nhập</label>
+                <input class="modal-input" id="usernamedangky" type="text">
+              </div>
+              <div class="form-item">
+                <label class="modal-label-dangky">Mật khẩu</label>
+                <input class="modal-input" id="passworddangky" type="text">
+              </div>
+              <div class="form-item">
+                <label class="modal-label-dangky">Email</label>
+                <input class="modal-input" id="emaildangky" type="email">
+              </div>
+              <div class="form-item">
+                <label class="modal-label-dangky">MSSV</label>
+                <input class="modal-input" id="mssvdangky" type="text">
+              </div>
+              <div class="form-item">
+                <label class="modal-label-dangky">Số điện thoại</label>
+                <input class="modal-input" id="sdtdangky" type="text">
+              </div>
+              <div class="form-item">
+                <label class="modal-label-dangky">Khoa</label>
+                <input class="modal-input" id="khoadangky" type="text">
+              </div>
+            </div>
+            <div class="modal-label-result-dangky">
+              <button id="button-dangky">Đăng ký</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="../header.js"></script>
+      <script src="../authenticate.js"></script>
+      <script src="./js/get_sinh_vien.js"></script>
+</body>
+</html>

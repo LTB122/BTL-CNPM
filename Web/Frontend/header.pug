@@ -7,4 +7,100 @@
                 a.link_page(href="../home/home_page.html")  Trang chủ
             button.header-item__about-us 
                 a.link_page(href="../about/about_us.html") Giới thiệu 
+            button.header-item__print 
+                a.link_page(href="../Student/Create_Print_Form.html") Dịch vụ in 
             button.header-item__login Đăng nhập
+            button.header-item__dangky Đăng ký
+            div.header__navbar-item.header__navbar-user
+                img.header__navbar-user-img(src="" alt="")
+                div.header__navbar-user-dropdown
+                    i.fa-solid.fa-angle-down
+                ul.header__navbar-user-menu
+                    //- li.header__navbar-user-item
+                    //-     a(href="../info_user/info_user.html") Thông tin cá nhân
+                    //- li.header__navbar-user-item
+                    //-     a(href="../Student/Print_History.html") Lịch sử in
+                    //- li.header__navbar-user-item
+                    //-     a(href="../Student/bkpay.html") BKPay
+                    //- li.header__navbar-user-item.header__navbar-user-item--separate
+                    //-     a(href="") 
+                    //-         button#button-logout Đăng xuất
+
+.modal.js-modal
+      .modal-container.js-modal-container
+        .modal-close.js-modal-close
+          i.fa-solid.fa-xmark
+        header.modal-header
+          i.ti-bag
+          p Đăng nhập 
+        .modal-body
+            .modal-form
+                label.modal-label
+                    // for chi tro den id
+                    |Tên đăng nhập
+                input#username.modal-input(type='text')
+                label.modal-label
+                    |Mật khẩu
+                input#password.modal-input(type='password')
+                div.line
+                div.modal-label-result
+                    button#button-login
+                        | Đăng nhập
+                    button#button-delete
+                        | Xoá nội dung
+        
+
+.modal-dangky.js-modal-dangky
+      .modal-container-dangky.js-modal-container-dangky
+        .modal-close-dangky.js-modal-close-dangky
+          i.fa-solid.fa-xmark
+        header.modal-header-dangky
+          p Đăng ký 
+        .modal-body-dangky
+            .modal-form-dangky
+                div.form-item
+                    label.modal-label-dangky
+                        |Họ và tên
+                    input#fullname.modal-input(type='text')
+                div.form-item
+                    label.modal-label-dangky
+                        |Tên đăng nhập
+                    input#usernamedangky.modal-input(type='text')
+                div.form-item
+                    label.modal-label-dangky
+                        |Mật khẩu
+                    input#passworddangky.modal-input(type='text')
+                div.form-item
+                    label.modal-label-dangky
+                        |Email
+                    input#emaildangky.modal-input(type='email')
+                div.form-item
+                    label.modal-label-dangky
+                        |MSSV
+                    input#mssvdangky.modal-input(type='text')
+                div.form-item
+                    label.modal-label-dangky
+                        |Số điện thoại
+                    input#sdtdangky.modal-input(type='text')
+                div.form-item
+                    label.modal-label-dangky
+                        |Khoa
+                    input#khoadangky.modal-input(type='text')
+            div.modal-label-result-dangky
+                button#button-dangky
+                    | Đăng ký
+script(src="../header.js")
+script(src="../authenticate.js")
+
+script.
+    document.addEventListener('DOMContentLoaded', () => {
+    const deleteButton = document.getElementById('button-delete');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+
+    deleteButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        usernameInput.value = '';
+        passwordInput.value = '';
+    });
+    });

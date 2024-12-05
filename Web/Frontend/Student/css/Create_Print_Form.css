@@ -1,0 +1,222 @@
+h1 {
+    margin-top: 125px;
+    color: #921A40;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    margin: 75px 210px 50px 210px;
+}
+
+.upload-section, .form-section {
+    flex: 1;
+}
+
+.file-upload {
+    margin: 0 100px 0 0;
+    width: 450px;
+    height: 450px;
+    padding: 25px;
+    border: none;
+    border-radius: 10px;
+    background-color: #ebd2cf;
+    color: #b23a48;
+}
+
+.upload-icon {
+    padding: 75px;
+    width: 400px;
+    height: 400px;  
+    border: 2px dashed #5A0000;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.file-name{
+    margin-top: 10px;
+}
+
+.file-label {
+    margin-top: 10px;
+    margin-left: 125px;
+    color: #921A40;
+    font-weight: bold;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+#drop-area.dragover {
+    background-color: #f5c2c7;
+}
+
+.file-preview {
+    width: 450px; 
+    height: 450px;
+    overflow-y: auto; 
+    border: 1px solid #ddd;
+    border-radius: 8px; 
+    padding: 10px;
+    box-sizing: border-box;
+    background: #fff;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.file-preview canvas {
+    width: 100%; /* Đảm bảo canvas không vượt quá khung */
+    margin-bottom: 10px; /* Khoảng cách giữa các trang PDF */
+}
+
+.form-section{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-size: 20px;
+    color: #921A40;
+}
+
+.form-table th, .form-table td{
+    padding: 15px 0;
+}
+
+.form-group{
+    display: flex;
+    align-items: center;
+}
+
+label {
+    text-align: left;
+    font-weight: bold;
+}
+
+.orientation{
+    display: flex;
+    justify-content: space-around;
+    color: #474747;
+}
+
+input[type="text"], select, input[type=number] {
+    width: 100%;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #474747;
+    background-color: #f7efe5;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+	margin: 0;
+	-webkit-appearance: none;
+}
+
+.create-form-btn, .reset-btn {
+    margin-top: 50px;
+    font-size: 25px;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 30px;
+    color: #fff;
+    background-color: #C75B7A;
+    cursor: pointer;
+}
+
+.reset-btn{
+    float: right;
+    border: 1px solid #474747;
+    background-color: #f7efe5;
+    color: #474747;
+}
+
+.create-form-btn:hover {
+    background-color: #5A0000;
+}
+
+.reset-btn:hover {
+    background-color: #fff;
+}
+
+.conversion-table {
+    table-layout: fixed;
+    text-align: center;
+    margin: 25px 210px;
+    border-collapse: collapse;
+}
+
+.conversion-table th, .conversion-table td {
+    border: 1px solid #5A0000;
+    font-size: 16px;
+    padding: 10px;
+    width: 50000px;
+}
+
+.conversion-table th{
+    color: #fff;
+    background-color: #C75B7A;
+}
+
+.conversion-table td {
+    color: #000;
+    background-color: #ebd2cf;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    font-size: 20px;
+    width: 500px;
+    border-radius: 10px;
+    background-color: #f7efe5;
+    position: relative;
+}
+
+.modal-head{
+    height: 80px;
+    display: flex;
+    color: #921A40;
+    border-radius: 10px 10px 0 0;
+    background-color: #ebd2cf;
+    justify-content: center;
+}
+
+h2 {
+    color: #921A40;
+}
+
+.close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    margin-top: 5px;
+    cursor: pointer;
+    color: #921A40;
+    font-size: 40px;
+}
+
+.modal-body{
+    color: #474747;
+    font-weight: bold;
+    text-align: left;
+}
+
+.modal-detail{
+    font-weight: normal;
+}

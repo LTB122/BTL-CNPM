@@ -1,0 +1,114 @@
+.detail-container {
+    margin: 175px 210px;
+    background-color: #FFE0EB;
+    border-radius: 15px;
+    padding: 20px;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+    color: #921A40;
+    font-size: 50px;
+}
+
+.transaction-details {
+    display: flex;
+    font-size: 24px;
+    margin-bottom: 50px;
+    background-color: #FFF7FA;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    height: auto;
+}
+
+.print-detail{
+    text-align: left;
+    flex: 6;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    width: 50%;
+    text-align: left; 
+    padding: 8px; 
+    vertical-align: top; 
+}
+
+tr, th {
+    padding: 20px;
+    color: #921A40;
+}
+
+.history-detail{
+    font-weight: bold;
+    color: #000;
+}
+
+#fileName{
+    font-weight: normal;
+    font-style: italic;
+}
+
+.total-price {
+    background-color: #C75B7A;
+    text-align: center;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 40px 30px;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 20px 100px 20px 80px;
+}
+
+.user-info {
+    flex: 3;
+    border: 2px solid #474747;
+    border-radius: 10px;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    float: right;
+    padding: 10px;
+}
+
+.avatar {
+    border-radius: 10px;
+    width: 50%;
+    margin-bottom: 10px;
+    border: 2px solid grey;
+}
+
+.access-btn {
+    background-color: #C75B7A;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 40px;
+    cursor: pointer;
+}
+
+.back-btn {
+    background-color: #C75B7A;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 40px;
+    cursor: pointer;
+    font-size: 24px;
+    width: 20%;
+    margin: 0 auto;
+}
+
+.access-btn:hover, .back-btn:hover {
+    background-color: #5A0000;
+}

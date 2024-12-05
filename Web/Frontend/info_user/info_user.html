@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Shop</title>
+    <link rel="icon" href="../assets/img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="script" href="../authenticate.js">
+    <link rel="script" href="../info_user/info_user.js">
+    <link rel="stylesheet" href="../assets/css/home_page.css">
+    <link rel="stylesheet" href="../assets/css/about_us.css">
+    <link rel="stylesheet" href="../assets/css/info_user.css">
+    <link rel="stylesheet" href="../assets/css/grid.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap&amp;subset=vietnamese" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <body>
+      <div class="header">
+        <div class="header__header-item"><a class="header-logo-link" href="../home/home_page.html"><img class="header__logo" src="../assets/img/logo_cochu.png"></a>
+          <div class="header-list">
+            <button class="header-item__home-page"><a class="link_page" href="../home/home_page.html"> Trang chủ</a></button>
+            <button class="header-item__about-us"> <a class="link_page" href="../about/about_us.html">Giới thiệu </a></button>
+            <button class="header-item__print"> <a class="link_page" href="../Student/Create_Print_Form.html">Dịch vụ in </a></button>
+            <button class="header-item__login">Đăng nhập</button>
+            <button class="header-item__dangky">Đăng ký</button>
+            <div class="header__navbar-item header__navbar-user"><img class="header__navbar-user-img" src="" alt="">
+              <div class="header__navbar-user-dropdown"><i class="fa-solid fa-angle-down"></i></div>
+              <ul class="header__navbar-user-menu"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal js-modal">
+        <div class="modal-container js-modal-container">
+          <div class="modal-close js-modal-close"><i class="fa-solid fa-xmark"></i></div>
+          <header class="modal-header"><i class="ti-bag"></i>
+            <p>Đăng nhập </p>
+          </header>
+          <div class="modal-body">
+            <div class="modal-form">
+              <label class="modal-label">
+                <!-- for chi tro den id-->Tên đăng nhập
+              </label>
+              <input class="modal-input" id="username" type="text">
+              <label class="modal-label">Mật khẩu</label>
+              <input class="modal-input" id="password" type="password">
+              <div class="line"></div>
+              <div class="modal-label-result">
+                <button id="button-login">Đăng nhập</button>
+                <button id="button-delete">Xoá nội dung</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-dangky js-modal-dangky">
+        <div class="modal-container-dangky js-modal-container-dangky">
+          <div class="modal-close-dangky js-modal-close-dangky"><i class="fa-solid fa-xmark"></i></div>
+          <header class="modal-header-dangky">
+            <p>Đăng ký </p>
+          </header>
+          <div class="modal-body-dangky">
+            <div class="modal-form-dangky">
+              <div class="form-item">
+                <label class="modal-label-dangky">Họ và tên</label>
+                <input class="modal-input" id="fullname" type="text">
+              </div>
+              <div class="form-item">
+                <label class="modal-label-dangky">Tên đăng nhập</label>
+                <input class="modal-input" id="usernamedangky" type="text">
+              </div>
+              <div class="form-item">
+                <label class="modal-label-dangky">Mật khẩu</label>
+                <input class="modal-input" id="passworddangky" type="text">
+              </div>
+              <div class="form-item">
+                <label class="modal-label-dangky">Email</label>
+                <input class="modal-input" id="emaildangky" type="email">
+              </div>
+              <div class="form-item">
+                <label class="modal-label-dangky">MSSV</label>
+                <input class="modal-input" id="mssvdangky" type="text">
+              </div>
+              <div class="form-item">
+                <label class="modal-label-dangky">Số điện thoại</label>
+                <input class="modal-input" id="sdtdangky" type="text">
+              </div>
+              <div class="form-item">
+                <label class="modal-label-dangky">Khoa</label>
+                <input class="modal-input" id="khoadangky" type="text">
+              </div>
+            </div>
+            <div class="modal-label-result-dangky">
+              <button id="button-dangky">Đăng ký</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="../header.js"></script>
+      <script src="../authenticate.js"></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        const deleteButton = document.getElementById('button-delete');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        
+        deleteButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            usernameInput.value = '';
+            passwordInput.value = '';
+        });
+        });
+      </script>
+      <h2 class="container-home__title margin-top-60px">Thông tin cá nhân</h2>
+      <div class="container-info-list">
+        <div class="container-info-list__left"><img class="container-info-list__img" src="" alt="">
+          <div class="upload-container" id="upload-container" style="display: none;">
+            <form id="upload-form" enctype="multipart/form-data">
+              <input id="avatar" type="file" name="avatar" accept="image/*" required>
+              <button type="submit">Upload Avatar</button>
+            </form>
+            <p class="message" id="upload-message"></p>
+          </div><a class="container-info-list__button-history" href="../Student/Print_History.html">Xem lịch sử</a>
+        </div>
+        <div class="container-info-list__right">
+          <div class="container-info-list__item-item">
+            <div class="container-info-list__header">
+              <div class="container-info-list__item-name">Họ và tên</div><i class="fa-solid fa-pen container-info-list__icon"></i>
+            </div>
+            <input class="container-info-list__item-value" type="text" id="name_user" placeholder="Nhập tên của bạn">
+          </div>
+          <div class="container-info-list__item-item">
+            <div class="container-info-list__header default">
+              <div class="container-info-list__item-name">Mã số sinh viên</div>
+              <input class="container-info-list__item-value" type="text" id="student_id" readonly>
+            </div>
+          </div>
+          <div class="container-info-list__item-item">
+            <div class="container-info-list__header">
+              <div class="container-info-list__item-name">Số điện thoại</div><i class="fa-solid fa-pen container-info-list__icon"></i>
+            </div>
+            <input class="container-info-list__item-value" type="text" id="phone" placeholder="Nhập số điện thoại">
+          </div>
+          <div class="container-info-list__item-item">
+            <div class="container-info-list__header">
+              <div class="container-info-list__item-name">Email</div><i class="fa-solid fa-pen container-info-list__icon"></i>
+            </div>
+            <input class="container-info-list__item-value" type="text" id="email" placeholder="Nhập email">
+          </div>
+          <div class="container-info-list__item-item">
+            <div class="container-info-list__header">
+              <div class="container-info-list__item-name">Số trang A4 đang có</div><i class="item-buy-pager fa-solid fa-pen container-info-list__icon"></i>
+            </div>
+            <input class="container-info-list__item-value" type="text" id="number_pager" readonly>
+          </div>
+          <div class="container-info-list__item-item">
+            <div class="container-info-list__header default">
+              <div class="container-info-list__item-name">Ngày cập nhật thêm trang</div>
+              <input class="container-info-list__item-value" type="text" id="date" readonly>
+            </div>
+          </div>
+          <div class="container-info-list__item-item">
+            <div class="container-info-list__header default">
+              <div class="container-info-list__item-name">Khoa</div>
+              <input class="container-info-list__item-value" type="text" id="department" readonly>
+            </div>
+          </div>
+          <button class="container-info-list__button-history button-update-info">Chỉnh sửa</button>
+        </div>
+      </div>
+      <div class="modal-buy js-modal-buy">
+        <div class="modal-container-buy js-modal-container-buy">
+          <div class="modal-close js-modal-close-buy"><i class="fa-solid fa-xmark"></i></div>
+          <header class="modal-header">
+            <p>MUA THÊM GIẤY </p>
+          </header>
+          <div class="modal-body">
+            <div class="modal-form">
+              <label class="modal-label-buy">
+                <!-- for chi tro den id-->Số lượng
+              </label>
+              <input class="modal-input" id="numberpage" type="number" placeholder="VD: 1" min="1" max="100">
+              <button class="modal-label-buy-result">
+                <div id="button-buy-pager">Thanh toán</div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="../Student/js/Create_Payment.js">       </script>
+      <script src="../info_user/info_user.js"></script>
+    </body>
+  </head>
+</html>

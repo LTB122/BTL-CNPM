@@ -1,0 +1,18 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "pug index.pug --watch --pretty",
+    "start1": "pug home/home_page.pug --watch --pretty",
+    "start2": "pug about/about_us.pug --watch --pretty",
+    "start3": "pug info_user/info_user.pug --watch --pretty"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5"
+  }
+}

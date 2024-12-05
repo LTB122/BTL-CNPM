@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi File Preview with Pages for TXT and HTML</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+    <style>
+        #preview-container {
+            width: 300px;
+            height: 400px; /* Chiều cao cố định để tính số trang */
+            overflow: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-top: 20px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        canvas {
+            margin-bottom: 10px;
+            max-width: 100%;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        #error-message {
+            color: red;
+            margin-top: 10px;
+        }
+
+        #page-count {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <input type="file" id="upload" />
+    <div id="error-message"></div>
+    <div id="page-count"></div>
+    <div id="preview-container"></div>
+
+    <script>
+        document.getElementById('upload').addEventListener('change', async function (event) {
+            const file = event.target.files[0];
+            const errorMessageContainer = document.getElementById('error-message');
+            const previewContainer = document.getElementById('preview-container');
+            const pageCountContainer = document.getElementById('page-count');
+
+            // Reset trạng thái cũ
+            errorMessageContainer.innerText = '';
+            previewContainer.innerHTML = '';
+            pageCountContainer.innerText = '';
+
+            if (!file) return;
+
+            const fileType = file.type;
+            const fileName = file.name;
+
+            if (fileType === 'application/pdf') {
+                // PDF Preview
+                const fileReader = new FileReader();
+                fileReader.onload = async function () {
+                    const typedArray = new Uint8Array(this.result);
+                    const pdf = await pdfjsLib.getDocument(typedArray).promise;
+
+                    // Hiển thị số trang
+                    pageCountContainer.innerText = `Số trang: ${pdf.numPages}`;
+
+                    for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+                        const page = await pdf.getPage(pageNumber);
+                        const canvas = document.createElement('canvas');
+                        const context = canvas.getContext('2d');
+
+                        const viewport = page.getViewport({ scale: 1.5 });
+                        canvas.width = viewport.width;
+                        canvas.height = viewport.height;
+
+                        await page.render({ canvasContext: context, viewport }).promise;
+                        previewContainer.appendChild(canvas);
+                    }
+                };
+                fileReader.readAsArrayBuffer(file);
+            } else if (fileType === 'text/plain') {
+                // TXT Preview
+                const fileReader = new FileReader();
+                fileReader.onload = function () {
+                    const textContent = document.createElement('div');
+                    textContent.textContent = this.result;
+                    textContent.style.lineHeight = '1.5'; // Giả sử chiều cao mỗi dòng
+                    previewContainer.appendChild(textContent);
+
+                    // Tính số trang
+                    setTimeout(() => {
+                        const totalHeight = textContent.offsetHeight;
+                        const containerHeight = 400; // Chiều cao cố định của khung
+                        const numPages = Math.ceil(totalHeight / containerHeight);
+                        pageCountContainer.innerText = `Số trang: ${numPages}`;
+                    }, 0); // Chờ DOM render xong
+                };
+                fileReader.readAsText(file);
+            } else if (fileType === 'text/html') {
+                // HTML Preview
+                const fileReader = new FileReader();
+                fileReader.onload = function () {
+                    const htmlContent = this.result;
+
+                    // Tạo iframe để nhúng nội dung HTML
+                    const iframe = document.createElement('iframe');
+                    previewContainer.appendChild(iframe);
+                    const doc = iframe.contentWindow.document;
+
+                    // Ghi nội dung HTML vào trong iframe
+                    doc.open();
+                    doc.write(htmlContent);
+                    doc.close();
+
+                    // Tính số trang
+                    setTimeout(() => {
+                        const totalHeight = doc.body.scrollHeight;
+                        const containerHeight = 400; // Chiều cao cố định của khung
+                        const numPages = Math.ceil(totalHeight / containerHeight);
+                        pageCountContainer.innerText = `Số trang: ${numPages}`;
+                    }, 0); // Chờ DOM render xong
+                };
+                fileReader.readAsText(file);
+            } else if (fileName.endsWith('.doc') || fileName.endsWith('.docx')) {
+                // DOC/DOCX Preview using Mammoth.js
+                const fileReader = new FileReader();
+                fileReader.onload = async function () {
+                    const arrayBuffer = this.result;
+                    const result = await mammoth.extractRawText({ arrayBuffer });
+                    const wordContent = document.createElement('div');
+                    wordContent.textContent = result.value;
+                    previewContainer.appendChild(wordContent);
+
+                    // Ước tính số trang
+                    setTimeout(() => {
+                        const totalHeight = wordContent.offsetHeight;
+                        const containerHeight = 400; // Chiều cao cố định của khung
+                        const numPages = Math.ceil(totalHeight / containerHeight);
+                        pageCountContainer.innerText = `Ước tính số trang: ${numPages}`;
+                    }, 0); // Chờ DOM render xong
+                };
+                fileReader.readAsArrayBuffer(file);
+            } else {
+                // Unsupported File Type
+                errorMessageContainer.innerText = 'Không hỗ trợ định dạng file này.';
+            }
+        });
+    </script>
+</body>
+</html>
