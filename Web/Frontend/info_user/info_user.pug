@@ -57,9 +57,9 @@ block container
                 label.modal-label-buy
                     // for chi tro den id
                     |Số lượng
-                input#numberpage.modal-input(type='text' placeholder="VD: 1" )
-                div.modal-label-buy-result
-                    button#button-buy-pager
+                input#numberpage.modal-input(type='number', placeholder="VD: 1" , min=1, max=100)
+                button.modal-label-buy-result
+                    #button-buy-pager
                         | Thanh toán
     
     script(src="../Student/js/Create_Payment.js")        

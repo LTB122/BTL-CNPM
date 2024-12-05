@@ -387,6 +387,7 @@ async function updateNumberpage(updatedData) {
 					data.number_pager || updatedData.number_pager
 				}`;
 			}
+			window.location.reload();
 		} else {
 			const errorData = await response.json();
 			alert(`Không thể mua thêm: ${errorData.message}`);
@@ -399,11 +400,10 @@ async function updateNumberpage(updatedData) {
 
 
 document.addEventListener("DOMContentLoaded", async function () {
-	// Initialize UI and user profile
+
 	await updateUIBasedOnLogin();
 	await getUserProfile();
   
-	// Login Button
 	const loginButton = document.querySelector("#button-login");
 	if (loginButton) {
 	  loginButton.addEventListener("click", async function () {
@@ -435,7 +435,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 	  console.error("Update profile button (.button-update-info) not found.");
 	}
   
-	// Buy Page Button
 	const buyButton = document.querySelector("#button-buy-pager");
 	if (buyButton) {
 	  buyButton.addEventListener("click", async (event) => {
@@ -453,7 +452,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 		  return;
 		}
   
-		// Fetch user profile
 		const response = await authenticatedFetch("http://localhost:3000/api/user/profile", {
 		  method: "GET",
 		});

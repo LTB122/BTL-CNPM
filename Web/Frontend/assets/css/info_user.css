@@ -203,6 +203,9 @@
     display: flex;
     justify-content: space-around;
     text-transform:none;
+    width: 100%;
+    background: transparent;
+    border: transparent;
 }
 
 .modal-form{
