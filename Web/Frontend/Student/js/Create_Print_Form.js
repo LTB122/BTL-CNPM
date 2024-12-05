@@ -1,7 +1,7 @@
 const dropArea = document.getElementById("drop-area");
 const fileInput = document.getElementById("fileElem");
 let uploadedFile = null; // Biến để track file đã upload
-let totalPdfPages = 0; // Biến lưu tổng số trang PDF
+let totalPages = 0; // Biến lưu tổng số trang PDF
 
 // Xử lý kéo thả file
 dropArea.addEventListener("dragover", (e) => {
@@ -20,14 +20,46 @@ dropArea.addEventListener("drop", (e) => {
     handleFiles(files); //Xử lý file đã kéo thả
 });
 
-// function handleFiles(files) {
-//     const file = files[0];
-//     if (file) {
-//         uploadedFile = file;
-//         const fileNameElement = document.getElementById("file-name");
-//         fileNameElement.textContent = file.name; // Hiển thị tên file
-//     }
-// }
+function filterPrintersByFileType(fileType) {
+    const printerSelect = document.getElementById("printer");
+    printerSelect.innerHTML = ""; // Xóa các lựa chọn hiện tại
+
+    authenticatedFetch("http://localhost:3000/api/printer/printer", {
+        method: "GET",
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then((printers) => {
+            const filteredPrinters = printers.filter((printer) =>
+                printer.allowedFileFormat.includes(fileType)
+                
+            );
+            console.log(printers);
+            if (filteredPrinters.length === 0) {
+                const option = document.createElement("option");
+                option.value = "";
+                option.textContent = "Không có máy in hỗ trợ";
+                printerSelect.appendChild(option);
+            } else {
+                filteredPrinters.forEach((printer) => {
+                    const option = document.createElement("option");
+                    option.value = printer.printerCode;
+                    option.textContent = printer.printerName;
+                    option.dataset.place = printer.place;
+                    printerSelect.appendChild(option);
+                });
+            }
+        })
+        .catch((error) => {
+            console.error("Error loading printers:", error);
+            alert("Không thể tải danh sách máy in. Vui lòng thử lại.");
+        });
+}
+
 document.getElementById('fileElem').addEventListener('change', async function (event) {
     const file = event.target.files[0];
     if (!file) return;
@@ -50,6 +82,12 @@ document.getElementById('fileElem').addEventListener('change', async function (e
 
     const fileType = file.type;
     const fileName = file.name;
+    
+    // Lấy định dạng file từ tên
+    const fileTypeforPrinter = file.name.split('.').pop().toLowerCase();
+    
+    // Gọi hàm lọc máy in
+    filterPrintersByFileType(fileTypeforPrinter);
 
     // Xử lý hiển thị preview
     if(fileType === 'application/pdf') {
@@ -61,7 +99,7 @@ document.getElementById('fileElem').addEventListener('change', async function (e
             const pdf = await pdfjsLib.getDocument(typedArray).promise;
 
             // Lấy tổng số trang PDF
-            totalPdfPages = pdf.numPages;
+            totalPages = pdf.numPages;
 
             // Render từng trang PDF
             for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
@@ -96,7 +134,7 @@ document.getElementById('fileElem').addEventListener('change', async function (e
                     const totalHeight = wordContent.offsetHeight;
                     const containerHeight = 400; // Chiều cao cố định của khung
                     const numPages = Math.ceil(totalHeight / containerHeight);
-                    pageCountContainer.innerText = `Ước tính số trang: ${numPages}`;
+                    totalPages = numPages;
                 }, 0); // Chờ DOM render xong
             };
         fileReader.readAsArrayBuffer(file);
@@ -114,7 +152,7 @@ document.getElementById('fileElem').addEventListener('change', async function (e
                 const totalHeight = textContent.offsetHeight;
                 const containerHeight = 400; // Chiều cao cố định của khung
                 const numPages = Math.ceil(totalHeight / containerHeight);
-                pageCountContainer.innerText = `Số trang: ${numPages}`;
+                totalPages = numPages;
             }, 0); // Chờ DOM render xong
         };
         fileReader.readAsText(file);
@@ -122,16 +160,24 @@ document.getElementById('fileElem').addEventListener('change', async function (e
         // HTML Preview
         const fileReader = new FileReader();
         fileReader.onload = function () {
-            const htmlContent = document.createElement('div');
-            htmlContent.innerHTML = this.result;
-            previewContainer.appendChild(htmlContent);
+            const htmlContent = this.result;
+
+            // Tạo iframe để nhúng nội dung HTML
+            const iframe = document.createElement('iframe');
+            previewContainer.appendChild(iframe);
+            const doc = iframe.contentWindow.document;
+
+            // Ghi nội dung HTML vào trong iframe
+            doc.open();
+            doc.write(htmlContent);
+            doc.close();
 
             // Tính số trang
             setTimeout(() => {
                 const totalHeight = htmlContent.offsetHeight;
                 const containerHeight = 400; // Chiều cao cố định của khung
                 const numPages = Math.ceil(totalHeight / containerHeight);
-                pageCountContainer.innerText = `Số trang: ${numPages}`;
+                totalPages = numPages;
             }, 0); // Chờ DOM render xong
         };
         fileReader.readAsText(file);
@@ -207,7 +253,6 @@ async function getCurrentPages() {
         })
         .then((data) => {
             if (data.number_pager !== undefined) {
-                console.log(data.number_pager);
                 return data.number_pager; // Trả về số trang hiện có
             } else {
                 throw new Error("Dữ liệu không chứa thông tin số trang.");
@@ -240,7 +285,6 @@ async function updatePagesAfterPrint(usedPages) {
     getCurrentPages()
         .then((currentPages) => {
             const updatedPages = currentPages - usedPages;
-            console.log(updatedPages);
 
             // Gửi yêu cầu cập nhật số trang mới lên server
             authenticatedFetch("http://localhost:3000/api/user/update-page", {
@@ -281,7 +325,7 @@ function createOrder() {
         return;
     }
 
-    const pages = totalPdfPages;
+    const pages = totalPages;
     const copies = Number(document.getElementById("copies").value);
     const paperSize = document.getElementById("paper-size").value;
 
