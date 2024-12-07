@@ -374,6 +374,8 @@ function createOrder() {
 		const printerName = selectedOption.textContent;
 		const place = selectedOption.dataset.place;
 		const fileName = document.getElementById("file-name").textContent;
+		const now = new Date();
+		const time = formatTimeOnly(now);
 
 		if (!orientation) {
 			alert("Vui lòng chọn hướng in (Hướng dọc hoặc Hướng ngang).");
@@ -397,6 +399,7 @@ function createOrder() {
 			copies: Number(copies),
 			Display: side,
 			fileName: fileName,
+			time: time
 		};
 
 		fetch(`http://localhost:3000/api/printLog/printRequest/${printer}`, {
@@ -409,7 +412,6 @@ function createOrder() {
 		})
 			.then((response) => {
 				if (response.ok) {
-					const now = new Date();
 					const formattedTime = formatDateTime(now);
 
 					document.getElementById("modal-printer").textContent =
@@ -445,6 +447,14 @@ function formatDateTime(date) {
 	const seconds = String(date.getSeconds()).padStart(2, "0");
 
 	return `${hours}:${minutes}:${seconds} - ${day}/${month}/${year}`;
+}
+
+function formatTimeOnly(date) {
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+
+    return `${hours}:${minutes}:${seconds}`;
 }
 
 // Tắt modal
