@@ -274,9 +274,17 @@ async function getCurrentPages() {
 
 // Hàm tính tổng số trang yêu cầu
 function calculateRequiredPages(pages, copies, paperSize, side) {
-	const sideMul = side === "1 mặt" ? 1 : 2;
-	const pageMultiplier = paperSize === "A3" ? 2 : 1; // A3 tính là 2 trang A4
-	return Math.round(pages * copies * pageMultiplier) / sideMul;
+	// Xác định hệ số cho mặt in
+	const sideFactor = side === "1 mặt" ? 1 : 2; // 1 mặt: 1 trang giấy = 1 trang in; 2 mặt: 1 trang giấy = 2 trang in
+
+	// Xác định hệ số cho kích thước giấy
+	const paperSizeFactor = paperSize === "A3" ? 2 : 1; // A3: 1 trang giấy A3 chứa 2 trang in A4; A4: 1:1
+
+	// Tính tổng số trang giấy cần thiết
+	const totalPages = (pages * copies * paperSizeFactor) / sideFactor;
+
+	// Làm tròn lên vì không thể in nửa trang giấy
+	return Math.ceil(totalPages);
 }
 
 // Hàm kiểm tra số trang hiện có đủ không
