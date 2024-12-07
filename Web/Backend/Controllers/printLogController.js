@@ -5,7 +5,7 @@ const User = require('../Models/User');
 //Hàm tạo đơn in mới
 exports.createPrintLog = async (req, res) => {
     try{
-        const {paperSize, orientation, pagesPrinted, fileName, copies, display} = req.body;
+        const {paperSize, orientation, pagesPrinted, fileName, date, time, copies, display} = req.body;
         const printerID = req.params.printerID;
         
         let printerNameCheck, printerCodeCheck;
@@ -26,6 +26,8 @@ exports.createPrintLog = async (req, res) => {
             printerCode: printerCodeCheck,
             userID: req.user.userId,
             userName: req.user.username,
+            date,
+            time,
             paperSize,
             orientation,
             pagesPrinted,
