@@ -34,8 +34,10 @@ function filterPrintersByFileType(fileType) {
 			return response.json();
 		})
 		.then((printers) => {
-			const filteredPrinters = printers.filter((printer) =>
-				printer.allowedFileFormat.includes(fileType)
+			const filteredPrinters = printers.filter(
+				(printer) =>
+					printer.allowedFileFormat.includes(fileType) &&
+					printer.condition === "Hoạt động"
 			);
 			console.log(printers);
 			if (filteredPrinters.length === 0) {
@@ -272,9 +274,9 @@ async function getCurrentPages() {
 
 // Hàm tính tổng số trang yêu cầu
 function calculateRequiredPages(pages, copies, paperSize, side) {
-	const sideMul = side === "1 mặt" ? 2 : 1;
+	const sideMul = side === "1 mặt" ? 1 : 2;
 	const pageMultiplier = paperSize === "A3" ? 2 : 1; // A3 tính là 2 trang A4
-	return pages * copies * pageMultiplier * sideMul;
+	return Math.round(pages * copies * pageMultiplier) / sideMul;
 }
 
 // Hàm kiểm tra số trang hiện có đủ không
@@ -405,7 +407,7 @@ function createOrder() {
 					document.getElementById("modal-printer").textContent =
 						printerName;
 					document.getElementById("modal-pager").textContent =
-						totalPages;
+						requiredPages;
 					document.getElementById("modal-place").textContent = place;
 					document.getElementById("modal-time").textContent =
 						formattedTime;
