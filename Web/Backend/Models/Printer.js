@@ -33,7 +33,7 @@ const printerSchema = new mongoose.Schema(
 		},
 		allowedFileFormat: {
 			type: [String],
-			default: ["pdf", "doc"],
+			default: ["pdf", "doc", "docx"],
 		},
 		place: {
 			type: String,
