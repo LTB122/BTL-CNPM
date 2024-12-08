@@ -281,11 +281,8 @@ function calculateRequiredPages(pages, copies, paperSize, side) {
 	// Xác định hệ số cho kích thước giấy
 	const paperSizeFactor = paperSize === "A3" ? 2 : 1; // A3: 1 trang giấy A3 chứa 2 trang in A4; A4: 1:1
 
-	// Tính tổng số trang giấy cần thiết
-	const totalPages = pages / sideFactor;
-
 	// Làm tròn lên vì không thể in nửa trang giấy
-	return Math.ceil(totalPages) * copies * paperSizeFactor;
+	return Math.ceil(pages / sideFactor) * copies * paperSizeFactor;
 }
 
 // Hàm kiểm tra số trang hiện có đủ không
