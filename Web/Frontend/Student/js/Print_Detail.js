@@ -37,7 +37,7 @@ function loadTransactionDetails() {
                         <th>Khổ giấy: <span class="history-detail">${transactionData.paperSize} - ${transactionData.orientation}</span></th>
                     </tr>
                     <tr>
-                        <th>Số trang: <span class="history-detail">${transactionData.pagesPrinted}</span></th>
+                        <th>Số trang A4 sử dụng: <span class="history-detail">${transactionData.pagesPrinted}</span></th>
                         <th>Tên file: <span class="history-detail" id="fileName">${transactionData.fileName}</span></th>
                     </tr>
                 </tbody>
