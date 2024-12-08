@@ -395,7 +395,7 @@ function createOrder() {
 		const updatedData = {
 			paperSize: paperSize,
 			orientation: orientation,
-			pagesPrinted: Number(pages),
+			pagesPrinted: requiredPages,
 			copies: Number(copies),
 			Display: side,
 			fileName: fileName,
