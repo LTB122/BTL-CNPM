@@ -1,0 +1,96 @@
+@startuml mvc
+title MVC Class Diagram for Document Printing System
+
+' ==================== MODEL ====================
+class User {
+    - username: String
+    - password: String
+    - name: String
+    - email: String
+    - mssv: String
+    - phoneNumber: String
+    - dateOfBirth: Date
+    - department: String
+    - numberOfPagesPrinted: int
+    - avatar: String
+}
+
+class PrintLog {
+    - logID: int
+    - user: User
+    - date: Date
+    - time: String
+    - paperSize: String
+    - orientation: String
+    - pagesPrinted: int
+    - copies: int
+    - fileName: String
+    - printer: Printer
+    - status: String
+}
+
+class Printer {
+    - printerID: int
+    - printerName: String
+    - dateOfManufacture: Date
+    - brand: String
+    - company: String
+    - condition: String
+    - allowedFileFormats: List<String>
+    - location: String
+    - isAvailable: boolean
+}
+
+' ==================== CONTROLLER ====================
+class UserController {
+    + login(username: String, password: String): boolean
+    + uploadAvatar(userID: int, avatar: String): void
+    + updateUser(userID: int, userDetails: User): void
+    + createUser(userDetails: User): boolean
+    + getUser(userID: int): User
+    + getAllUsers(): List<User>
+}
+
+class PrintLogController {
+    + getAccountPrintHistory(userID: int): List<PrintLog>
+    + getAdminPrintHistory(): List<PrintLog>
+    + getAllPrintHistory(): List<PrintLog>
+    + createPrintLog(printLogDetails: PrintLog): boolean
+}
+
+class PrinterController {
+    + addPrinter(printerDetails: Printer): boolean
+    + getAllPrinters(): List<Printer>
+    + getPrinter(printerID: int): Printer
+    + updatePrinter(printerID: int, printerDetails: Printer): void
+    + deletePrinter(printerID: int): void
+}
+
+' ==================== VIEW ====================
+class LoginView {
+    + displayLoginScreen(): void
+    + displayLoginResult(isSuccess: boolean): void
+}
+
+class PrintLogView {
+    + displayCreatePrintLogSuccess(printLog: PrintLog): void
+    + displayCreatePrintLogError(errorMessage: String): void
+    + displayPrintLogs(printLogs: List<PrintLog>): void
+}
+
+class PrinterView {
+    + displayPrinterList(printers: List<Printer>): void
+    + displayPrinterDetails(printer: Printer): void
+}
+
+' ==================== RELATIONSHIPS ====================
+UserController --> User : "Manages"
+PrintLogController --> PrintLog : "Handles"
+PrinterController --> Printer : "Manages"
+PrintLog -right-> Printer : "References"
+PrintLog -left-> User : "References"
+LoginView --> UserController : "Interacts"
+PrintLogView --> PrintLogController : "Interacts"
+PrinterView --> PrinterController : "Interacts"
+
+@enduml
