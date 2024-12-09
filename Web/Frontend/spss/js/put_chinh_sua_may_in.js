@@ -102,7 +102,6 @@ document.getElementById('chinh_sua_may_in').addEventListener('submit', async (ev
 
         let allowedFileFormatList = [];
         document.getElementById("doc").checked ? allowedFileFormatList.push("doc") : null;
-        document.getElementById("docx").checked ? allowedFileFormatList.push("docx") : null;
         document.getElementById("pdf").checked ? allowedFileFormatList.push("pdf") : null;
         document.getElementById("odt").checked ? allowedFileFormatList.push("odt") : null;
         document.getElementById("txt").checked ? allowedFileFormatList.push("txt") : null;

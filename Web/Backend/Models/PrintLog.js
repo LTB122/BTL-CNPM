@@ -18,11 +18,11 @@ const printedRequestSchema = new mongoose.Schema({
   },
   date: {
     type: String,
-    // default: moment().format('DD/MM/YYYY')
+    default: moment().format('DD/MM/YYYY')
   },
   time: {
     type: String,
-	  // default: moment().format('HH:mm:ss')
+	default: moment().format('HH:mm:ss')
   },
   paperSize: {
     type: String,
