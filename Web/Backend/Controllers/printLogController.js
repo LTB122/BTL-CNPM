@@ -5,7 +5,7 @@ const User = require('../Models/User');
 //Hàm tạo đơn in mới
 exports.createPrintLog = async (req, res) => {
     try{
-        const {paperSize, orientation, pagesPrinted, fileName, copies, display} = req.body;
+        const {paperSize, orientation, pagesPrinted, fileName, date, time, copies, display} = req.body;
         const printerID = req.params.printerID;
         
         let printerNameCheck, printerCodeCheck;
@@ -26,6 +26,8 @@ exports.createPrintLog = async (req, res) => {
             printerCode: printerCodeCheck,
             userID: req.user.userId,
             userName: req.user.username,
+            date,
+            time,
             paperSize,
             orientation,
             pagesPrinted,
@@ -37,15 +39,15 @@ exports.createPrintLog = async (req, res) => {
 
         const user = await User.findOne({_id: req.user.userId})
 
-        if(user && user.number_pager >= pagesPrinted*copies){
-            await User.findOneAndUpdate({_id: req.user.userId},{ $inc: { number_pager: -(pagesPrinted*copies)}});
-            const newUser = await User.findOne({_id: req.user.userId});
-            if(newUser) console.log(`Số trang in hiện tại còn lại là: ${newUser.number_pager} `) 
-        }
-        else{
-            res.status(401).json({message: "Số lượng giấy không đủ để thực hiện đơn in"});
-            alert("Số trang in hiện tại trong hệ thống không đủ để thực hiện đơn in này")
-        }
+        // if(user && user.number_pager >= pagesPrinted*copies){
+        //     await User.findOneAndUpdate({_id: req.user.userId},{ $inc: { number_pager: -(pagesPrinted*copies)}});
+        //     const newUser = await User.findOne({_id: req.user.userId});
+        //     if(newUser) console.log(`Số trang in hiện tại còn lại là: ${newUser.number_pager} `) 
+        // }
+        // else{
+        //     res.status(401).json({message: "Số lượng giấy không đủ để thực hiện đơn in"});
+        //     alert("Số trang in hiện tại trong hệ thống không đủ để thực hiện đơn in này")
+        // }
 
         await newPrintedDemand.save();
         res.status(201).json(newPrintedDemand);

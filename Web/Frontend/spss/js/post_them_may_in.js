@@ -31,6 +31,7 @@ document.getElementById('post_may_in').addEventListener('submit', async (event) 
 
         let allowedFileFormatList = [];
         document.getElementById("docType").checked ? allowedFileFormatList.push("doc") : null;
+        document.getElementById("docxType").checked ? allowedFileFormatList.push("docx") : null;
         document.getElementById("pdfType").checked ? allowedFileFormatList.push("pdf") : null;
         document.getElementById("odtType").checked ? allowedFileFormatList.push("odt") : null;
         document.getElementById("txtType").checked ? allowedFileFormatList.push("txt") : null;

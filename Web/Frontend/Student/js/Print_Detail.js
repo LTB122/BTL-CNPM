@@ -9,7 +9,7 @@ function loadTransactionDetails() {
     // Hàm tính tổng tiền
     function calculateTotalPrice(paperSize, pagesPrinted) {
         const pricePerPageA4 = 200;
-        const pricePerPageA3 = 400;
+        const pricePerPageA3 = 200;
 
         if (paperSize === 'A4') {
             return pagesPrinted * pricePerPageA4;
@@ -37,7 +37,7 @@ function loadTransactionDetails() {
                         <th>Khổ giấy: <span class="history-detail">${transactionData.paperSize} - ${transactionData.orientation}</span></th>
                     </tr>
                     <tr>
-                        <th>Số trang: <span class="history-detail">${transactionData.pagesPrinted}</span></th>
+                        <th>Số trang A4 sử dụng: <span class="history-detail">${transactionData.pagesPrinted}</span></th>
                         <th>Tên file: <span class="history-detail" id="fileName">${transactionData.fileName}</span></th>
                     </tr>
                 </tbody>
